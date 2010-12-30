@@ -1,0 +1,86 @@
+MSYS is "Minimal System", is some sort of Cygwin set of libraries (but
+is not cygwin) that only exist to provide support for native
+compilation of libraries and tools under MinGW (GCC)
+
+For example, it provides perl and other components that make it easy
+to compile things like OpenSSL. Also provides a native bash that
+translates Windows paths (C:\Foo\Bar) into /c/Foo/Bar, making them
+compatible with cygwin-like make, used to compile stuff.
+
+MSYS is the complement of MinGW. Both together form DevKit.
+
+Inside DevKit you will notice a bin folder, and inside will find
+bash, sh and other scripts, then at the same level of 'bin' will find
+a 'mingw' folder that contains GCC and the Windows headers, used to
+compile.
+
+Both bin and mingw/bin folders needs to be added to the PATH so things
+like this can work:
+
+sh -c "autoconf"
+mkdir build
+cd build
+sh ../configure ...
+make
+
+We use DevKit build recipes and provide them to the
+users as SFX (work on installer has been put on hold for now)
+
+You can read more about the steps to install it here:
+
+https://github.com/oneclick/rubyinstaller/wiki/Development-Kit
+
+================================================================================
+
+
+On Wed, Dec 29, 2010 at 6:14 PM, Wayne E. Seguin <wayneeseguin@gmail.com> wrote:
+> Would you be able to walk me through an overview of how RubyInstaller works
+> from the developers perspective?
+>
+> Meaning things like:
+> * The workflow (Install Ruby and DevKit, then run 'rake ...' )
+
+To hack on RubyInstaller you only need a previous version of Ruby
+installed, nothing else.
+
+DevKit is downloaded by "rake devkit" and is part of the dependency
+change of building "rake ruby18" or "rake rub19"
+
+> * The code flow (Starts with the rake call, runs ....)
+
+git clone ...
+cd rubyinstaller
+rake ruby18 #=> results in all the libraries compiled and Ruby 1.8.7
+build in sandbox/ruby18_mingw
+rake ruby19 #=> only builds libraries that 1.9.2 depends on and put
+the compiled output at sandbox/ruby19_mingw
+
+Then, you need:
+
+gem install rdoc -v "~> 2.5.11"
+gem install rdoc_chm
+
+Also, install (in your computer) InnoSetup QuickStart Pack, unicode:
+
+http://www.jrsoftware.org/isdl.php#qsp
+
+When installed, ensure ISPP (pre-processor) is checked for installation.
+
+Once you're done with that, you can:
+
+rake ruby18:package
+
+Which will generate the rdoc (CHM) and will package the InnoSetup script.
+
+same for ruby19:package
+
+These tasks don't get added until you don't compile Ruby ;-)
+
+> I have some code ready to start playing with however I am unsure how you
+> would do the packaging and running, etc on windows.
+
+I think I covered all the steps above, for sure rake tasks can be
+cleaned to make it more clear the dependencies :-)
+
+Hope that helps,
+

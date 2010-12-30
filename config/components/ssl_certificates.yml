@@ -1,0 +1,4 @@
+---
+:name: SSLCertificates
+:url: http://curl.haxx.se/ca
+:file: cacert.pem

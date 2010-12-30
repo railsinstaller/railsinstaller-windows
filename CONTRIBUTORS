@@ -1,0 +1,19 @@
+# CONTRIBUTORS
+#
+# This file tries to detail all the developers, users and 3rd parties
+# that contributed to materialize this project
+#
+# Please feel free to add yourself or details, but keep the file in
+# as YAML formatted document. Thank you.
+
+---
+- Wayne E. Seguin
+  :email: wayneeseguin+railsinstaller@gmail.com
+  :website: http://rvm.beginrescueend.com/
+
+- Luis Lavena
+  :email: luislavena+railsinstaller@gmail.com
+  :website: http://blog.mmediasys.com/
+
+- Ruby Installer Team and Contributors
+  :website: http://rubyinstaller.org/
