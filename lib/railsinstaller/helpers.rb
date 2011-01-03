@@ -7,7 +7,8 @@ module RailsInstaller::Helpers
 
       # TODO: Run through ERB.
       #config = OpenStruct.new(Erb.parse(YAML.load_file(file)))
-      yaml = ERB.new(File.read("#{RailsInstaller::Root}/config/base.yml"), 0).result(binding)
+      yaml = ERB.new(File.read("#{RailsInstaller::Root}/config/railsinstaller.yml"), 0).result(binding)
+
       config = OpenStruct.new(YAML.load(yaml)[name])
 
       config.each_pair do |key,value|
