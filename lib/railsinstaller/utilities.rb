@@ -51,6 +51,12 @@ module RailsInstaller::Utilities
         end
       end
 
+      def self.build_gems(gems)
+        gems.each do |gemname|
+          build_gem(gemname)
+        end
+      end
+
       def self.build_gem(gemname, *options)
 
         if $Flags[:verbose]
@@ -61,6 +67,29 @@ module RailsInstaller::Utilities
 
       def self.log(text)
         printf %Q[#{text}\n]
+      end
+
+      def self.section(text)
+        printf %Q{#\n# #{text}\n#\n}
+      end
+
+      #
+      # Add funcitonality to DevKit object that was loaded during configure.
+      #
+      class DevKit
+
+        def self.init_ruby(devkit_path,ruby_path)
+
+          unless ENV["PATH"].include?("#{path}")
+            ENV["PATH"] = "#{ruby_path};#{ENV["PATH"]}"
+          end
+
+          sh %Q{cd "#{devkit_path}\\DevKit" && ruby dk.rb init}
+
+          sh %Q{cd "#{devkit_path}\\DevKit" && ruby dk.rb install}
+
+        end
+
       end
 
     end

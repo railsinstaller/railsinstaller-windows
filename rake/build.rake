@@ -9,45 +9,33 @@ namespace :railsinstaller do
     # Configuration / Variables
     #
     stage_path="#{RailsInstaller::Root}/stage"
-    gems = %q(rake rails mysql pg)
 
     #
-    # RubyInstaller
+    section "RubyInstaller"
     #
-    url = RailsInstaller::Components::RubyInstaller.url
+    printf %Q{#\n# RubyInstaller\n#\n}
+    url = RubyInstaller.url
     filename = "#{stage_path}/#{File.basename(url)}"
 
     download(url, filename) and extract(filename)
 
     #
-    # DevKit
+    section "DevKit"
     #
-    log "Building DevKit using RubyInstaller."
+    download(DevKit.url, DevKit.filename) and extract(DevKit.filename)
 
-    sh(%Q{cd "#{stage_path}/railsinstaller" && "rake devkit 7Z=1"})
-
-    log "Extracting DevKit into the staging directory."
-
-    # extract devkit and run the rake tasks to link with ruby
-    # TODO: Ask Luis the best way to go about this.
-
-    log "Linking DevKit with Ruby installed on the stage."
-    # TODO: Ask Luis the best way to go about this.
+    DevKit.init_ruby("#{stage_path}\\DevKit",
+                     "#{stage_path}\\rubyinstaller\\Ruby187\\bin")
 
     #
-    # Gems
+    section "Gems"
     #
-    gems.each do |gemname|
-      build_gem(gemname)
-    end
+    build_gems(%q(rake rails mysql pg))
 
     #
     # Git
     #
-    url = RailsInstaller::Components::Git.url
-    filename = RailsInstaller::Components::Git.filename
-
-    download(url, filename) and extract(filename)
+    download(Git.url, Git.filename) and extract(Git.filename)
 
   end
 
