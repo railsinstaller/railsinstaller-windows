@@ -1,7 +1,18 @@
 module RailsInstaller::Components
 
-  include RailsInstaller::Helpers
+  def self.included(target_module)
 
-  configure "components"
+    # Define configure on the given module
+    def target_module.configure(name)
+
+      target_module.class_eval do
+        include RailsInstaller::Helpers
+
+        configure "components"
+      end
+
+    end
+
+  end
 
 end

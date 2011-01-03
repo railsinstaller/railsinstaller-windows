@@ -1,6 +1,7 @@
 # Load standard libraries that are used.
 require "ostruct"
 require "yaml"
+require "erb"
 
 # Ensure that the RailsInstaller project root is defined.
 module RailsInstaller

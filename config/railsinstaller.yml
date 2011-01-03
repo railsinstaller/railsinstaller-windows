@@ -1,0 +1,68 @@
+---
+compilers:
+  :dev_kit:
+    :name: DevKit
+
+components:
+  :git:
+    :name: Git
+
+  :mysql:
+    :name: Mysql
+    :dlls:
+      - mysql/lib/libmysql.dll
+    :configure:
+      - --with-mysql-config="{{stage_path}}/mysql/bin/mysql_config"
+
+  :pg:
+    :name: Pg
+    :dlls:
+      - postgresql/lib/libpq.dll
+    :configure:
+      - --with-pg-config="{{stage_path}}/postgresql/bin/pg_config"
+
+  :rails:
+    :name: Rails
+
+  :rails_docs:
+    :name: RailsDocs
+
+  :rails_guides:
+    :name: RailsGuides
+
+  :ruby_docs:
+    :name: RubyDocs
+
+  :ruby_installer:
+    :name: RubyInstaller
+    :default_version: 1.8.7-p330
+    :versions:
+      1.8.7-p330: "http://rubyforge.org/frs/download.php/73719/rubyinstaller-1.8.7-p330.exe"
+      1.9.2-p136: "http://rubyforge.org/frs/download.php/73722/rubyinstaller-1.9.2-p136.exe"
+
+  :editor:
+    :name: Editor
+
+  :rubygems:
+    :name: RubyGems
+
+  :sqlite3:
+    :name: Sqlite3
+
+  :sqlserver:
+    :name: SqlServer
+
+  :ssl_certificates:
+    :name: SSLCertificates
+    :url: http://curl.haxx.se/ca
+    :file: cacert.pem
+
+  :subversion:
+    :name: Subversion
+
+utilities:
+  :bsdtar:
+    :name: BSDTar
+    :type: utility
+    :binary: basic-bsdtar.exe
+    :location: sandbox

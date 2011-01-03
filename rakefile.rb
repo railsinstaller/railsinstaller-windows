@@ -7,8 +7,8 @@ require "rubygems" if RUBY_VERSION.match(/1.8/)
 
 require "rake"
 
+$Flags = {} if $Flags.nil?
 if Rake.application.options.trace
-  $Flags ||= Hash.new
   $Flags[:verbose] = true
 end
 
@@ -17,5 +17,5 @@ require "railsinstaller"
 
 # Load all Rake Task definitions
 Dir["#{RailsInstaller::Root}/rake/*.rake"].each do |rakefile|
-  require rakefile
+  load rakefile
 end

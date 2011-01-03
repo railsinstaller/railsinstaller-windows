@@ -5,13 +5,15 @@ module RailsInstaller::Helpers
     # Define configure on the given module
     def target_module.configure(name)
 
-      Dir["#{RailsInstaller::Root}/config/#{name}/*.yml"].each do |file|
+      # TODO: Run through ERB.
+      #config = OpenStruct.new(Erb.parse(YAML.load_file(file)))
+      yaml = ERB.new(File.read("#{RailsInstaller::Root}/config/base.yml"), 0).result(binding)
+      config = OpenStruct.new(YAML.load(yaml)[name])
 
-        config = OpenStruct.new(YAML.load_file(file))
+      config.each_pair do |key,value|
 
-        printf "  => #{self.name}::#{config.name} = #{config.inspect}\n" if $Flags[:verbose]
-
-        const_set(config.name, config)
+        printf "  => #{self.name}::#{value.name} = #{value.inspect}\n" if $Flags[:verbose]
+        const_set(value.name, value)
 
       end
 
