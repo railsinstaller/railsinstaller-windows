@@ -7,8 +7,7 @@ end
   ostruct
   yaml
   erb
-  net/http
-  uri
+  open-uri
   extensions/stdlib
   railsinstaller/methods
   railsinstaller/base
