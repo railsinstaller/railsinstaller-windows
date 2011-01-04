@@ -22,7 +22,7 @@ module RailsInstaller
     filename = File.basename(DevKit.filename)
     download(url, filename) and extract(filename)
 
-    DevKit.init_ruby("#{stage_path}\\DevKit",
+    init_devkit_ruby("#{stage_path}\\DevKit",
                      "#{stage_path}\\rubyinstaller\\Ruby187\\bin")
 
     #
