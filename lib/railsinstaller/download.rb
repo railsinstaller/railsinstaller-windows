@@ -35,7 +35,7 @@ module RailsInstaller
 
           raise "Too many redirections for the original url, halting." if count <= 0
           printf "Redirected to #{response["Location"]}\n" if verbose
-          return (download(URI.parse(response["location"]), file_path, count - 1).read(options, &block)
+          return (download(URI.parse(response["location"]), file_path, count - 1).read(options, &block))
 
         when Net::HTTPOK
 
