@@ -2,6 +2,7 @@
 compilers:
   :dev_kit:
     :name: DevKit
+    :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe"
 
 components:
   :git:

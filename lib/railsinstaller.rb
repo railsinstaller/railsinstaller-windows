@@ -1,20 +1,23 @@
-# Load standard libraries that are used.
-require "ostruct"
-require "yaml"
-require "erb"
 
-# Ensure that the RailsInstaller project root is defined.
-module RailsInstaller
+module RailsInstaller # Ensure that the RailsInstaller project root is defined.
   Root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
 end
 
-# Load extensions to standard libraries that are used in RailsInstaller
-require "extensions/stdlib"
+%w{
+  ostruct
+  yaml
+  erb
+  net/http
+  uri
+  extensions/stdlib
+  railsinstaller/methods
+  railsinstaller/base
+  railsinstaller/behavior
+}.each do |name|
 
-# Load all RailsInstaller libraries
-for name in [ "helpers", "utilities", "components", "compilers" ]
+  printf "Loading #{name}...\n" if $Flags[:verbose]
 
-  printf "Loading RailsInstaller #{name}...\n" if $Flags[:verbose]
-  require "railsinstaller/#{name}"
+  require name
 
 end
+
