@@ -5,7 +5,7 @@ module RailsInstaller
     #
     # Configuration / Variables
     #
-    stage_path="#{RailsInstaller::Root}/stage"
+    stage_path="#{RailsInstaller::Root}\\stage"
 
     #
     section "RubyInstaller"

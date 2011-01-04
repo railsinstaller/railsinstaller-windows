@@ -45,14 +45,14 @@ module RailsInstaller
 
           # See https://github.com/oneclick/rubyinstaller/blob/master/rake/contrib/uri_ext.rb#L234-276
           # for another alternative to this.
-          File.open file_path, "wb" do |f|
+          File.open(file_path), "wb" do |f|
             response.read_body do |chunk|
               f << chunk
               size += chunk.size
               print "\r      [ %d%% (%d of %d) ]" % [(size * 100) / total, size, total]
             end
           end
-          print "%s" ": done!\n"
+          print "%s" ": done!\n\n"
 
         else
 
