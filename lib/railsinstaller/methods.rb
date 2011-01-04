@@ -19,7 +19,7 @@ module RailsInstaller
     section "DevKit"
     #
     url = DevKit.url
-    filename = File.basename(DevKit.filename)
+    filename = File.basename(url)
     download(url, filename) and extract(filename)
 
     init_devkit_ruby("#{stage_path}\\DevKit",
