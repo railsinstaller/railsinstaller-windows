@@ -4,15 +4,16 @@ module RailsInstaller # Ensure that the RailsInstaller project root is defined.
 end
 
 %w{
+  rubygems
   ostruct
   yaml
   erb
-  open-uri
-  fileutils
   extensions/stdlib
   railsinstaller/methods
   railsinstaller/base
   railsinstaller/behavior
+  railsinstaller/download
+  railsinstaller/utilities
 }.each do |name|
 
   printf "Loading #{name}...\n" if $Flags[:verbose]
