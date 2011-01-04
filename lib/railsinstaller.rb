@@ -8,6 +8,7 @@ end
   yaml
   erb
   open-uri
+  fileutils
   extensions/stdlib
   railsinstaller/methods
   railsinstaller/base

@@ -35,6 +35,7 @@ module RailsInstaller
       printf "Downloading #{filename} from #{url}\n"
     end
 
+    FileUtils.mkdir_p(File.dirname(filename))
     open(url) do |temporary_file|
       File.open(filename,"wb") do |file|
         file.write(temporary_file.read)
