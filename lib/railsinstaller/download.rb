@@ -16,7 +16,7 @@ module RailsInstaller
         http = Net::HTTP
       end
 
-      printf "Downloading from #{url} to #{file_path}\n" if $Flags[:verbose]
+      print "Downloading from #{url} to #{file_path}\n" if $Flags[:verbose]
       http.get_response(URI(url)) do |response|
 
         case response
@@ -28,13 +28,13 @@ module RailsInstaller
 
         when Net::HTTPClientError
 
-          printf "ERROR: Client Error : #{response.inspect}\n"
+          print "ERROR: Client Error : #{response.inspect}\n"
           return false
 
         when Net::HTTPRedirection
 
           raise "Too many redirections for the original url, halting." if count <= 0
-          printf "Redirected to #{response["Location"]}\n" if verbose
+          print "Redirected to #{response["Location"]}\n" if verbose
           return (download(URI.parse(response["location"]), file_path, count - 1).read(options, &block))
 
         when Net::HTTPOK
@@ -49,10 +49,10 @@ module RailsInstaller
             response.read_body do |chunk|
               f << chunk
               size += chunk.size
-              printf "\r      [ %d%% (%d of %d) ]" % [(size * 100) / total, size, total]
+              print "\r      [ %d%% (%d of %d) ]" % [(size * 100) / total, size, total]
             end
           end
-          printf ": done!\n"
+          print "%s" ": done!\n"
 
         else
 
@@ -64,7 +64,7 @@ module RailsInstaller
 
     rescue Exception => exception
       File.unlink(file_path) if File.exists?(file_path)
-      printf " ERROR: #{exception.message}\n"
+      print " ERROR: #{exception.message}\n"
       return false
     end
 
