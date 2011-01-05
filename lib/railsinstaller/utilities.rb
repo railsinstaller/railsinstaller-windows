@@ -36,41 +36,14 @@ module RailsInstaller::Utilities
   end
 
   #
-  # bsdtar_install
+  # install_utility()
+  #
   # Requires: open-uri
   #
-  def bsdtar_install(path = File.join(RailsInstaller::Stage, "bin"))
-
-    printf "Downloading and extracting basic-bsdtar.exe\n"
-
-    Dir.chdir(RailsInstaller::Stage) do
-      url = RailsInstaller::BSDTar.url
-      filename = File.basename(RailsInstaller::BSDTar.url)
-      FileUtils.rm_f(filename) if File.exist?(filename)
-
-      # BSDTar is small so using open-uri to download this is fine.
-      open(url) do |temporary_file|
-        File.open(filename, "wb") { |file| file.write(temporary_file.read) }
-      end
-
-      unzip(filename, /.*\.exe$/).each do |file|
-        printf "Instaling #{file} to #{path}\n"
-        FileUtils.mkdir_p(path) unless Dir.exist?(path)
-        FileUtils.mv(
-          File.join(RailsInstaller::Stage, file),
-          File.join(path, file),
-          :force => true
-        )
-      end
-
-    end
-
-  end
-
   def install_utility(url, binary, path = File.join(RailsInstaller::Stage, "bin"))
 
-    if File.exists?(File.join(path, "7za.exe"))
-      printf "#{File.join(path, "7za.exe")} already exists.\nSkipping download, extract and install."
+    if File.exists?(File.join(path, binary))
+      printf "#{File.join(path, binary)} exists.\nSkipping download, extract and install.\n"
     else
       printf "Downloading and extracting #{binary} from #{url}\n"
 
@@ -187,6 +160,6 @@ module RailsInstaller::Utilities
   end
 
   def section(text)
-    printf %Q{\n#\n# #{text}\n#\n}
+    printf %Q{\n#\n# #{text}\n#\n\n}
   end
 end
