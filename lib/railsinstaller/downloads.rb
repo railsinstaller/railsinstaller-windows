@@ -4,7 +4,9 @@ module RailsInstaller::Downloads
 
   # Original download() code taken from Rubinius and then butchered ;)
   # https://github.com/evanphx/rubinius/blob/master/configure#L307-350
-  def download(url, file_path, count = 3)
+  def download(url, download_path, count = 3)
+
+   filename = File.basename(url)
 
    begin
 
@@ -18,7 +20,7 @@ module RailsInstaller::Downloads
 
       uri = URI.parse(url)
 
-      print "Downloading from #{url} to #{file_path}\n" if $Flags[:verbose]
+      print "Downloading from #{url} to #{download_path}\n" if $Flags[:verbose]
       http.get_response(uri) do |response|
 
         case response
@@ -37,17 +39,15 @@ module RailsInstaller::Downloads
 
             raise "Too many redirections for the original url, halting." if count <= 0
             print "Redirected to #{response["Location"]}\n" if verbose
-            return download(response["location"], file_path, count - 1)
+            return download(response["location"], download_path, count - 1)
 
           when Net::HTTPOK
 
-            FileUtils.mkdir_p(File.dirname(file_path))
+            FileUtils.mkdir_p(File.dirname(download_path))
             size  = 0
             total = response.header["Content-Length"].to_i
 
             # Ensure that the destination directory exists.
-            download_path = File.dirname(file_path)
-            filename = File.basename(file_path)
             FileUtils.mkdir_p(download_path) unless Dir.exists?(download_path)
 
             Dir.chdir(download_path) do
@@ -72,7 +72,7 @@ module RailsInstaller::Downloads
       end
 
     rescue Exception => exception
-      File.unlink(file_path) if File.exists?(file_path)
+      File.unlink(File.join(download_path,filename)) if File.exists?(File.join(download_path, filename))
       print " ERROR: #{exception.message}\n"
       return false
     end
