@@ -85,7 +85,7 @@ module RailsInstaller::Utilities
         when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
           sh %Q("#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1")
         when /^.+\.7z$/
-          raise "TODO: Implement extraction for .7z archive files."
+          sh %Q("#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1")
         when /(^.+\.zip$)/
           unzip(filename)
         else
