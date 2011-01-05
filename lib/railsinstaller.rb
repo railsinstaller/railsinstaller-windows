@@ -1,5 +1,6 @@
 module RailsInstaller # Ensure that the RailsInstaller project root is defined.
   Root = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+  Stage = File.expand_path(File.join(Root, "stage"))
 end
 
 %w[ rubygems ostruct yaml erb uri ].each do |name|

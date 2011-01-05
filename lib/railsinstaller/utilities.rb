@@ -29,7 +29,7 @@ module RailsInstaller::Utilities
 # bsdtar_install
 # Requires: open-uri
 #
-  def bsdtar_install(path = "#{Root}\\stage\\bin")
+  def bsdtar_install(path = File.join(RailsInstaller::Stage, "bin"))
 
     FileUtils.mkdir_p(File.dirname(path))
 
@@ -57,7 +57,7 @@ module RailsInstaller::Utilities
 #
   def sh(command, *options)
 
-    stage_bin_path = File.join(RailsInstaller::Root, "stage", "bin")
+    stage_bin_path = File.join(RailsInstaller::Stage, "bin")
     ENV["PATH"] = "#{stage_bin_path};#{ENV["PATH"]}" unless ENV["PATH"].include?(stage_bin_path)
 
     %x(#{command})
@@ -120,12 +120,12 @@ module RailsInstaller::Utilities
 
     if options[:version]
       installer = Gem::DependencyInstaller.new(
-        :install_dir => File.join(Root, "stage", "#{gemname}-#{options[:version]}")
+        :install_dir => File.join(RailsInstaller::Stage, "#{gemname}-#{options[:version]}")
       )
       installer.install(gemname, options[:version])
     else
       installer = Gem::DependencyInstaller(
-        :install_dir => File.join(Root, "stage", "#{gemname}")
+        :install_dir => File.join(RailsInstaller::Stage, "#{gemname}")
       )
       installer.install(gemname)
     end

@@ -2,11 +2,11 @@ module RailsInstaller
 
   def self.build!
     # Configuration / Variables
-    stage_path = File.join(RailsInstaller::Root, "stage")
+    bsdtar_install
 
     section "RubyInstaller"
     url = RubyInstaller.versions["1.8.7-p330"]
-    filename = File.join(stage_path, File.basename(url))
+    filename = File.join(RailsInstaller::Stage, File.basename(url))
 
     download(url, filename) and extract(filename)
 
@@ -14,10 +14,9 @@ module RailsInstaller
     url = DevKit.url
     filename = File.basename(url)
     download(url, filename) and extract(filename)
-
-    init_devkit_ruby(
-      File.join(stage_path, DevKit),
-      File.join(stage_path, "rubyinstaller", "Ruby187", "bin")
+    install_devkit_into_ruby(
+      File.join(RailsInstaller::Stage, File.dirname(filename)),
+      File.join(RailsInstaller::Stage, "rubyinstaller", "Ruby187", "bin")
     )
 
     section "PostgreSQL Server"
