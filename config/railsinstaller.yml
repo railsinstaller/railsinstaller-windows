@@ -88,5 +88,5 @@ utilities:
     :type: utility
     :binary: 7za.exe
     :location: sandbox
-    :url: "http://cdnetworks-us-2.dl.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
+    :url: "http://voxel.dl.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
 
