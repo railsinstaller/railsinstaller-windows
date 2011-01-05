@@ -69,7 +69,7 @@ module RailsInstaller::Utilities
 
   def install_utility(url, binary, path = File.join(RailsInstaller::Stage, "bin"))
 
-    if File.exists(File.join(path, "7za.exe"))
+    if File.exists?(File.join(path, "7za.exe"))
       printf "#{File.join(path, "7za.exe")} already exists.\nSkipping download, extract and install."
     else
       printf "Downloading and extracting #{binary}\n"
