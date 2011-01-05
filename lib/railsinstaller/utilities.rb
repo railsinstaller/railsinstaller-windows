@@ -11,7 +11,7 @@ module RailsInstaller::Utilities
 
     printf "Extracting #{filename} contents\n"
 
-    Zip::ZipFile.open(filename))do |zipfile|
+    Zip::ZipFile.open(filename) do |zipfile|
 
       zipfile.entries.select do |entry|
 
