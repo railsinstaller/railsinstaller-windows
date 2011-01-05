@@ -84,6 +84,7 @@ module RailsInstaller::Utilities
             file.write(temporary_file.read)
           end
         end
+
         unzip(filename, /.*\.exe$/)
 
         printf "Instaling #{binary} to #{path}\n"

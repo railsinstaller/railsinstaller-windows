@@ -12,12 +12,12 @@ module RailsInstaller
     url = RubyInstaller.versions["1.8.7-p330"]
     filename = File.join(RailsInstaller::Stage, File.basename(url))
 
-    download(url, filename) and extract(filename)
+    download(url, RailsInstaller::Stage) and extract(filename)
 
     section "DevKit"
     url = DevKit.url
     filename = File.basename(url)
-    download(url, filename) and extract(filename)
+    download(url, RailsInstaller::Stage) and extract(filename)
     install_devkit_into_ruby(
       File.join(RailsInstaller::Stage, File.dirname(filename)),
       File.join(RailsInstaller::Stage, "rubyinstaller", "Ruby187", "bin")
