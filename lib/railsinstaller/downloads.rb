@@ -43,12 +43,12 @@ module RailsInstaller::Downloads
 
           when Net::HTTPOK
 
-            FileUtils.mkdir_p(File.dirname(download_path))
             size  = 0
             total = response.header["Content-Length"].to_i
 
             # Ensure that the destination directory exists.
             FileUtils.mkdir_p(download_path) unless Dir.exists?(download_path)
+            FileUtils.rm_f(File.join(download_path,filename)) if File.exist?(File.join(download_path, filename))
 
             Dir.chdir(download_path) do
               # See https://github.com/oneclick/rubyinstaller/blob/master/rake/contrib/uri_ext.rb#L234-276
@@ -57,10 +57,10 @@ module RailsInstaller::Downloads
                 response.read_body do |chunk|
                   file << chunk
                   size += chunk.size
-                  print "\r      [ %d%% (%d of %d) ]" % [(size * 100) / total, size, total]
+                  print "\r  => %d%% (%d of %d) " % [(size * 100) / total, size, total]
                 end
               end
-              print ": done!\n\n"
+              print "\n\n"
             end
 
           else

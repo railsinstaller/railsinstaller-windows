@@ -37,25 +37,24 @@ module RailsInstaller::Utilities
     FileUtils.mkdir_p(File.dirname(path))
 
     Dir.chdir(RailsInstaller::Stage) do
+      url = RailsInstaller::BSDTar.url
+      filename = File.basename(RailsInstaller::BSDTar.url)
+      FileUtils.rm_f(filename) if File.exist?(filename)
+
       # BSDTar is small so using open-uri to download this is fine.
-      open(RailsInstaller::BSDTar.url) do |temporary_file|
-
-        File.open(File.basename(RailsInstaller::BSDTar.url), "wb") do |file|
-
-          file.write(temporary_file.read)
-
-        end
-
+      open(url) do |temporary_file|
+        File.open(filename, "wb") { |file| file.write(temporary_file.read) }
       end
-      unzip(File.basename(RailsInstaller::BSDTar.url), /.*\.exe$/)
-    end
+      unzip(filename, /.*\.exe$/)
 
-    printf "Instaling basic-bsdtar.exe into #{path}\n"
-    FileUtils.mv(
-        File.join(RailsInstaller::Stage,"basic-bsdtar.exe"),
-        File.join(path,"basic-bsdtar.exe"),
-        :force => true
-    )
+      printf "Instaling basic-bsdtar.exe to #{path}\n"
+      FileUtils.mv(
+          File.join(RailsInstaller::Stage,"basic-bsdtar.exe"),
+          File.join(path,"basic-bsdtar.exe"),
+          :force => true
+      )
+
+    end
 
   end
 
