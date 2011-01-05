@@ -83,9 +83,9 @@ module RailsInstaller::Utilities
     Dir.chdir(File.dirname(filename)) do
       case filename
         when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
-          sh %Q("#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1")
+          sh %Q("#{RailsInstaller::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1")
         when /^.+\.7z$/
-          sh %Q("#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1")
+          sh %Q("#{RailsInstaller::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1")
         when /(^.+\.zip$)/
           unzip(filename)
         else
