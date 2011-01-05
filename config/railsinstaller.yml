@@ -75,9 +75,18 @@ components:
     :name: Subversion
 
 utilities:
+
   :bsdtar:
     :name: BSDTar
     :type: utility
     :binary: basic-bsdtar.exe
     :location: sandbox
     :url: "http://downloads.sourceforge.net/mingw/basic-bsdtar-2.8.3-1-mingw32-bin.zip"
+
+  :sevenzip:
+    :name: SevenZip
+    :type: utility
+    :binary: 7za.exe
+    :location: sandbox
+    :url: "http://cdnetworks-us-2.dl.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
+

@@ -60,6 +60,33 @@ module RailsInstaller::Utilities
 
   end
 
+  def sevenzip_install(path = File.join(RailsInstaller::Stage, "bin"))
+
+    printf "Downloading and extracting 7za.exe\n"
+
+    Dir.chdir(RailsInstaller::Stage) do
+      url = RailsInstaller::SevenZip.url
+      filename = File.basename(RailsInstaller::SevenZip.url)
+      FileUtils.rm_f(filename) if File.exist?(filename)
+
+      # BSDTar is small so using open-uri to download this is fine.
+      open(url) do |temporary_file|
+        File.open(filename, "wb") { |file| file.write(temporary_file.read) }
+      end
+      unzip(filename, /.*\.exe$/)
+
+      printf "Instaling basic-bsdtar.exe to #{path}\n"
+      FileUtils.mkdir_p(path) unless Dir.exist?(path)
+      FileUtils.mv(
+          File.join(RailsInstaller::Stage,"7za.exe"),
+          File.join(path,"7za.exe"),
+          :force => true
+      )
+
+    end
+
+  end
+
 #
 # sh
 #
