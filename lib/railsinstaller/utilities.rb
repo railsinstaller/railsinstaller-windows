@@ -1,11 +1,13 @@
+require "open-uri"
+require "fileutils"
+require "zip/zip"
+
 module RailsInstaller::Utilities
 #
 # unzip:
-# Requires: rubyzip2 (gem install rubyzip2)
+# Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
 #
   def unzip(filename, regex = nil)
-
-    require "zip/zip"
 
     Zip::ZipFile.open(File.basename(BSDTar.url)) do |zipfile|
 
@@ -28,10 +30,6 @@ module RailsInstaller::Utilities
 # Requires: open-uri
 #
   def bsdtar_install(path = "#{Root}\\stage\\bin")
-
-    require "open-uri"
-
-    require "fileutils"
 
     FileUtils.mkdir_p(File.dirname(path))
 
@@ -58,7 +56,11 @@ module RailsInstaller::Utilities
 # Runs Shell commands, single point of shell contact.
 #
   def sh(command, *options)
-    %x{#{command}}
+
+    stage_bin_path = File.join(RailsInstaller::Root, "stage", "bin")
+    ENV["PATH"] = "#{stage_bin_path};#{ENV["PATH"]}" unless ENV["PATH"].include?(stage_bin_path)
+
+    %x(#{command})
   end
 
 #
@@ -81,11 +83,13 @@ module RailsInstaller::Utilities
     Dir.chdir(File.dirname(filename)) do
       case filename
         when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
-          %x{"#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1"}
+          sh %Q("#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1")
+        when /^.+\.7z$/
+          raise "TODO: Implement extraction for .7z archive files."
         when /(^.+\.zip$)/
           unzip(filename)
         else
-          raise "ERROR: Cannot extract #{filename}, unknown extension!"
+          raise "ERROR: Cannot extract #{filename}, unhandled file extension!"
       end
     end
   end
