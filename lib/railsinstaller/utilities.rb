@@ -19,6 +19,8 @@ module RailsInstaller::Utilities
 
       end.each do |entry|
 
+        FileUtils.rm_f(entry.name) if File.exists?(entry.name)
+
         zipfile.extract(entry, entry.name)
 
       end
