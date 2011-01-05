@@ -9,7 +9,7 @@ module RailsInstaller::Utilities
 #
   def unzip(filename, regex = nil)
 
-    Zip::ZipFile.open(File.basename(BSDTar.url)) do |zipfile|
+    Zip::ZipFile.open(File.basename(RailsInstaller::BSDTar.url)) do |zipfile|
 
       zipfile.entries.select do |entry|
 
@@ -34,9 +34,9 @@ module RailsInstaller::Utilities
     FileUtils.mkdir_p(File.dirname(path))
 
     # BSDTar is small so using open-uri to download this is fine.
-    open(BSDTar.url) do |temporary_file|
+    open(RailsInstaller::BSDTar.url) do |temporary_file|
 
-      File.open(File.basename(BSDTar.url), "wb") do |file|
+      File.open(File.basename(RailsInstaller::BSDTar.url), "wb") do |file|
 
         file.write(temporary_file.read)
 
@@ -44,7 +44,7 @@ module RailsInstaller::Utilities
 
     end
 
-    unzip(File.basename(BSDTar.url), /.*\.exe$/)
+    unzip(File.basename(RailsInstaller::BSDTar.url), /.*\.exe$/)
 
     FileUtils.mv("basic-bsdtar.exe", path)
 
