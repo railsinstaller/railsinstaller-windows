@@ -8,5 +8,4 @@ class String
   def camelcase
     self.gsub(/(?:\A|_)(.)/) { $1.upcase }
   end
-
 end

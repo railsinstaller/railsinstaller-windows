@@ -1,10 +1,9 @@
-module RailsInstaller
-
-  #
-  # unzip:
-  # Requires: rubyzip2 (gem install rubyzip2)
-  #
-  def self.unzip(filename, regex = nil)
+module RailsInstaller::Utilities
+#
+# unzip:
+# Requires: rubyzip2 (gem install rubyzip2)
+#
+  def unzip(filename, regex = nil)
 
     require "zip/zip"
 
@@ -24,11 +23,11 @@ module RailsInstaller
 
   end
 
-  #
-  # bsdtar_install
-  # Requires: open-uri
-  #
-  def self.bsdtar_install(path = "#{Root}\\stage\\bin")
+#
+# bsdtar_install
+# Requires: open-uri
+#
+  def bsdtar_install(path = "#{Root}\\stage\\bin")
 
     require "open-uri"
 
@@ -39,7 +38,7 @@ module RailsInstaller
     # BSDTar is small so using open-uri to download this is fine.
     open(BSDTar.url) do |temporary_file|
 
-      File.open(File.basename(BSDTar.url),"wb") do |file|
+      File.open(File.basename(BSDTar.url), "wb") do |file|
 
         file.write(temporary_file.read)
 
@@ -53,21 +52,21 @@ module RailsInstaller
 
   end
 
-  #
-  # sh
-  #
-  # Runs Shell commands, single point of shell contact.
-  #
-  def self.sh(command, *options)
+#
+# sh
+#
+# Runs Shell commands, single point of shell contact.
+#
+  def sh(command, *options)
     %x{#{command}}
   end
 
-  #
-  # extract
-  #
-  # Used to extract a non-zip file using BSDTar
-  #
-  def self.extract(file)
+#
+# extract
+#
+# Used to extract a non-zip file using BSDTar
+#
+  def extract(file)
 
     unless File.exists?(File.expand_path(file))
       raise "ERROR: #{file} does not exist, did the download step fail?"
@@ -81,37 +80,59 @@ module RailsInstaller
 
     Dir.chdir(File.dirname(filename)) do
       case filename
-      when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
-        %x{"#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1"}
-      when /(^.+\.zip$)/
-        unzip(filename)
-      else
-        raise "ERROR: Cannot extract #{filename}, unknown extension!"
+        when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
+          %x{"#{RailsInstaller::Utilities::BSDTar.binary}" -xf "#{filename}" > NUL 2>&1"}
+        when /(^.+\.zip$)/
+          unzip(filename)
+        else
+          raise "ERROR: Cannot extract #{filename}, unknown extension!"
       end
     end
   end
 
-  def self.build_gems(gems)
-    gems.each do |gemname|
-      build_gem(gemname)
+  #
+  # build_gems
+  #
+  # loops over each gemname and triggers it to be built.
+  def build_gems(gems)
+    if gems.is_a?(Hash)
+      gems.each do |name|
+        build_gem(name)
+      end
+    elsif gems.is_a?(Array)
+      gems.each_pair do |name, version |
+        build_gem(name,version)
+      end
+    else
+      build_gem(gems)
     end
   end
 
-  def self.build_gem(gemname, *options)
+  def build_gem(gemname, *options)
 
     if $Flags[:verbose]
       printf "Building gem #{gemname}\n"
     end
 
+    if options[:version]
+      installer = Gem::DependencyInstaller.new(
+        :install_dir => File.join(Root, "stage", "#{gemname}-#{options[:version]}")
+      )
+      installer.install(gemname, options[:version])
+    else
+      installer = Gem::DependencyInstaller(
+        :install_dir => File.join(Root, "stage", "#{gemname}")
+      )
+      installer.install(gemname)
+    end
+    # TODO: bundle .gem file
   end
 
-  def self.log(text)
+  def log(text)
     printf %Q[#{text}\n]
   end
 
-  def self.section(text)
-    printf %Q{#\n# #{text}\n#\n}
+  def section(text)
+    printf %Q{\n#\n# #{text}\n#\n}
   end
-
-
 end
