@@ -49,7 +49,7 @@ module RailsInstaller::Utilities
     unzip(File.basename(RailsInstaller::BSDTar.url), /.*\.exe$/)
 
     printf "Instaling basic-bsdtar.exe into #{path}\n"
-    File.mv(
+    FileUtils.mv(
         File.join(Dir.pwd,"basic-bsdtar.exe"),
         File.join(path,"basic-bsdtar.exe"),
         :force => true
