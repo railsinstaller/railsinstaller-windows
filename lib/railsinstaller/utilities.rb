@@ -72,16 +72,17 @@ module RailsInstaller::Utilities
     if File.exists?(File.join(path, "7za.exe"))
       printf "#{File.join(path, "7za.exe")} already exists.\nSkipping download, extract and install."
     else
-      printf "Downloading and extracting #{binary}\n"
+      printf "Downloading and extracting #{binary} from #{url}\n"
 
       Dir.chdir(RailsInstaller::Stage) do
-        url =
         filename = File.basename(RailsInstaller::SevenZip.url)
         FileUtils.rm_f(filename) if File.exist?(filename)
 
         # BSDTar is small so using open-uri to download this is fine.
         open(url) do |temporary_file|
-          File.open(filename, "wb") { |file| file.write(temporary_file.read) }
+          File.open(filename, "wb") do |file|
+            file.write(temporary_file.read)
+          end
         end
         unzip(filename, /.*\.exe$/)
 
