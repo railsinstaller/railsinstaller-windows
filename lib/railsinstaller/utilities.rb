@@ -3,13 +3,15 @@ require "fileutils"
 require "zip/zip"
 
 module RailsInstaller::Utilities
-#
-# unzip:
-# Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
-#
+  #
+  # unzip:
+  # Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
+  #
   def unzip(filename, regex = nil)
 
     printf "Extracting #{filename} contents\n"
+
+    files = []
 
     Zip::ZipFile.open(filename) do |zipfile|
 
@@ -19,6 +21,8 @@ module RailsInstaller::Utilities
 
       end.each do |entry|
 
+        files << entry.name
+
         FileUtils.rm_f(entry.name) if File.exists?(entry.name)
 
         zipfile.extract(entry, entry.name)
@@ -27,12 +31,14 @@ module RailsInstaller::Utilities
 
     end
 
+    files
+
   end
 
-#
-# bsdtar_install
-# Requires: open-uri
-#
+  #
+  # bsdtar_install
+  # Requires: open-uri
+  #
   def bsdtar_install(path = File.join(RailsInstaller::Stage, "bin"))
 
     printf "Downloading and extracting basic-bsdtar.exe\n"
@@ -46,52 +52,57 @@ module RailsInstaller::Utilities
       open(url) do |temporary_file|
         File.open(filename, "wb") { |file| file.write(temporary_file.read) }
       end
-      unzip(filename, /.*\.exe$/)
 
-      printf "Instaling basic-bsdtar.exe to #{path}\n"
-      FileUtils.mkdir_p(path) unless Dir.exist?(path)
-      FileUtils.mv(
-          File.join(RailsInstaller::Stage,"basic-bsdtar.exe"),
-          File.join(path,"basic-bsdtar.exe"),
+      unzip(filename, /.*\.exe$/).each do |file|
+        printf "Instaling #{file} to #{path}\n"
+        FileUtils.mkdir_p(path) unless Dir.exist?(path)
+        FileUtils.mv(
+          File.join(RailsInstaller::Stage, file),
+          File.join(path, file),
           :force => true
-      )
-
-    end
-
-  end
-
-  def sevenzip_install(path = File.join(RailsInstaller::Stage, "bin"))
-
-    printf "Downloading and extracting 7za.exe\n"
-
-    Dir.chdir(RailsInstaller::Stage) do
-      url = RailsInstaller::SevenZip.url
-      filename = File.basename(RailsInstaller::SevenZip.url)
-      FileUtils.rm_f(filename) if File.exist?(filename)
-
-      # BSDTar is small so using open-uri to download this is fine.
-      open(url) do |temporary_file|
-        File.open(filename, "wb") { |file| file.write(temporary_file.read) }
+        )
       end
-      unzip(filename, /.*\.exe$/)
-
-      printf "Instaling basic-bsdtar.exe to #{path}\n"
-      FileUtils.mkdir_p(path) unless Dir.exist?(path)
-      FileUtils.mv(
-          File.join(RailsInstaller::Stage,"7za.exe"),
-          File.join(path,"7za.exe"),
-          :force => true
-      )
 
     end
 
   end
 
-#
-# sh
-#
-# Runs Shell commands, single point of shell contact.
-#
+  def install_utility(url, binary, path = File.join(RailsInstaller::Stage, "bin"))
+
+    if File.exists(File.join(path, "7za.exe"))
+      printf "#{File.join(path, "7za.exe")} already exists.\nSkipping download, extract and install."
+    else
+      printf "Downloading and extracting #{binary}\n"
+
+      Dir.chdir(RailsInstaller::Stage) do
+        url =
+        filename = File.basename(RailsInstaller::SevenZip.url)
+        FileUtils.rm_f(filename) if File.exist?(filename)
+
+        # BSDTar is small so using open-uri to download this is fine.
+        open(url) do |temporary_file|
+          File.open(filename, "wb") { |file| file.write(temporary_file.read) }
+        end
+        unzip(filename, /.*\.exe$/)
+
+        printf "Instaling #{binary} to #{path}\n"
+        FileUtils.mkdir_p(path) unless Dir.exist?(path)
+        FileUtils.mv(
+          File.join(RailsInstaller::Stage, binary),
+          File.join(path, binary),
+          :force => true
+        )
+
+      end
+    end
+
+  end
+
+  #
+  # sh
+  #
+  # Runs Shell commands, single point of shell contact.
+  #
   def sh(command, *options)
 
     stage_bin_path = File.join(RailsInstaller::Stage, "bin")
@@ -100,11 +111,11 @@ module RailsInstaller::Utilities
     %x(#{command})
   end
 
-#
-# extract
-#
-# Used to extract a non-zip file using BSDTar
-#
+  #
+  # extract
+  #
+  # Used to extract a non-zip file using BSDTar
+  #
   def extract(file)
 
     unless File.exists?(File.expand_path(file))
@@ -119,14 +130,14 @@ module RailsInstaller::Utilities
 
     Dir.chdir(File.dirname(filename)) do
       case filename
-        when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
-          puts sh %Q("#{RailsInstaller::BSDTar.binary}" -xf "#{filename}") #  > NUL 2>&1")
-        when /^.+\.7z$/
-          puts sh %Q("#{RailsInstaller::BSDTar.binary}" -xf "#{filename}") #  > NUL 2>&1")
-        when /(^.+\.zip$)/
-          unzip(filename)
-        else
-          raise "ERROR: Cannot extract #{filename}, unhandled file extension!"
+      when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
+        puts sh %Q("#{RailsInstaller::BSDTar.binary}" -xf "#{filename}") #  > NUL 2>&1")
+      when /^.+\.7z$/
+        puts sh %Q("#{RailsInstaller::BSDTar.binary}" -xf "#{filename}") #  > NUL 2>&1")
+      when /(^.+\.zip$)/
+        unzip(filename)
+      else
+        raise "ERROR: Cannot extract #{filename}, unhandled file extension!"
       end
     end
   end

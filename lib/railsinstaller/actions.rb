@@ -1,10 +1,14 @@
 module RailsInstaller
 
   def self.build!
-    # Configuration / Variables
-    bsdtar_install
+    section "Utilities"
+
+    install_utility(RailsInstaller::SevenZip.url, "7za.exe")
+
+    install_utility(RailsInstaller::BSDTar.url, "basic-bsdtar.exe")
 
     section "RubyInstaller"
+
     url = RubyInstaller.versions["1.8.7-p330"]
     filename = File.join(RailsInstaller::Stage, File.basename(url))
 
