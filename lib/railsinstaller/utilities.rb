@@ -34,7 +34,6 @@ module RailsInstaller::Utilities
   def bsdtar_install(path = File.join(RailsInstaller::Stage, "bin"))
 
     printf "Downloading and extracting basic-bsdtar.exe\n"
-    FileUtils.mkdir_p(File.dirname(path))
 
     Dir.chdir(RailsInstaller::Stage) do
       url = RailsInstaller::BSDTar.url
@@ -48,6 +47,7 @@ module RailsInstaller::Utilities
       unzip(filename, /.*\.exe$/)
 
       printf "Instaling basic-bsdtar.exe to #{path}\n"
+      FileUtils.mkdir_p(path) unless Dir.exist?(path)
       FileUtils.mv(
           File.join(RailsInstaller::Stage,"basic-bsdtar.exe"),
           File.join(path,"basic-bsdtar.exe"),
