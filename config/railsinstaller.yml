@@ -18,7 +18,10 @@ components:
 
   :mysql_server:
     :name: MySQLServer
-    :url:
+    :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
+    :urls:
+      - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
+      - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx32.zip"
 
   :pg:
     :name: Pg
@@ -26,14 +29,10 @@ components:
       - postgresql/lib/libpq.dll
     :configure:
       - --with-pg-config="{{stage_path}}/postgresql/bin/pg_config"
-    :urls:
-      - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
-      - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx32.zip"
 
   :postgresql_server:
     :name: PostgreSQLServer
-    :urls:
-      - "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows_x64-binaries.zip"
+    :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows_x64-binaries.zip"
 
   :rails:
     :name: Rails

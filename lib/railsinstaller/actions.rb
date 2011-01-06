@@ -16,10 +16,10 @@ module RailsInstaller
 
     section "DevKit"
     url = DevKit.url
-    filename = File.basename(url)
-    download(url, RailsInstaller::Stage) and extract(filename)
+    filename = File.join(RailsInstaller::Stage, File.basename(url))
+    download(url, RailsInstaller::Stage) and extract(filename, {:target_path => File.join(RailsInstaller::Stage, "DevKit")})
     install_devkit_into_ruby(
-      File.join(RailsInstaller::Stage, File.dirname(filename)),
+      File.join(RailsInstaller::Stage, DevKit),
       File.join(RailsInstaller::Stage, "rubyinstaller", "Ruby187", "bin")
     )
 
