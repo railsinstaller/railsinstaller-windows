@@ -16,7 +16,7 @@ module RailsInstaller::Utilities
     Dir.chdir(base_path) do
 
       Zip::ZipFile.open(filename) do |zipfile|
-        printf "zipfile: #{zipfile.inspect}\n"
+        printf "zipfile: #{zipfile.inspect}\n" if $Flags[:verbose]
 
         if regex
 
@@ -30,7 +30,7 @@ module RailsInstaller::Utilities
           entries = zipfile.entries
         end
 
-        printf "DEBUG: $PWD=#{Dir.pwd}"
+        printf "DEBUG: $PWD=#{Dir.pwd}\n" if $Flags[:verbose]
 
         entries.each do |entry|
 
