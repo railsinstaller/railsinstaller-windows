@@ -30,7 +30,7 @@ module RailsInstaller
 
    extract(filename, {:target_path => path, :extract => true})
 
-   install_devkit_into_ruby( path, File.join(ruby_path, "bin") )
+   install_devkit_into_ruby( path, ruby_path )
 
    section  "Git"
    url      = Git.url
