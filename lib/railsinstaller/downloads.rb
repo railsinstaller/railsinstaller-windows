@@ -1,12 +1,14 @@
 module RailsInstaller::Downloads
 
   require "net/http"
+  require "tempfile"
 
   # Original download() code taken from Rubinius and then butchered ;)
   # https://github.com/evanphx/rubinius/blob/master/configure#L307-350
   def download(url, download_path, count = 3)
 
    filename = File.basename(url)
+   return if File.exists?(File.join(download_path, filename))
 
    begin
 
@@ -43,6 +45,9 @@ module RailsInstaller::Downloads
 
           when Net::HTTPOK
 
+            temp_file = Tempfile.new("download-#{filename}")
+            temp_file.binmode
+
             size  = 0
             total = response.header["Content-Length"].to_i
 
@@ -53,13 +58,19 @@ module RailsInstaller::Downloads
             Dir.chdir(download_path) do
               # See https://github.com/oneclick/rubyinstaller/blob/master/rake/contrib/uri_ext.rb#L234-276
               # for another alternative to this.
-              File.open(filename, "wb") do |file|
-                response.read_body do |chunk|
-                  file << chunk
-                  size += chunk.size
-                  print "\r  => %d%% (%d of %d) " % [(size * 100) / total, size, total]
-                end
+              response.read_body do |chunk|
+                temp_file << chunk
+                size += chunk.size
+                print "\r  => %d%% (%d of %d) " % [(size * 100) / total, size, total]
               end
+
+              temp_file.close
+              FileUtils.mv(
+                temp_file.path,
+                File.join(download_path, filename),
+                :force => true
+              )
+
               print "\n\n"
             end
 
