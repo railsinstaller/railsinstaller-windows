@@ -9,7 +9,7 @@ module RailsInstaller
 
     YAML.load(yaml)[name].each_pair do |key,value|
 
-      printf "  => #{value[:name]} = #{value.inspect}\n" #if $Flags[:verbose]
+      printf "  => #{value[:name]} = #{value.inspect}\n" if $Flags[:verbose]
 
       const_set(value[:name], OpenStruct.new(value))
 

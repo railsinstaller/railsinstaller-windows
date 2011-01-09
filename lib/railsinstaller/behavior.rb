@@ -9,9 +9,15 @@ module RailsInstaller
       ENV["PATH"] = "#{ruby_path};#{ENV["PATH"]}"
     end
 
-    sh %Q{cd "#{devkit_path}" && ruby dk.rb init}
+    FileUtils.mkdir_p(devkit_path) unless Dir.exists?(devkit_path)
 
-    sh %Q{cd "#{devkit_path}" && ruby dk.rb install}
+    Dir.chdir(devkit_path) do
+      File.open("config.yml", 'w') do |file|
+        file.write(%Q(---\n- #{ruby_path}))
+      end
+
+      sh %Q{ruby dk.rb install}
+    end
 
   end
 

@@ -48,10 +48,13 @@ components:
 
   :ruby_installer:
     :name: RubyInstaller
-    :default_version: 1.8.7-p330
     :versions:
-      1.9.2-p136: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
-      1.8.7-p330: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
+      1.8.7-p330:
+        :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
+        :name: "ruby-1.8.7-p330-i386-mingw32"
+      1.9.2-p136:
+        :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
+        :name: "ruby-1.9.2-p136-i386-mingw32"
 
   :editor:
     :name: Editor
