@@ -88,9 +88,13 @@ module RailsInstaller::Utilities
         when /^.+sfx\.exe$/
           command = %Q("#{sevenzip}" x -t7z -sfx -o#{target_path} #{filename})
         when /(^.+\.zip$)/
-          command = %Q("#{bsdtar}" -xf "#{filename}") #  > NUL 2>&1")
-          # For the unzip case we can return a list of extracted files.
-          # return unzip(filename, :regex => options[:regex])
+          if $Flags[:bootstrapped]
+            # Use bsdtar once we already have it
+            command = %Q("#{bsdtar}" -xf "#{filename}") #  > NUL 2>&1")
+          else
+            # For the unzip case we can return a list of extracted files.
+            return unzip(filename, :regex => options[:regex])
+          end
         else
           raise "\nERROR:\n  Cannot extract #{filename}, unhandled file extension!\n"
       end
