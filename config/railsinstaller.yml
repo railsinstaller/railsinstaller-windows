@@ -104,6 +104,7 @@
 :bsdtar:
   :name: BSDTar
   :type: utility
+  :target: bin
   :binary: "basic-bsdtar.exe"
   :regex: '^basic-bsdtar.exe$'
   :url: "http://downloads.sourceforge.net/mingw/basic-bsdtar-2.8.3-1-mingw32-bin.zip"
@@ -111,6 +112,7 @@
 :sevenzip:
   :name: SevenZip
   :type: utility
+  :target: bin
   :binary: "7za.exe"
   :regex: '^7za\.exe$'
   :url: "http://voxel.dl.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"

@@ -50,7 +50,8 @@ module RailsInstaller::Utilities
           if File.exist?(File.join(RailsInstaller::Archives, entry.name))
             FileUtils.mv(
               File.join(RailsInstaller::Archives, entry.name),
-              File.join(RailsInstaller::Stage, "bin", entry.name)
+              File.join(RailsInstaller::Stage, "bin", entry.name),
+              :force => true
             )
           end
 
