@@ -4,9 +4,8 @@ module RailsInstaller
     section "Utilities"
 
     install_utility(RailsInstaller::BSDTar.url, "basic-bsdtar.exe")
-    $Flags[:bootstrapped] = true
-
     install_utility(RailsInstaller::SevenZip.url, "7za.exe")
+    $Flags[:bootstrapped] = true
 
    section  "RubyInstaller"
    url       = RubyInstaller.versions["1.8.7-p330"][:url]
