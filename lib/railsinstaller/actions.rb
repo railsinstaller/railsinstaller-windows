@@ -59,7 +59,7 @@ module RailsInstaller
    build_gems(ruby_path, gems)
 
    build_gem(ruby_path, "pg",
-              {:args => "-- --with-pg-config=#{File.join(RailsInstaller::Stage, "psql", "bin", "pg_config")}"}
+              {:args => "-- --with-pg-dir=#{File.join(RailsInstaller::Stage, "psql")}"}
    )
 
   end
