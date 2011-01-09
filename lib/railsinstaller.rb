@@ -3,10 +3,12 @@ module RailsInstaller # Ensure that the RailsInstaller project root is defined.
   Stage = File.expand_path(File.join(Root, "stage"))
 end
 
-%w[ rubygems ostruct yaml erb uri ].each do |name|
+%w[ rubygems fileutils ostruct yaml erb uri open-uri zip/zip ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
   require name
 end
+
+gem "rubyzip2", "~> 2.0.1"
 
 %w[ globals ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]

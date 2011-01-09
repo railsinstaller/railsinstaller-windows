@@ -7,7 +7,7 @@ compilers:
 components:
   :git:
     :name: Git
-    :url: "http://code.google.com/p/msysgit/downloads/detail?name=Git-1.7.3.1-preview20101002.exe"
+    :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.3.1-preview20101002.7z"
 
   :mysql:
     :name: Mysql
@@ -32,7 +32,7 @@ components:
 
   :postgresql_server:
     :name: PostgreSQLServer
-    :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows_x64-binaries.zip"
+    :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows-binaries.zip"
 
   :rails:
     :name: Rails

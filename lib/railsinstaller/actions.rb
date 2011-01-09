@@ -5,49 +5,63 @@ module RailsInstaller
 
     install_utility(RailsInstaller::SevenZip.url, "7za.exe")
 
-    install_utility(RailsInstaller::BSDTar.url, "basic-bsdtar.exe")
+   install_utility(RailsInstaller::BSDTar.url, "basic-bsdtar.exe")
 
-    section "RubyInstaller"
+   section  "RubyInstaller"
+   url       = RubyInstaller.versions["1.8.7-p330"][:url]
+   filename  = File.join(RailsInstaller::Stage, File.basename(url))
+   rubyname  = RubyInstaller.versions["1.8.7-p330"][:name]
+   ruby_path = File.join(RailsInstaller::Stage, rubyname)
 
-    url = RubyInstaller.versions["1.8.7-p330"][:url]
-    filename = File.join(RailsInstaller::Stage, File.basename(url))
-    rubyname = RubyInstaller.versions["1.8.7-p330"][:name]
-    ruby_path = File.join(RailsInstaller::Stage, rubyname)
-    devkit_path = File.join(RailsInstaller::Stage, "DevKit")
+   FileUtils.rm_rf(ruby_path) if Dir.exists?(ruby_path)
 
-    FileUtils.rm_rf(ruby_path) if Dir.exists?(ruby_path)
+   download(url, RailsInstaller::Stage)
 
-    download(url, RailsInstaller::Stage)
+   extract(filename, {:force => true})
 
-    extract(filename, {:force => true})
+   section  "DevKit"
+   url      = DevKit.url
+   filename = File.join(RailsInstaller::Stage, File.basename(url))
+   path     = File.join(RailsInstaller::Stage, "DevKit")
 
-    section "DevKit"
-    url = DevKit.url
-    filename = File.join(RailsInstaller::Stage, File.basename(url))
+   download(url, RailsInstaller::Stage)
 
-    download(url, RailsInstaller::Stage)
+   FileUtils.rm_rf(path) if Dir.exists?(path)
 
-    FileUtils.rm_rf(devkit_path) if Dir.exists?(devkit_path)
+   extract(filename, {:target_path => path, :extract => true})
 
-    extract(filename, {:target_path => devkit_path, :extract => true})
+   install_devkit_into_ruby( path, File.join(ruby_path, "bin") )
 
-    install_devkit_into_ruby( devkit_path, File.join(ruby_path, "bin") )
+   section  "Git"
+   url      = Git.url
+   filename = File.join(RailsInstaller::Stage, File.basename(url))
+   path     = File.join(RailsInstaller::Stage, "Git")
 
-    # PostgreSQL will be part of Phase II
-    # section "PostgreSQL Server"
-    # download(PostgreSQLServer.url, PostgreSQLServer.filename) and extract(PostgreSQLServer.filename)
+   download(url, RailsInstaller::Stage)
 
-    # MySQL will be part of Phase II
-    # section "MySQL Server"
-    # download(MySQLServer.url, MySQLServer.filename) and extract(MySQLServer.filename)
+   FileUtils.rm_rf(path) if Dir.exists?(path)
 
-    section "Gems"
-    # The pg and mysql gems Will be part of Phase II
-    gems = %w(rake rails json sqlite3-ruby)
-    build_gems(ruby_path, gems)
+   extract(filename, {:target_path => path, :extract => true})
 
-    section "Git"
-    download(Git.url, Git.filename) and extract(Git.filename)
+   section "PostgreSQL Server"
+
+   url      = PostgreSQLServer.url
+   filename = File.join(RailsInstaller::Stage, File.basename(url))
+   path     = RailsInstaller::Stage
+
+   download(url, RailsInstaller::Stage)
+
+   extract(filename) # , {:target_path => path, :extract => true})
+
+   section "Gems"
+   gems     = %w(rake rails json sqlite3-ruby)
+
+   build_gems(ruby_path, gems)
+
+   build_gem(ruby_path, "pg",
+              {:args => "-- --with-pg-config=#{File.join(RailsInstaller::Stage, "psql", "bin", "pg_config")}"}
+   )
+
   end
 
 end

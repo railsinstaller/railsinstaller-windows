@@ -1,9 +1,3 @@
-require "open-uri"
-require "fileutils"
-
-gem "rubyzip2", "~> 2.0.1"
-require "zip/zip"
-
 module RailsInstaller::Utilities
   #
   # unzip:
@@ -14,23 +8,41 @@ module RailsInstaller::Utilities
     regex       = options[:regex]
     base_path   = File.dirname(filename)
     target_path = options[:target_path] || base_path
+    filename    = File.basename(filename)
     files       = []
 
-    printf "Extracting #{filename} contents\n"
+    printf " => Extracting #{filename} contents\n"
 
-    Zip::ZipFile.open(filename) do |zipfile|
+    Dir.chdir(base_path) do
 
-      zipfile.entries.select do |entry|
+      Zip::ZipFile.open(filename) do |zipfile|
+        printf "zipfile: #{zipfile.inspect}\n"
 
-        entry.name.match(/.*\.exe$/)
+        if regex
 
-      end.each do |entry|
+          entries = zipfile.entries.select do |entry|
 
-        files << entry.name
+            entry.name.match(regex)
 
-        FileUtils.rm_f(entry.name) if File.exists?(entry.name)
+          end
 
-        zipfile.extract(entry, entry.name)
+        else
+          entries = zipfile.entries
+        end
+
+        printf "DEBUG: $PWD=#{Dir.pwd}"
+
+        entries.each do |entry|
+
+          printf "DEBUG: Extracting #{entry.name}\n" if $Flags[:verbose]
+          
+          files << entry.name
+
+          FileUtils.rm_f(entry.name) if File.exists?(entry.name)
+
+          zipfile.extract(entry, entry.name)
+
+        end
 
       end
 
@@ -39,6 +51,60 @@ module RailsInstaller::Utilities
     files
 
   end
+
+  #
+  # extract
+  #
+  # Used to extract a non-zip file using BSDTar
+  #
+  def extract(filename, options = Hash.new(nil))
+
+    unless File.exists?(filename)
+      raise "ERROR: #{file} does not exist, did the download step fail?"
+    end
+
+    options[:force] ||= false
+    base_path   = File.dirname(filename)
+    target_path = options[:target_path] || base_path
+    bsdtar      = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
+    sevenzip    = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
+
+    printf " => Extracting '#{filename}' into '#{target_path}'\n" if $Flags[:verbose]
+
+    FileUtils.mkdir_p(base_path) unless Dir.exist?(base_path)
+
+    if base_path != target_path && Dir.exist?(target_path)
+      FileUtils.rm_rf(target_path)
+      return unless options[:force]
+    end
+
+    Dir.chdir(base_path) do
+
+      case filename
+        when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
+          command = %Q("#{bsdtar}" -xf "#{filename}") #  > NUL 2>&1")
+        when /^.+\.7z$/
+          command = %Q("#{sevenzip}" x -t7z -o#{target_path} "#{filename}") #  > NUL 2>&1")
+        when /^.+sfx\.exe$/
+          command = %Q("#{sevenzip}" x -t7z -sfx -o#{target_path} #{filename})
+        when /(^.+\.zip$)/
+          command = %Q("#{bsdtar}" -xf "#{filename}") #  > NUL 2>&1")
+          # For the unzip case we can return a list of extracted files.
+          # return unzip(filename, :regex => options[:regex])
+        else
+          raise "\nERROR:\n  Cannot extract #{filename}, unhandled file extension!\n"
+      end
+
+      if $Flags[:verbose]
+        puts(sh(command))
+      else
+        sh command
+      end
+
+    end
+
+  end
+
 
   #
   # install_utility()
@@ -52,7 +118,7 @@ module RailsInstaller::Utilities
       printf "#{File.join(path, binary)} exists.\nSkipping download, extract and install.\n"
 
     else
-      printf "Downloading and extracting #{binary} from #{url}\n"
+      printf " => Downloading and extracting #{binary} from #{url}\n"
 
       stage_path = RailsInstaller::Stage
 
@@ -77,7 +143,7 @@ module RailsInstaller::Utilities
 
         extract(filename, {:regex => Regexp.new(binary)}).each do |file|
 
-          printf "Instaling #{file} to #{path}\n"
+          printf " => Instaling #{file} to #{path}\n"
 
           FileUtils.mkdir_p(path) unless Dir.exist?(path)
 
@@ -95,84 +161,48 @@ module RailsInstaller::Utilities
   end
 
   #
-  # extract
-  #
-  # Used to extract a non-zip file using BSDTar
-  #
-  def extract(filename, options = Hash.new(nil))
-
-    unless File.exists?(filename)
-      raise "ERROR: #{file} does not exist, did the download step fail?"
-    end
-
-    options[:force] ||= false
-    base_path = File.dirname(filename)
-    target_path = options[:target_path] || base_path
-    bsdtar = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
-    sevenzip = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
-
-    printf "Extracting '#{filename}' into '#{target_path}'\n" if $Flags[:verbose]
-
-    FileUtils.mkdir_p(base_path) unless Dir.exists?(base_path)
-
-    if base_path != target_path && Dir.exists?(target_path)
-      FileUtils.rm_rf(target_path)
-      return unless options[:force]
-    end
-
-    Dir.chdir(base_path) do
-
-      case filename
-        when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
-          command = %Q("#{bsdtar}" -xf "#{filename}") #  > NUL 2>&1")
-        when /^.+\.7z$/
-          command = %Q("#{sevenzip}" x -t7z -o#{target_path} "#{filename}") #  > NUL 2>&1")
-        when /^.+sfx\.exe$/
-          command = %Q("#{sevenzip}" x -t7z -sfx -o#{target_path} #{filename})
-        when /(^.+\.zip$)/
-          # For the unzip case we can return a list of extracted files.
-          return unzip(filename, :regex => options[:regex])
-        else
-          raise "\nERROR:\n  Cannot extract #{filename}, unhandled file extension!\n"
-      end
-
-      sh command
-
-    end
-
-  end
-
-  #
   # build_gems
   #
   # loops over each gemname and triggers it to be built.
   def build_gems(ruby_path, gems)
+
     if gems.is_a?(Array)
+
       gems.each do |name|
+
         build_gem(ruby_path, name)
+
       end
+
     elsif gems.is_a?(Hash)
+
       gems.each_pair do |name, version |
+
         build_gem(ruby_path, name,version)
+
       end
+
     else
+
       build_gem(gems)
+
     end
+
   end
 
   def build_gem(ruby_path, gemname, options = {})
 
-    if $Flags[:verbose]
-      printf "Building gem #{gemname}\n"
-    end
+    printf " => Staging gem #{gemname}\n" if $Flags[:verbose]
 
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
 
     command = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gemname})
 
-    command += %Q( -v#{options[:version]}) if options[:version]
+    command += %Q( -v#{options[:version]} ) if options[:version]
 
-    command += %Q( --no-rdoc --no-ri)
+    command += %Q( --no-rdoc --no-ri )
+
+    command += options[:args] if options[:args]
 
     sh command
 
@@ -189,7 +219,7 @@ module RailsInstaller::Utilities
 
     ENV["PATH"] = "#{stage_bin_path};#{ENV["PATH"]}" unless ENV["PATH"].include?(stage_bin_path)
 
-    printf " => command:\n > %s\n", command if $Flags[:verbose]
+    printf "\nDEBUG: > %s\n\n", command if $Flags[:verbose]
 
     %x(#{command})
 
