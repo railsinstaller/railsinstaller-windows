@@ -126,7 +126,7 @@ module RailsInstaller::Utilities
 
       Dir.chdir(stage_path) do
 
-        filename = File.basename(RailsInstaller::SevenZip.url)
+        filename = File.basename(url)
 
         FileUtils.rm_f(filename) if File.exist?(filename)
 
