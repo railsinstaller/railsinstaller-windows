@@ -5,7 +5,7 @@ module RailsInstaller
   #
   def self.install_devkit_into_ruby(devkit_path,ruby_bin_path)
 
-    FileUtils.mkdir_p(devkit_path) unless Dir.exists?(devkit_path)
+    FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
 
     Dir.chdir(devkit_path) do
 

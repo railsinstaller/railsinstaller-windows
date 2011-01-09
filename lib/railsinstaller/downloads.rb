@@ -47,7 +47,7 @@ module RailsInstaller::Downloads
             total = response.header["Content-Length"].to_i
 
             # Ensure that the destination directory exists.
-            FileUtils.mkdir_p(download_path) unless Dir.exists?(download_path)
+            FileUtils.mkdir_p(download_path) unless File.directory?(download_path)
             FileUtils.rm_f(File.join(download_path,filename)) if File.exist?(File.join(download_path, filename))
 
             Dir.chdir(download_path) do

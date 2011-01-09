@@ -71,9 +71,9 @@ module RailsInstaller::Utilities
 
     printf " => Extracting '#{filename}' into '#{target_path}'\n" if $Flags[:verbose]
 
-    FileUtils.mkdir_p(base_path) unless Dir.exist?(base_path)
+    FileUtils.mkdir_p(base_path) unless File.directory?(base_path)
 
-    if base_path != target_path && Dir.exist?(target_path)
+    if base_path != target_path && File.directory?(target_path)
       FileUtils.rm_rf(target_path)
       return unless options[:force]
     end
@@ -126,7 +126,7 @@ module RailsInstaller::Utilities
 
       stage_path = RailsInstaller::Stage
 
-      FileUtils.mkdir_p(stage_path) unless Dir.exists?(stage_path)
+      FileUtils.mkdir_p(stage_path) unless File.directory?(stage_path)
 
       Dir.chdir(stage_path) do
 
@@ -148,7 +148,7 @@ module RailsInstaller::Utilities
         extract(filename, {:regex => Regexp.new(binary)})
         printf " => Instaling #{binary} to #{path}\n"
 
-        FileUtils.mkdir_p(path) unless Dir.exist?(path)
+        FileUtils.mkdir_p(path) unless File.directory?(path)
 
         FileUtils.mv(
           File.join(RailsInstaller::Stage, binary),

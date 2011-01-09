@@ -14,7 +14,7 @@ module RailsInstaller
    rubyname  = RubyInstaller.versions["1.8.7-p330"][:name]
    ruby_path = File.join(RailsInstaller::Stage, rubyname)
 
-   FileUtils.rm_rf(ruby_path) if Dir.exists?(ruby_path)
+   FileUtils.rm_rf(ruby_path) if File.directory?(ruby_path)
 
    download(url, RailsInstaller::Stage)
 
@@ -27,7 +27,7 @@ module RailsInstaller
 
    download(url, RailsInstaller::Stage)
 
-   FileUtils.rm_rf(path) if Dir.exists?(path)
+   FileUtils.rm_rf(path) if File.directory?(path)
 
    extract(filename, {:target_path => path, :extract => true})
 
@@ -40,7 +40,7 @@ module RailsInstaller
 
    download(url, RailsInstaller::Stage)
 
-   FileUtils.rm_rf(path) if Dir.exists?(path)
+   FileUtils.rm_rf(path) if File.directory?(path)
 
    extract(filename, {:target_path => path, :extract => true})
 
