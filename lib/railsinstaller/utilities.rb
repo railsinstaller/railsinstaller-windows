@@ -145,19 +145,16 @@ module RailsInstaller::Utilities
 
         end
 
-        extract(filename, {:regex => Regexp.new(binary)}).each do |file|
+        extract(filename, {:regex => Regexp.new(binary)})
+        printf " => Instaling #{binary} to #{path}\n"
 
-          printf " => Instaling #{file} to #{path}\n"
+        FileUtils.mkdir_p(path) unless Dir.exist?(path)
 
-          FileUtils.mkdir_p(path) unless Dir.exist?(path)
-
-          FileUtils.mv(
-            File.join(RailsInstaller::Stage, file),
-            File.join(path, file),
-            :force => true
-          )
-
-        end
+        FileUtils.mv(
+          File.join(RailsInstaller::Stage, binary),
+          File.join(path, binary),
+          :force => true
+        )
 
       end
     end
