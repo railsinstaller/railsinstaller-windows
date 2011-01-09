@@ -43,8 +43,8 @@ module RailsInstaller
 
     section "Gems"
     # The pg and mysql gems Will be part of Phase II
-    gems = %w(rake rails json sqlite-ruby)
-    build_gems(gems)
+    gems = %w(rake rails json sqlite3-ruby)
+    build_gems(ruby_path, gems)
 
     section "Git"
     download(Git.url, Git.filename) and extract(Git.filename)

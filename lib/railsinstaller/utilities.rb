@@ -146,38 +146,36 @@ module RailsInstaller::Utilities
   # build_gems
   #
   # loops over each gemname and triggers it to be built.
-  def build_gems(gems)
+  def build_gems(ruby_path, gems)
     if gems.is_a?(Array)
       gems.each do |name|
-        build_gem(name)
+        build_gem(ruby_path, name)
       end
     elsif gems.is_a?(Hash)
       gems.each_pair do |name, version |
-        build_gem(name,version)
+        build_gem(ruby_path, name,version)
       end
     else
       build_gem(gems)
     end
   end
 
-  def build_gem(gemname, options = {})
+  def build_gem(ruby_path, gemname, options = {})
 
     if $Flags[:verbose]
       printf "Building gem #{gemname}\n"
     end
 
-    if options[:version]
-      installer = Gem::DependencyInstaller.new(
-        :install_dir => File.join(RailsInstaller::Stage, "#{gemname}-#{options[:version]}")
-      )
-      installer.install(gemname, options[:version])
-    else
-      installer = Gem::DependencyInstaller(
-        :install_dir => File.join(RailsInstaller::Stage, "#{gemname}")
-      )
-      installer.install(gemname)
-    end
-    # TODO: bundle .gem file
+    %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
+
+    command = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gemname})
+
+    command += %Q( -v#{options[:version]}) if options[:version]
+
+    command += %Q( --no-rdoc --no-ri)
+
+    sh command
+
   end
 
   #
