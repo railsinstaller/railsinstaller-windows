@@ -1,5 +1,7 @@
 require "open-uri"
 require "fileutils"
+
+gem "rubyzip2", "~> 2.0.1"
 require "zip/zip"
 
 module RailsInstaller::Utilities
