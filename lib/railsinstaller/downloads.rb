@@ -5,10 +5,10 @@ module RailsInstaller::Downloads
 
   # Original download() code taken from Rubinius and then butchered ;)
   # https://github.com/evanphx/rubinius/blob/master/configure#L307-350
-  def download(url, download_path, count = 3)
+  def download(package, count = 3)
 
-   filename = File.basename(url)
-   return if File.exists?(File.join(download_path, filename))
+   filename = File.basename(package.url)
+   return if File.exists?(File.join(RailsInstaller::Archives, filename))
 
    begin
 
@@ -20,9 +20,9 @@ module RailsInstaller::Downloads
         http = Net::HTTP
       end
 
-      uri = URI.parse(url)
+      uri = URI.parse(package.url)
 
-      print "Downloading from #{url} to #{download_path}\n" if $Flags[:verbose]
+      print "Downloading from #{package.url} to #{RailsInstaller::Archives}\n" if $Flags[:verbose]
       http.get_response(uri) do |response|
 
         case response
@@ -41,7 +41,8 @@ module RailsInstaller::Downloads
 
             raise "Too many redirections for the original url, halting." if count <= 0
             print "Redirected to #{response["Location"]}\n" if verbose
-            return download(response["location"], download_path, count - 1)
+            package.url = response["location"]
+            return download(package, count - 1)
 
           when Net::HTTPOK
 
@@ -52,10 +53,12 @@ module RailsInstaller::Downloads
             total = response.header["Content-Length"].to_i
 
             # Ensure that the destination directory exists.
-            FileUtils.mkdir_p(download_path) unless File.directory?(download_path)
-            FileUtils.rm_f(File.join(download_path,filename)) if File.exist?(File.join(download_path, filename))
+            FileUtils.mkdir_p(RailsInstaller::Archives) unless File.directory?(RailsInstaller::Archives)
+            if File.exist?(File.join(RailsInstaller::Archives, filename))
+              FileUtils.rm_f(File.join(RailsInstaller::Archives,filename))
+            end
 
-            Dir.chdir(download_path) do
+            Dir.chdir(RailsInstaller::Archives) do
               # See https://github.com/oneclick/rubyinstaller/blob/master/rake/contrib/uri_ext.rb#L234-276
               # for another alternative to this.
               response.read_body do |chunk|
@@ -67,7 +70,7 @@ module RailsInstaller::Downloads
               temp_file.close
               FileUtils.mv(
                 temp_file.path,
-                File.join(download_path, filename),
+                File.join(RailsInstaller::Archives, filename),
                 :force => true
               )
 
@@ -82,10 +85,16 @@ module RailsInstaller::Downloads
 
       end
 
-    rescue Exception => exception
-      File.unlink(File.join(download_path,filename)) if File.exists?(File.join(download_path, filename))
-      print " ERROR: #{exception.message}\n"
+   rescue Exception => exception
+
+      if File.exists?(File.join(RailsInstaller::Archives, filename))
+        File.unlink(File.join(RailsInstaller::Archives,filename))
+      end
+
+      printf "ERROR: #{exception.message}\n"
+
       return false
+
     end
 
     return true

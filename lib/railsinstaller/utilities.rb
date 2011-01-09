@@ -16,6 +16,7 @@ module RailsInstaller::Utilities
     Dir.chdir(base_path) do
 
       Zip::ZipFile.open(filename) do |zipfile|
+
         printf "zipfile: #{zipfile.inspect}\n" if $Flags[:verbose]
 
         if regex
@@ -30,7 +31,7 @@ module RailsInstaller::Utilities
           entries = zipfile.entries
         end
 
-        printf "DEBUG: $PWD=#{Dir.pwd}\n" if $Flags[:verbose]
+        FileUtils.mkdir_p(File.join(RailsInstaller::Stage, "bin"))
 
         entries.each do |entry|
 
@@ -41,6 +42,11 @@ module RailsInstaller::Utilities
           FileUtils.rm_f(entry.name) if File.exists?(entry.name)
 
           zipfile.extract(entry, entry.name)
+
+          FileUtils.mv(
+            entry.name,
+            File.join(RailsInstaller::Stage, "bin", entry.name)
+          )
 
         end
 
@@ -57,54 +63,61 @@ module RailsInstaller::Utilities
   #
   # Used to extract a non-zip file using BSDTar
   #
-  def extract(filename, options = Hash.new(nil))
+  def extract(package)
 
-    unless File.exists?(filename)
-      raise "ERROR: #{file} does not exist, did the download step fail?"
-    end
+    Dir.chdir(RailsInstaller::Archives) do
 
-    options[:force] ||= false
-    base_path   = File.dirname(filename)
-    target_path = options[:target_path] || base_path
-    bsdtar      = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
-    sevenzip    = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
+      filename = File.basename(package.url)
 
-    printf " => Extracting '#{filename}' into '#{target_path}'\n" if $Flags[:verbose]
-
-    FileUtils.mkdir_p(base_path) unless File.directory?(base_path)
-
-    if base_path != target_path && File.directory?(target_path)
-      FileUtils.rm_rf(target_path)
-      return unless options[:force]
-    end
-
-    Dir.chdir(base_path) do
-
-      case filename
-        when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
-          command = %Q("#{bsdtar}" -xf "#{filename}") #  > NUL 2>&1")
-        when /^.+\.7z$/
-          command = %Q("#{sevenzip}" x -t7z -o#{target_path} "#{filename}") #  > NUL 2>&1")
-        when /^.+sfx\.exe$/
-          command = %Q("#{sevenzip}" x -t7z -sfx -o#{target_path} #{filename})
-        when /(^.+\.zip$)/
-          if $Flags[:bootstrapped]
-            # Use bsdtar once we already have it
-            command = %Q("#{bsdtar}" -xf "#{filename}") #  > NUL 2>&1")
-          else
-            # For the unzip case we can return a list of extracted files.
-            return unzip(filename, :regex => options[:regex])
-          end
-        else
-          raise "\nERROR:\n  Cannot extract #{filename}, unhandled file extension!\n"
+      unless File.exists?(filename)
+        raise "ERROR: #{file} does not exist, did the download step fail?"
       end
 
-      if $Flags[:verbose]
-        puts(sh(command))
+      base_path     = RailsInstaller::Stage
+
+      if package.target.nil?
+        target_path = base_path
       else
-        sh command
+        target_path = File.join(base_path, package.target)
       end
+      bsdtar      = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
+      sevenzip    = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
 
+      printf " => Extracting '#{filename}' into '#{target_path}'\n" if $Flags[:verbose]
+
+      FileUtils.mkdir_p(base_path) unless File.directory?(base_path)
+
+      FileUtils.rm_rf(package.target) if (File.directory?(target_path) && target_path != base_path)
+
+      archive = File.join(RailsInstaller::Archives, filename)
+
+      Dir.chdir(RailsInstaller::Stage) do
+
+          case filename
+          when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
+            command = %Q("#{bsdtar}" -xf "#{archive}") #  > NUL 2>&1")
+          when /^.+\.7z$/
+            command = %Q("#{sevenzip}" x -t7z -o#{target_path} "#{archive}") #  > NUL 2>&1")
+          when /^.+sfx\.exe$/
+            command = %Q("#{sevenzip}" x -t7z -sfx -o#{target_path} #{archive})
+          when /(^.+\.zip$)/
+            if File.exist?(bsdtar) # Use bsdtar once we already have it
+                command = %Q("#{bsdtar}" -xf "#{archive}") #  > NUL 2>&1")
+          else
+              # For the unzip case we can return a list of extracted files.
+              return unzip(archive, :regex => Regexp.new(package.regex))
+            end
+          else
+            raise "\nERROR:\n  Cannot extract #{archive}, unhandled file extension!\n"
+        end
+
+        if $Flags[:verbose]
+          puts(sh(command))
+        else
+          sh command
+        end
+
+      end
     end
 
   end
@@ -115,27 +128,27 @@ module RailsInstaller::Utilities
   #
   # Requires: open-uri
   #
-  def install_utility(url, binary, path = File.join(RailsInstaller::Stage, "bin"))
+  def install_utility
 
-    if File.exists?(File.join(path, binary))
+    # TODO: Merge this into download, simply check if object has a .binary attribute.
+    if File.exists?(File.join(RailsInstaller::Stage, "bin", binary))
 
-      printf "#{File.join(path, binary)} exists.\nSkipping download, extract and install.\n"
+      printf "#{File.join(RailsInstaller::Stage, "bin", binary)} exists.\nSkipping download, extract and install.\n"
 
     else
-      printf " => Downloading and extracting #{binary} from #{url}\n"
 
-      stage_path = RailsInstaller::Stage
+      printf " => Downloading and extracting #{binary} from #{utility.url}\n"
 
-      FileUtils.mkdir_p(stage_path) unless File.directory?(stage_path)
+      FileUtils.mkdir_p(RailsInstaller::Stage) unless File.directory?(RailsInstaller::Stage)
 
-      Dir.chdir(stage_path) do
+      Dir.chdir(RailsInstaller::Stage) do
 
-        filename = File.basename(url)
+        filename = File.basename(utility.url)
 
         FileUtils.rm_f(filename) if File.exist?(filename)
 
-        # BSDTar is small so using open-uri to download this is fine.
-        open(url) do |temporary_file|
+        # Utilities are small executables, thus using open-uri to download them is fine.
+        open(utility.url) do |temporary_file|
 
           File.open(filename, "wb") do |file|
 
@@ -145,14 +158,14 @@ module RailsInstaller::Utilities
 
         end
 
-        extract(filename, {:regex => Regexp.new(binary)})
-        printf " => Instaling #{binary} to #{path}\n"
+        extract(binary)
+        printf " => Instaling #{binary} to #{File.join(RailsInstaller::Stage, "bin")}\n"
 
-        FileUtils.mkdir_p(path) unless File.directory?(path)
+        FileUtils.mkdir_p(RailsInstaller::Stage, "bin") unless File.directory?(RailsInstaller::Stage, "bin")
 
         FileUtils.mv(
           File.join(RailsInstaller::Stage, binary),
-          File.join(path, binary),
+          File.join(RailsInstaller::Stage, "bin", binary),
           :force => true
         )
 

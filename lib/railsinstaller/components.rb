@@ -3,17 +3,21 @@ module RailsInstaller
   #
   # Load initial objects (OpenStruct) from railsinstaller.yml
   #
-  %w[utilities compilers components].each do |name|
 
-    yaml = ERB.new(File.read("#{RailsInstaller::Root}/config/railsinstaller.yml"), 0).result(binding)
+  @@config = YAML.load(
+    ERB.new( File.read(
+      File.join(Root, "config", "railsinstaller.yml")
+    ) ).result(binding)
+  )
 
-    YAML.load(yaml)[name].each_pair do |key,value|
+  printf "DEBUG: Config: #{@@config.inspect}" if $Flags[:verbose]
 
-      printf "  => #{value[:name]} = #{value.inspect}\n" if $Flags[:verbose]
+  @@config.each_pair do |key,value|
 
-      const_set(value[:name], OpenStruct.new(value))
+    printf "  => #{value[:name]} = #{value.inspect}\n" if $Flags[:verbose]
 
-    end
+    const_set(value[:name], OpenStruct.new(value))
 
   end
+
 end

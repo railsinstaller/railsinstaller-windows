@@ -1,66 +1,43 @@
 module RailsInstaller
 
   def self.build!
+
     section "Utilities"
 
-    install_utility(RailsInstaller::BSDTar.url, "basic-bsdtar.exe")
-    install_utility(RailsInstaller::SevenZip.url, "7za.exe")
-    $Flags[:bootstrapped] = true
+    components = [ BSDTar, SevenZip, DevKit, Git, PostgreSQLServer, Sqlite3 ]
 
-   section  "RubyInstaller"
-   url       = RubyInstaller.versions["1.8.7-p330"][:url]
-   filename  = File.join(RailsInstaller::Stage, File.basename(url))
-   rubyname  = RubyInstaller.versions["1.8.7-p330"][:name]
-   ruby_path = File.join(RailsInstaller::Stage, rubyname)
+    components.each do |package|
+      section  package.name # TODO: Add package.description to the yml file.
+      download package
+      extract  package
+    end
 
-   FileUtils.rm_rf(ruby_path) if File.directory?(ruby_path)
+    section  "RubyInstaller"
+    url       = RubyInstaller.versions["1.8.7-p330"][:url]
+    filename  = File.basename(url)
+    rubyname  = RubyInstaller.versions["1.8.7-p330"][:name]
+    ruby_path = File.join(RailsInstaller::Stage, rubyname)
 
-   download(url, RailsInstaller::Stage)
+    FileUtils.rm_rf(ruby_path) if File.directory?(ruby_path)
+    download(DevKit)
+    extract(DevKit)
 
-   extract(filename, {:force => true})
+    %w(sqlite3.dll sqlite3.exe).each do |file|
+      FileUtils.mv(
+        File.join(RailsInstaller::Stage, file),
+        File.join(ruby_path, "bin", file)
+      )
+    end
 
-   section  "DevKit"
-   url      = DevKit.url
-   filename = File.join(RailsInstaller::Stage, File.basename(url))
-   path     = File.join(RailsInstaller::Stage, "DevKit")
+    section "Gems"
 
-   download(url, RailsInstaller::Stage)
+    gems = %w(rake rails json sqlite3-ruby)
 
-   FileUtils.rm_rf(path) if File.directory?(path)
+    build_gems(ruby_path, gems)
 
-   extract(filename, {:target_path => path, :extract => true})
-
-   install_devkit_into_ruby( path, ruby_path )
-
-   section  "Git"
-   url      = Git.url
-   filename = File.join(RailsInstaller::Stage, File.basename(url))
-   path     = File.join(RailsInstaller::Stage, "Git")
-
-   download(url, RailsInstaller::Stage)
-
-   FileUtils.rm_rf(path) if File.directory?(path)
-
-   extract(filename, {:target_path => path, :extract => true})
-
-   section "PostgreSQL Server"
-
-   url      = PostgreSQLServer.url
-   filename = File.join(RailsInstaller::Stage, File.basename(url))
-   path     = RailsInstaller::Stage
-
-   download(url, RailsInstaller::Stage)
-
-   extract(filename) # , {:target_path => path, :extract => true})
-
-   section "Gems"
-   gems     = %w(rake rails json sqlite3-ruby)
-
-   build_gems(ruby_path, gems)
-
-   build_gem(ruby_path, "pg",
-              {:args => "-- --with-pg-include=#{File.join(RailsInstaller::Stage, "pgsql", "include")} --with-pg-lib=#{File.join(RailsInstaller::Stage, "pgsql", "lib")}"}
-   )
+    build_gem(ruby_path, "pg", {
+      :args => "-- --with-pg-include=#{File.join(RailsInstaller::Stage, "pgsql", "include")} --with-pg-lib=#{File.join(RailsInstaller::Stage, "pgsql", "lib")}"
+    })
 
   end
 

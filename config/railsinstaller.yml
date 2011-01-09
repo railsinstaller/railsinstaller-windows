@@ -1,94 +1,117 @@
 ---
-compilers:
-  :dev_kit:
-    :name: DevKit
-    :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe"
+:dev_kit:
+  :name: DevKit
+  :type: component
+  :regex: '^.*$'
+  :target: 'DevKit'
+  :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe"
 
-components:
-  :git:
-    :name: Git
-    :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.3.1-preview20101002.7z"
+:ruby_installer:
+  :type: component
+  :name: RubyInstaller
+  :versions:
+    1.8.7-p330:
+      :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
+      :name: "ruby-1.8.7-p330-i386-mingw32"
+      :target: Ruby1.8.7
+    1.9.2-p136:
+      :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
+      :name: "ruby-1.9.2-p136-i386-mingw32"
+      :target: Ruby1.9.2
 
-  :mysql:
-    :name: Mysql
-    :dlls:
-      - mysql/lib/libmysql.dll
-    :configure:
-      - --with-mysql-config="{{stage_path}}/mysql/bin/mysql_config"
+:git:
+  :type: component
+  :name: Git
+  :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.3.1-preview20101002.7z"
+  :target: "Git"
+  :regex: '^.*$'
 
-  :mysql_server:
-    :name: MySQLServer
-    :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
-    :urls:
-      - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
-      - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx32.zip"
+:pg:
+  :type: component
+  :name: Pg
+  :dlls:
+    - postgresql/lib/libpq.dll
+  :configure:
+    - --with-pg-config="{{stage_path}}/postgresql/bin/pg_config"
 
-  :pg:
-    :name: Pg
-    :dlls:
-      - postgresql/lib/libpq.dll
-    :configure:
-      - --with-pg-config="{{stage_path}}/postgresql/bin/pg_config"
+:postgresql_server:
+  :type: component
+  :name: PostgreSQLServer
+  :regex: '^.*$'
+  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows-binaries.zip"
 
-  :postgresql_server:
-    :name: PostgreSQLServer
-    :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows-binaries.zip"
+:rails:
+  :type: component
+  :name: Rails
 
-  :rails:
-    :name: Rails
+:rails_docs:
+  :type: component
+  :name: RailsDocs
 
-  :rails_docs:
-    :name: RailsDocs
+:rails_guides:
+  :type: component
+  :name: RailsGuides
 
-  :rails_guides:
-    :name: RailsGuides
+:ruby_docs:
+  :type: component
+  :name: RubyDocs
 
-  :ruby_docs:
-    :name: RubyDocs
+:editor:
+  :name: Editor
 
-  :ruby_installer:
-    :name: RubyInstaller
-    :versions:
-      1.8.7-p330:
-        :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
-        :name: "ruby-1.8.7-p330-i386-mingw32"
-      1.9.2-p136:
-        :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
-        :name: "ruby-1.9.2-p136-i386-mingw32"
+:rubygems:
+  :type: component
+  :name: RubyGems
 
-  :editor:
-    :name: Editor
+:sqlite3:
+  :type: component
+  :name: Sqlite3
+  :regex: '^.+\.[dll|exe]$'
+  :url: http://www.sqlite.org/sqlite-shell-win32-x86-3070400.zip
+  :dll_url: http://www.sqlite.org/sqlite-dll-win32-x86-3070400.zip
 
-  :rubygems:
-    :name: RubyGems
+:ssl_certificates:
+  :type: component
+  :name: SSLCertificates
+  :url: http://curl.haxx.se/ca
+  :file: cacert.pem
 
-  :sqlite3:
-    :name: Sqlite3
+:mysql:
+  :type: component
+  :name: Mysql
+  :dlls:
+    - mysql/lib/libmysql.dll
+  :configure:
+    - --with-mysql-config="{{stage_path}}/mysql/bin/mysql_config"
 
-  :sqlserver:
-    :name: SqlServer
+:mysql_server:
+  :type: component
+  :name: MySQLServer
+  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
+  :regex: '^.*$'
+  :urls:
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx32.zip"
 
-  :ssl_certificates:
-    :name: SSLCertificates
-    :url: http://curl.haxx.se/ca
-    :file: cacert.pem
+:sqlserver:
+  :type: component
+  :name: SqlServer
 
-  :subversion:
-    :name: Subversion
+:subversion:
+  :type: component
+  :name: Subversion
 
-utilities:
+:bsdtar:
+  :name: BSDTar
+  :type: utility
+  :binary: "basic-bsdtar.exe"
+  :regex: '^basic-bsdtar.exe$'
+  :url: "http://downloads.sourceforge.net/mingw/basic-bsdtar-2.8.3-1-mingw32-bin.zip"
 
-  :bsdtar:
-    :name: BSDTar
-    :type: utility
-    :binary: basic-bsdtar.exe
-    :location: sandbox
-    :url: "http://downloads.sourceforge.net/mingw/basic-bsdtar-2.8.3-1-mingw32-bin.zip"
-
-  :sevenzip:
-    :name: SevenZip
-    :type: utility
-    :binary: 7za.exe
-    :location: sandbox
-    :url: "http://voxel.dl.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
+:sevenzip:
+  :name: SevenZip
+  :type: utility
+  :binary: "7za.exe"
+  :regex: '^7za\.exe$'
+  :url: "http://voxel.dl.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
 
