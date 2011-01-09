@@ -3,19 +3,23 @@ module RailsInstaller::Utilities
   # unzip:
   # Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
   #
-  def unzip(filename, options = {})
+  def unzip(package)
 
-    regex       = options[:regex]
-    base_path   = File.dirname(filename)
-    target_path = options[:target_path] || base_path
-    filename    = File.basename(filename)
-    files       = []
+    filename  = File.basename(package.url)
+    base_path = File.dirname(filename)
+    if package.target.nil?
+      target_path = base_path
+    else
+      target_path = File.join(base_path, package.target)
+    end
+    regex     = Regexp.new(package.regex) unless package.regex.nil?
+    files     = []
 
     printf " => Extracting #{filename} contents\n"
 
-    Dir.chdir(base_path) do
+    Dir.chdir(RailsInstaller::Archives) do
 
-      Zip::ZipFile.open(filename) do |zipfile|
+      Zip::ZipFile.open(File.join(RailsInstaller::Archives, filename)) do |zipfile|
 
         printf "zipfile: #{zipfile.inspect}\n" if $Flags[:verbose]
 
@@ -43,10 +47,12 @@ module RailsInstaller::Utilities
 
           zipfile.extract(entry, entry.name)
 
-          FileUtils.mv(
-            entry.name,
-            File.join(RailsInstaller::Stage, "bin", entry.name)
-          )
+          if File.exist?(File.join(RailsInstaller::Archives, entry.name))
+            FileUtils.mv(
+              File.join(RailsInstaller::Archives, entry.name),
+              File.join(RailsInstaller::Stage, "bin", entry.name)
+            )
+          end
 
         end
 
@@ -101,11 +107,12 @@ module RailsInstaller::Utilities
           when /^.+sfx\.exe$/
             command = %Q("#{sevenzip}" x -t7z -sfx -o#{target_path} #{archive})
           when /(^.+\.zip$)/
-            if File.exist?(bsdtar) # Use bsdtar once we already have it
-                command = %Q("#{bsdtar}" -xf "#{archive}") #  > NUL 2>&1")
-          else
+            if File.exist?(sevenzip) # Use bsdtar once we already have it
+              command = %Q("#{sevenzip}" x -o#{target_path} #{archive})
+              # command = %Q("#{bsdtar}" -xf "#{archive}") #  > NUL 2>&1")
+            else
               # For the unzip case we can return a list of extracted files.
-              return unzip(archive, :regex => Regexp.new(package.regex))
+              return unzip(package)
             end
           else
             raise "\nERROR:\n  Cannot extract #{archive}, unhandled file extension!\n"
