@@ -3,7 +3,7 @@ module RailsInstaller
   #
   # Add functionality to DevKit object that was loaded during configure.
   #
-  def self.install_devkit_into_ruby(devkit_path, ruby_path)
+  def self.link_devkit_with_ruby(devkit_path, ruby_path)
 
     FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
 

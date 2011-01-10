@@ -15,7 +15,7 @@ module RailsInstaller::Utilities
     regex     = Regexp.new(package.regex) unless package.regex.nil?
     files     = []
 
-    printf " => Extracting #{filename} contents\n"
+    printf " => Extracting #{filename}\n"
 
     Dir.chdir(RailsInstaller::Archives) do
 
@@ -77,59 +77,109 @@ module RailsInstaller::Utilities
       filename = File.basename(package.url)
 
       unless File.exists?(filename)
-        raise "ERROR: #{file} does not exist, did the download step fail?"
+        raise "ERROR: #{filename} does not exist, did the download step fail?"
       end
 
-      base_path     = RailsInstaller::Stage
-
       if package.target.nil?
-        target_path = base_path
+        target_path = RailsInstaller::Stage
       else
-        target_path = File.join(base_path, package.target)
+        target_path = File.join(RailsInstaller::Stage, package.target)
       end
       bsdtar      = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
       sevenzip    = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
 
-      printf " => Extracting '#{filename}' into '#{target_path}'\n" if $Flags[:verbose]
+      if package.type == "utility" && File.exist?(File.join(RailsInstaller::Stage, "bin", package.binary))
+        printf "#{package.name} already on stage.\n"
+        return
+      end
 
-      FileUtils.mkdir_p(base_path) unless File.directory?(base_path)
+      printf " => Extracting '#{filename}' to the stage.\n" if $Flags[:verbose]
 
-      FileUtils.rm_rf(package.target) if (File.directory?(target_path) && target_path != base_path)
+      FileUtils.mkdir_p(RailsInstaller::Stage) unless File.directory?(RailsInstaller::Stage)
+
+      case package.type
+        when "utility" # Remove target file, if exists.
+
+          target = File.join(RailsInstaller::Stage, "bin", package.binary)
+          if File.exists?(target)
+            printf "#{target} on stage.\n"
+            return
+          end
+          FileUtils.rm_f(target) if File.exist?(target)
+
+        when "component" # Remove target dir if it exists and is different than the stage
+
+          if (File.directory?(target_path) && target_path != RailsInstaller::Stage)
+            FileUtils.rm_rf(target_path)
+          end
+
+        else
+        raise "Unknown package type.\npackage type should be one of 'utility' or a 'component'?"
+      end
 
       archive = File.join(RailsInstaller::Archives, filename)
 
       Dir.chdir(RailsInstaller::Stage) do
 
           case filename
-          when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
-            command = %Q("#{bsdtar}" -xf "#{archive}") #  > NUL 2>&1")
-          when /^.+\.7z$/
-            command = %Q("#{sevenzip}" x -t7z -o#{target_path} "#{archive}") #  > NUL 2>&1")
-          when /^.+sfx\.exe$/
-            command = %Q("#{sevenzip}" x -t7z -sfx -o#{target_path} #{archive})
-          when /(^.+\.zip$)/
+            when /(^.+\.tar)\.z$/, /(^.+\.tar)\.gz$/, /(^.+\.tar)\.bz2$/, /(^.+\.tar)\.lzma$/, /(^.+)\.tgz$/
+
+            command = %Q("#{bsdtar}" -xf "#{archive}")
+
+            when /^.+\.7z$/
+
+            command = %Q("#{sevenzip}" x -y -t7z -o#{target_path} "#{archive}")
+
+            when /^.+sfx\.exe$/
+
+            command = %Q("#{sevenzip}" x -y -t7z -sfx -o#{target_path} #{archive})
+
+            when /(^.+\.zip$)/
+
             if File.exist?(sevenzip) # Use bsdtar once we already have it
-              command = %Q("#{sevenzip}" x -o#{target_path} #{archive})
-              # command = %Q("#{bsdtar}" -xf "#{archive}") #  > NUL 2>&1")
+
+              command = %Q("#{sevenzip}" x -y -o#{target_path} #{archive})
+
             else
-              # For the unzip case we can return a list of extracted files.
-              return unzip(package)
+
+              return unzip(package) # For the unzip case we can return a list of extracted files.
+
             end
+
           else
             raise "\nERROR:\n  Cannot extract #{archive}, unhandled file extension!\n"
         end
 
-        if $Flags[:verbose]
-          puts(sh(command))
-        else
-          sh command
+        sh(command)
+
+        if package.rename
+
+          case package.type
+
+            when "component"
+
+              Dir.chdir(RailsInstaller::Stage) do
+
+                FileUtils.rm_rf(package.rename) if File.exist?(package.rename)
+
+                source = File.basename(package.url, File.extname(package.url))
+                printf "DEBUG: source: %s\ntarget: %s\n", source, package.rename
+                FileUtils.mv(
+                  File.basename(package.url, File.extname(package.url)),
+                  package.rename
+                )
+
+              end
+
+          end
+
         end
 
       end
+
     end
 
   end
-
 
   #
   # install_utility()
@@ -243,8 +293,12 @@ module RailsInstaller::Utilities
 
     printf "\nDEBUG: > %s\n\n", command if $Flags[:verbose]
 
-    %x(#{command})
+    output, error, status = Open3.capture3(command)
 
+    if $Flags[:verbose]
+      puts output
+      puts error unless error.empty?
+    end
   end
 
 

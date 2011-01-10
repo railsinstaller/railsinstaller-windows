@@ -4,7 +4,7 @@ module RailsInstaller # Ensure that the RailsInstaller project root is defined.
   Archives = File.expand_path(File.join(Root, "archives"))
 end
 
-%w[ rubygems fileutils ostruct yaml erb uri open-uri zip/zip ].each do |name|
+%w[ rubygems fileutils ostruct yaml erb uri open-uri open3 zip/zip ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
   require name
 end

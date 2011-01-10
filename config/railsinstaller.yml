@@ -9,6 +9,9 @@
 :ruby_installer:
   :type: component
   :name: RubyInstaller
+  :regex: '^.*$'
+  :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
+  :rename: Ruby1.8.7
   :versions:
     1.8.7-p330:
       :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
@@ -66,9 +69,14 @@
 :sqlite3:
   :type: component
   :name: Sqlite3
-  :regex: '^.+\.[dll|exe]$'
-  :url: http://www.sqlite.org/sqlite-shell-win32-x86-3070400.zip
-  :dll_url: http://www.sqlite.org/sqlite-dll-win32-x86-3070400.zip
+  :regex: '^.+\.exe$'
+  :url: http://www.sqlite.org/sqlite-3_7_3.zip
+
+:sqlite3_dll:
+  :type: component
+  :name: Sqlite3Dll
+  :regex: '^.+\.dll$'
+  :url: http://www.sqlite.org/sqlitedll-3_7_3.zip
 
 :ssl_certificates:
   :type: component
