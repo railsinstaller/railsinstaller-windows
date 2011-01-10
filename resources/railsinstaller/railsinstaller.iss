@@ -117,7 +117,7 @@ Source: setvars.bat; DestDir: {app}
 [Icons]
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
-Name: {group}\Start Command Prompt with RailsInstaller; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\setrbvars.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
+Name: {group}\Start Command Prompt with RailsInstaller; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\setvars.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Code]
