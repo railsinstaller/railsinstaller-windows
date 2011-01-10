@@ -25,7 +25,7 @@ module RailsInstaller
 
     # TODO: Extract this into a function call that operations on the package object.
     %w( libpq.dll ssleay32.dll, libeay32.dll, libintl-8.dll msvcr90.dll libxml2.dll ).each do |file|
-    FileUtils.mv(
+    FileUtils.cp(
         File.join(Stage, PostgresServer.target, "bin", file),
         File.join(Stage, RubyInstaller.rename, "bin", file)
     ) if File.exist?(File.join(Stage, file))
@@ -33,7 +33,7 @@ module RailsInstaller
 
     section "Gems"
 
-    gems = %w(rake rails json sqlite3-ruby)
+    gems = %w( rake rails json sqlite3-ruby )
 
     build_gems(File.join(Stage, RubyInstaller.rename), gems)
 
