@@ -59,9 +59,6 @@
   :type: component
   :name: RubyDocs
 
-:editor:
-  :name: Editor
-
 :rubygems:
   :type: component
   :name: RubyGems
@@ -100,14 +97,6 @@
   :urls:
     - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
     - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx32.zip"
-
-:sqlserver:
-  :type: component
-  :name: SqlServer
-
-:subversion:
-  :type: component
-  :name: Subversion
 
 :bsdtar:
   :name: BSDTar
