@@ -39,7 +39,7 @@
 
 :postgresql_server:
   :type: component
-  :name: PostgreSQLServer
+  :name: PostgresServer
   :regex: '^.*$'
   :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows-binaries.zip"
 
