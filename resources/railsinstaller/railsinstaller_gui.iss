@@ -36,7 +36,6 @@ begin
         for N := 0 to Tasks.Count - 1 do
           case Trim(Tasks.Strings[N]) of
             'MODPATH': PathChkBox.State := cbChecked;
-            'ASSOCFILES': PathExtChkBox.State := cbChecked;
           end;
       finally
         Tasks.Free;
@@ -74,20 +73,9 @@ begin
   PathChkBox.Width := Page.SurfaceWidth;
   PathChkBox.Height := ScaleY(17);
 
-  PathExtChkBox := TCheckBox.Create(Page);
-  PathExtChkBox.Parent := Page.Surface;
-  PathExtChkBox.State := cbUnchecked;
-  PathExtChkBox.Caption := 'Associate .rb and .rbw files with this Ruby installation';
-  PathExtChkBox.Alignment := taRightJustify;
-  PathExtChkBox.Top := ScaleY(112);
-  PathExtChkBox.Left := ScaleX(18);
-  PathExtChkBox.Width := Page.SurfaceWidth;
-  PathExtChkBox.Height := ScaleY(17);
-
   ParseSilentTasks;
 
-
-  {* Labels and links back to RubyInstaller project pages *}
+  {* FIXME: Labels and links back to RailsInstaller project pages *}
 
   HostPage := WizardForm.FinishedPage;
 
