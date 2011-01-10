@@ -12,6 +12,14 @@
 ;                         /dRubyPath=Ruby/1.8.7
 ;                         [/dInstVersion=26-OCT-2009]
 
+; Full example:
+; iscc resouces\railsinstaller\railsinstaller.iss \
+;       /dInstallerVersion=0.1.0 \
+;       /dStagePath=stage \
+;       /dRubyPath=Ruby1.8.7 \
+;       /opkg
+;       /frailsinstaller-0.1.0.exe
+
 #if Defined(InstallerVersion) == 0
   #error Please provide a InstallerVersion definition using a /d parameter.
 #endif
@@ -47,7 +55,7 @@ AppName={#InstallerName}
 AppVerName={#InstallerName}
 AppPublisher={#InstallerPublisher}
 AppPublisherURL={#InstallerHomepage}
-AppVersion={#FullVersion}
+AppVersion={#InstallerVersion}
 DefaultGroupName={#InstallerName}
 DefaultDirName={sd}\RailsInstaller
 DisableProgramGroupPage=true
@@ -60,7 +68,7 @@ InternalCompressLevel=ultra64
 VersionInfoCompany={#InstallerPublisher}
 VersionInfoCopyright=(c) {#CurrentYear} {#InstallerPublisher}
 VersionInfoDescription=Rails development environment installer for Windows
-VersionInfoTextVersion={#FullVersion}
+VersionInfoTextVersion={#InstallerVersion}
 VersionInfoVersion={#InstallerVersion}
 UninstallDisplayIcon={app}\bin\ruby.exe
 WizardImageFile=compiler:wizmodernimage-is.bmp
@@ -95,7 +103,7 @@ en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 Source: ..\..\{#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Flags: recursesubdirs createallsubdirs
 Source: ..\..\{#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
 Source: ..\..\{#StagePath}\DevKit\*; DestDir: {app}\DevKit; Flags: recursesubdirs createallsubdirs
-Source: setrbvars.bat; DestDir: {app}\{#RubyPath}\bin
+Source: setvars.bat; DestDir: {app}
 
 [Registry]
 ; RubyInstaller identification for admin
@@ -109,7 +117,7 @@ Source: setrbvars.bat; DestDir: {app}\{#RubyPath}\bin
 [Icons]
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
-Name: {group}\Start Command Prompt with Ruby; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\bin\setrbvars.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
+Name: {group}\Start Command Prompt with RailsInstaller; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\setrbvars.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Code]
