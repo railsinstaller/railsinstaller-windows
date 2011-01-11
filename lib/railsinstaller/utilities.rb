@@ -286,11 +286,11 @@ module RailsInstaller::Utilities
 
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
 
-    command = %Q(#{File.join(ruby_path, "bin", name)} #{command} #{action})
+    command = %Q(#{File.join(ruby_path, "bin", "ruby")} -S #{name} #{command} #{action})
 
     command += options[:args] if options[:args]
 
-    applications_path = File.join(RailsInstaller::Root, "Rails")
+    applications_path = File.join(RailsInstaller::Stage, "Rails")
 
     FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
 
