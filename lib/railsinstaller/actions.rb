@@ -46,7 +46,7 @@ module RailsInstaller
     })
 
 
-    ruby_binary("rails", "new","sample", File.join(Stage, Ruby187.rename))
+    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
 
     # MSVC Runtime 2008
     # download(MsvcRuntime.url)
