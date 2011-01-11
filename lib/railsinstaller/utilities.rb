@@ -290,7 +290,7 @@ module RailsInstaller::Utilities
 
     command += options[:args] if options[:args]
 
-    applications_path = File.join(RailsInstaller::Root, "Rails")) do
+    applications_path = File.join(RailsInstaller::Root, "Rails")
 
     FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
 
