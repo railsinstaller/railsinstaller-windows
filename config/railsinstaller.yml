@@ -6,21 +6,19 @@
   :target: 'DevKit'
   :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe"
 
-:ruby_installer:
+:ruby187:
   :type: component
-  :name: RubyInstaller
+  :name: Ruby187
   :regex: '^.*$'
   :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
   :rename: Ruby1.8.7
-  :versions:
-    1.8.7-p330:
-      :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
-      :name: "ruby-1.8.7-p330-i386-mingw32"
-      :target: Ruby1.8.7
-    1.9.2-p136:
-      :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
-      :name: "ruby-1.9.2-p136-i386-mingw32"
-      :target: Ruby1.9.2
+
+:ruby192:
+  :type: component
+  :name: Ruby192
+  :regex: '^.*$'
+  :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
+  :rename: Ruby1.9.2
 
 :git:
   :type: component

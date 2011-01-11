@@ -280,6 +280,22 @@ module RailsInstaller::Utilities
 
   end
 
+  def ruby_binary(name, command, action, ruby_path, options = {})
+
+    printf " => rails #{ocmmand} #{action}\n" if $Flags[:verbose]
+
+    %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
+
+    command = %Q(#{File.join(ruby_path, "bin", name)} #{command} #{action})
+
+    command += options[:args] if options[:args]
+
+    Dir.chdir(File.join(RailsInstaller::Root, "Rails")) do
+      sh command
+    end
+
+  end
+
   #
   # sh
   #
