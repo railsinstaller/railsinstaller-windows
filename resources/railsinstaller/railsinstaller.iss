@@ -103,7 +103,7 @@ en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Flags: recursesubdirs createallsubdirs
-Source: {#RailsPath}\Rails\*; DestDir: {app}\Rails; Flags: recursesubdirs createallsubdirs
+Source: {#RailsPath}\*; DestDir: {app}\Rails; Flags: recursesubdirs createallsubdirs
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
