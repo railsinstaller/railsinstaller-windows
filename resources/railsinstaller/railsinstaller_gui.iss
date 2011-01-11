@@ -65,7 +65,7 @@ begin
 
   PathChkBox := TCheckBox.Create(Page);
   PathChkBox.Parent := Page.Surface;
-  PathChkBox.State := cbUnchecked;
+  PathChkBox.State := cbChecked;
   PathChkBox.Caption := 'Add Ruby executables to your PATH';
   PathChkBox.Alignment := taRightJustify;
   PathChkBox.Top := ScaleY(95);
