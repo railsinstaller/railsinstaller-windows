@@ -125,7 +125,17 @@ begin
   URLText.Top := TmpLabel.Top;
   URLText.Left := TmpLabel.Left + TmpLabel.Width + ScaleX(4);
   URLText.AutoSize := True;
-  URLText.Caption := 'http://wiki.github.com/oneclick/rubyinstaller';
+  URLText.Caption := 'http://wiki.github.com/wayneeseguin/railsinstaller';
+  URLText.Cursor := crHand;
+  URLText.Font.Color := clBlue;
+  URLText.OnClick := @URLText_OnClick;
+
+  URLText := TNewStaticText.Create(HostPage);
+  URLText.Parent := HostPage;
+  URLText.Top := TmpLabel.Top;
+  URLText.Left := TmpLabel.Left + TmpLabel.Width + ScaleX(4);
+  URLText.AutoSize := True;
+  URLText.Caption := 'http://webchat.freenode.net/?channels=rubyinstaller,rvm';
   URLText.Cursor := crHand;
   URLText.Font.Color := clBlue;
   URLText.OnClick := @URLText_OnClick;
