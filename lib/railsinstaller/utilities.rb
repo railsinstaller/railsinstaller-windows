@@ -282,7 +282,7 @@ module RailsInstaller::Utilities
 
   def ruby_binary(name, command, action, ruby_path, options = {})
 
-    printf " => rails #{ocmmand} #{action}\n" if $Flags[:verbose]
+    printf " => rails #{command} #{action}\n" if $Flags[:verbose]
 
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
 
