@@ -73,7 +73,6 @@ module RailsInstaller
           "/dInstallerVersion=#{version}",
           "/dStagePath=\"#{RailsInstaller::Stage}\"",
           "/dRubyPath=\"#{RailsInstaller::Ruby187.rename}\"",
-          "/dRailsPath=\"#{File.join(RailsInstaller::Root, "Rails")}\"",
           "/o\"#{RailsInstaller::PackageDir}\"",
           "/frailsinstaller-#{version}"
 
