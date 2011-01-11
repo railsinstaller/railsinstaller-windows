@@ -286,7 +286,7 @@ module RailsInstaller::Utilities
 
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
 
-    command = %Q(#{File.join(ruby_path, "bin", "ruby")} -S #{name} #{command} #{action})
+    command = %Q(#{File.join(ruby_path, "bin", "ruby")} -rubygems -S #{name} #{command} #{action})
 
     command += options[:args] if options[:args]
 
