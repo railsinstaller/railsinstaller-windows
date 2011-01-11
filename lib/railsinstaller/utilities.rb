@@ -290,9 +290,11 @@ module RailsInstaller::Utilities
 
     command += options[:args] if options[:args]
 
-    Dir.chdir(File.join(RailsInstaller::Root, "Rails")) do
-      sh command
-    end
+    applications_path = File.join(RailsInstaller::Root, "Rails")) do
+
+    FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
+
+    Dir.chdir(applications_path) { sh command }
 
   end
 
