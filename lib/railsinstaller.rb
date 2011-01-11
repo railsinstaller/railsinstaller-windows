@@ -1,7 +1,8 @@
 module RailsInstaller # Ensure that the RailsInstaller project root is defined.
-  Root     = File.expand_path(File.join(File.dirname(__FILE__), ".."))
-  Stage    = File.expand_path(File.join(Root, "stage"))
-  Archives = File.expand_path(File.join(Root, "archives"))
+  Root       = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+  Stage      = File.expand_path(File.join(Root, "stage"))
+  Archives   = File.expand_path(File.join(Root, "archives"))
+  PackageDir = File.expand_path(File.join(Root, "pkg"))
 end
 
 %w[ rubygems fileutils ostruct yaml erb uri open-uri open3 zip/zip ].each do |name|

@@ -40,7 +40,7 @@ module RailsInstaller::Utilities
         entries.each do |entry|
 
           printf "DEBUG: Extracting #{entry.name}\n" if $Flags[:verbose]
-          
+
           files << entry.name
 
           FileUtils.rm_f(entry.name) if File.exists?(entry.name)

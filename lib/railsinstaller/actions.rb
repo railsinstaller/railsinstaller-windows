@@ -47,4 +47,34 @@ module RailsInstaller
 
   end
 
+  #
+  # package()
+  #
+  # Packages a binary installer release version together as a
+  # self contained installer using Inno Setup scripting.
+  #
+  def self.package!
+    version = File.read(File.join(RailsInstaller::Root, "VERSION")).chomp
+
+    command = [
+      "iscc",
+      "\"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
+      "/dInstallerVersion=#{version}",
+      "/dStagePath=\"#{RailsInstaller::Stage}\"",
+      "/dRubyPath=\"#{RailsInstaller::RubyInstaller.rename}\"",
+      "/o\"#{RailsInstaller::PackageDir}\"",
+      "/frailsinstaller-#{version}"
+    ].join(' ')
+
+    printf "DEBUG: > #{command}\n" if $Flags[:verbose]
+    printf "Packaging... this *will* take a while...\n"
+    output, error, status = Open3.capture3(command)
+
+    if $Flags[:verbose]
+      puts output
+      puts error unless error.empty?
+    end
+
+  end
+
 end

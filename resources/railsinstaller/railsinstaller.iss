@@ -100,9 +100,9 @@ en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: ..\..\{#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Flags: recursesubdirs createallsubdirs
-Source: ..\..\{#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
-Source: ..\..\{#StagePath}\DevKit\*; DestDir: {app}\DevKit; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Flags: recursesubdirs createallsubdirs
 Source: setvars.bat; DestDir: {app}
 
 [Registry]
