@@ -26,8 +26,3 @@ end
   printf "Loading #{name}...\n" if $Flags[:verbose]
   require File.expand_path(File.join(RailsInstaller::Root,"lib", "railsinstaller", name +'.rb'))
 end
-
-module RailsInstaller
-  extend RailsInstaller::Methods
-  extend RailsInstaller::Downloads
-end

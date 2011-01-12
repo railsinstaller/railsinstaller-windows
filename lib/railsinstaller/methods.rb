@@ -1,6 +1,4 @@
-module RailsInstaller::Methods
-
-  require File.expand_path(File.join(RailsInstaller::Root,"lib", "railsinstaller", "components.rb"))
+module RailsInstaller
 
   #
   # unzip:

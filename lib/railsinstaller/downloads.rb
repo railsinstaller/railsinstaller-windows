@@ -1,4 +1,4 @@
-module RailsInstaller::Downloads
+module RailsInstaller
 
   require "net/http"
   require "tempfile"

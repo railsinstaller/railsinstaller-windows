@@ -3,7 +3,6 @@ module RailsInstaller
   #
   # Load initial objects (OpenStruct) from railsinstaller.yml
   #
-
   @@config = YAML.load(
     ERB.new(
       File.read(
