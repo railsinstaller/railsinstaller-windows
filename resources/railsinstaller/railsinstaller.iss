@@ -103,7 +103,7 @@ en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Flags: recursesubdirs createallsubdirs
-Source: {#StagePath}\Rails\*; DestDir: {app}\Rails; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\Sites\*; DestDir: {app}\Sites; Flags: recursesubdirs createallsubdirs
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
@@ -119,6 +119,7 @@ Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
 Name: {group}\Start Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
+; Name: {commondesktop}\{#MyAppVersionName}; Filename: {app}\{#MyAppExeName}; Tasks: desktopicon; WorkingDir: {app}
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Code]

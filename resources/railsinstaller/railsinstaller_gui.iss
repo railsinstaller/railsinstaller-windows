@@ -75,8 +75,6 @@ begin
 
   ParseSilentTasks;
 
-  {* FIXME: Labels and links back to RailsInstaller project pages *}
-
   HostPage := WizardForm.FinishedPage;
 
   TmpLabel := TNewStaticText.Create(HostPage);
