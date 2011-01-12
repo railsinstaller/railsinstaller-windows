@@ -303,6 +303,17 @@ module RailsInstaller::Methods
 
   def stage_git
     # TODO: adjust git config for CRLF => LF autoadjust.
+
+    gitconfig = File.join(Stage, Git.target, "etc", "gitconfig")
+
+    config = File.read(gitconfig)
+
+    File.open(gitconfig, "w") do |config_file|
+
+      config_file.write(config.gsub(/autocrlf = true/, "autocrlf = false"))
+
+    end
+
   end
 
   def stage_gems
