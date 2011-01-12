@@ -332,7 +332,7 @@ module RailsInstaller
     # Generate sample rails application in the Rails application directory on
     # stage.
     section Rails
-    sample = File.join(Stage, "Rails", "sample"))
+    sample = File.join(Stage, "Rails", "sample")
     FileUtils.rm_rf(sample) if File.exist?(sample)
     ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
   end
