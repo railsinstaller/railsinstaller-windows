@@ -14,6 +14,8 @@ module RailsInstaller
 
     link_devkit_with_ruby
 
+    stage_git
+
     stage_postgresql
 
     stage_gems

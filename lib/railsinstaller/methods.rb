@@ -299,6 +299,10 @@ module RailsInstaller::Methods
 
   end
 
+  def stage_git
+    # TODO: adjust git config for CRLF => LF autoadjust.
+  end
+
   def stage_gems
     section Gems
 
