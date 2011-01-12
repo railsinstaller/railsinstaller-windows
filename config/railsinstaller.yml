@@ -1,12 +1,24 @@
 ---
+:gems:
+  :name: Gems
+  :title: Ruby Gems
+  :type: gems
+  :list:
+    - rake
+    - rails
+    - json
+    - sqlite3-ruby
+
 :msvc_runtime:
   :name: MsvcRuntime
+  :title: Microsoft Visual C Runtime
   :type: component
   :regex: '^.*$'
   :msvc: "http://download.microsoft.com/download/d/d/9/dd9a82d0-52ef-40db-8dab-795376989c03/vcredist_x86.exe"
 
 :dev_kit:
   :name: DevKit
+  :title: Development Kit
   :type: component
   :regex: '^.*$'
   :target: 'DevKit'
@@ -14,6 +26,7 @@
 
 :ruby187:
   :type: component
+  :title: Ruby 1.8.7
   :name: Ruby187
   :regex: '^.*$'
   :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
@@ -21,6 +34,7 @@
 
 :ruby192:
   :type: component
+  :title: Ruby 1.9.2
   :name: Ruby192
   :regex: '^.*$'
   :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
@@ -28,6 +42,7 @@
 
 :git:
   :type: component
+  :title: Git 1.7.3.1
   :name: Git
   :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.3.1-preview20101002.7z"
   :target: "Git"
@@ -43,59 +58,76 @@
 
 :postgresql_server:
   :type: component
+  :title: PostgreSQL Server
   :name: PostgresServer
+  :files:
+    - libpq.dll
+    - ssleay32.dll
+    - libeay32.dll
+    - libintl-8.dll
+    - msvcr90.dll
+    - libxml2.dll
   :regex: '^.*$'
   :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows-binaries.zip"
 
 :rails:
-  :type: component
   :name: Rails
+  :title: Rails 3 sample application
+  :type: component
 
 :rails_docs:
-  :type: component
   :name: RailsDocs
+  :title: Rails 3 Documentation
+  :type: component
 
 :rails_guides:
-  :type: component
   :name: RailsGuides
+  :title: Rails 3 Guides
+  :type: component
 
 :ruby_docs:
-  :type: component
   :name: RubyDocs
-
-:rubygems:
+  :title: Ruby Documentation
   :type: component
-  :name: RubyGems
 
 :sqlite3:
-  :type: component
   :name: Sqlite3
+  :title: Sqlite3
+  :type: component
+  :files:
+    - sqlite3.dll
+    - sqlite3.def
+    - sqlite3.exe
   :regex: '^.+\.exe$'
   :url: http://www.sqlite.org/sqlite-3_7_3.zip
 
 :sqlite3_dll:
-  :type: component
   :name: Sqlite3Dll
+  :title: Sqlite3 Dll
+  :type: component
   :regex: '^.+\.dll$'
   :url: http://www.sqlite.org/sqlitedll-3_7_3.zip
 
 :ssl_certificates:
-  :type: component
   :name: SSLCertificates
+  :title: Certificates
+  :type: component
   :url: http://curl.haxx.se/ca
   :file: cacert.pem
 
-:mysql:
-  :type: component
+:mysql_gem:
   :name: Mysql
+  :title: MySQL Gem
+  :type: component
   :dlls:
     - mysql/lib/libmysql.dll
   :configure:
     - --with-mysql-config="{{stage_path}}/mysql/bin/mysql_config"
 
 :mysql_server:
-  :type: component
   :name: MySQLServer
+  :title: MySQL Community Server
+  :type: component
   :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
   :regex: '^.*$'
   :urls:
@@ -104,6 +136,7 @@
 
 :bsdtar:
   :name: BSDTar
+  :title: Basic BSDTar
   :type: utility
   :target: bin
   :binary: "basic-bsdtar.exe"
@@ -112,6 +145,7 @@
 
 :sevenzip:
   :name: SevenZip
+  :title: 7Zip
   :type: utility
   :target: bin
   :binary: "7za.exe"

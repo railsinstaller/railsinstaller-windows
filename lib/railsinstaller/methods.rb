@@ -1,4 +1,5 @@
-module RailsInstaller::Utilities
+module RailsInstaller::Methods
+
   #
   # unzip:
   # Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
@@ -217,6 +218,7 @@ module RailsInstaller::Utilities
         end
 
         extract(binary)
+
         printf " => Instaling #{binary} to #{File.join(RailsInstaller::Stage, "bin")}\n"
 
         FileUtils.mkdir_p(RailsInstaller::Stage, "bin") unless File.directory?(RailsInstaller::Stage, "bin")
@@ -230,6 +232,103 @@ module RailsInstaller::Utilities
       end
     end
 
+  end
+
+  #
+  # Copy required Sqlite3 files on to the stage
+  #
+  def stage_sqlite
+
+    Sqlite3.files.each do |file|
+
+      if File.exist?(File.join(Stage, file))
+
+        FileUtils.mv(
+          File.join(Stage, file),
+          File.join(Stage, Ruby187.rename, "bin", file)
+        )
+
+      end
+
+    end
+
+  end
+
+  #
+  # Copy required Postgresql files on to the stage
+  #
+  def stage_postgresql
+
+    PostgresServer.files.each do |file|
+
+      if File.exist?(File.join(Stage, file))
+
+        FileUtils.cp(
+          File.join(Stage, PostgresServer.target, "bin", file),
+          File.join(Stage, Ruby187.rename, "bin", file)
+        )
+
+      end
+
+    end
+
+  end
+
+  #
+  # Add functionality to DevKit object that was loaded during configure.
+  #
+  def link_devkit_with_ruby
+
+    devkit_path = File.join(Stage, DevKit.target)
+
+    ruby_path = File.join(Stage, Ruby187.rename)
+
+    FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
+
+    Dir.chdir(devkit_path) do
+
+      File.open("config.yml", 'w') do |file|
+
+        file.write(%Q(---\n- #{ruby_path}))
+
+      end
+
+      sh %Q{#{File.join(ruby_path, "bin", "ruby")} dk.rb install}
+
+    end
+
+  end
+
+  def stage_gems
+    section Gems
+
+    build_gems(File.join(Stage, Ruby187.rename), Gems.list)
+
+    build_gem(File.join(Stage, Ruby187.rename), "pg", {
+      :args => [
+          "--",
+          "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
+          "--with-pg-lib=#{File.join(Stage, "pgsql", "lib")}"
+      ].join(' ')
+    })
+  end
+
+  def stage_rails_sample_application
+    # Generate sample rails application in the Rails application directory on
+    # stage.
+    section Rails
+    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
+  end
+
+  def stage_msvc_runtime
+    # MSVC Runtime 2008
+    # Required for Postgresql Server
+    # download(MsvcRuntime.url)
+
+    # FileUtils.mv(
+    #   File.join(RailsInstaller::Archives, File.basename(MsvcRuntime.url)),
+    #   File.join(RailsInstaller::Stage, File.basename(MsvcRuntime.url))
+    # )
   end
 
   #
@@ -351,6 +450,8 @@ module RailsInstaller::Utilities
   end
 
   def section(text)
-    printf %Q{\n#\n# #{text}\n#\n\n}
+    printf %Q{\n== #{text}\n\n}
   end
+
 end
+

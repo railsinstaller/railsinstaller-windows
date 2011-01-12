@@ -1,2 +1,10 @@
+0.0.2 - Wizard Screen and functionality tweaks.
+        Added sample Rails3 application in a directory for application projects.
+				Tweaked git config to always convert CRLF to LF.
+
+
+0.0.1 - Initial build and package tasks functional, includes Ruby 1.8.7, Git
+        DevKit and Sqlite3.
+
 0.0.0 - Initial repository created with configuration and directory outline.
         No functionality at this point.

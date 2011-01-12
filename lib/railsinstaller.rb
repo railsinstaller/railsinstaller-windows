@@ -22,7 +22,7 @@ end
   require File.expand_path(File.join(RailsInstaller::Root,"lib", "extensions", name +'.rb'))
 end
 
-%w[ components behavior utilities downloads actions ].each do |name|
+%w[ components methods downloads actions ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
   require File.expand_path(File.join(RailsInstaller::Root,"lib", "railsinstaller", name +'.rb'))
 end

@@ -5,9 +5,11 @@ module RailsInstaller
   #
 
   @@config = YAML.load(
-    ERB.new( File.read(
-      File.join(Root, "config", "railsinstaller.yml")
-    ) ).result(binding)
+    ERB.new(
+      File.read(
+        File.join(Root, "config", "railsinstaller.yml")
+      )
+    ).result(binding)
   )
 
   printf "DEBUG: Config: #{@@config.inspect}" if $Flags[:verbose]
