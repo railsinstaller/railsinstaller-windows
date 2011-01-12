@@ -135,7 +135,7 @@ begin
   URLText.Top := TmpLabel.Top;
   URLText.Left := TmpLabel.Left + TmpLabel.Width + ScaleX(4);
   URLText.AutoSize := True;
-  URLText.Caption := 'http://webchat.freenode.net/?channels=railsinstaller,rubyinstaller,rvm';
+  URLText.Caption := 'http://webchat.freenode.net/?channels=rvm,rubyinstaller,railsinstaller';
   URLText.Cursor := crHand;
   URLText.Font.Color := clBlue;
   URLText.OnClick := @URLText_OnClick;
