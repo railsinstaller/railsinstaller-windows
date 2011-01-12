@@ -85,11 +85,12 @@ SignTool=risigntool sign /a /d $q{#InstallerName}$q /du $q{#InstallerHomepage}$q
 Name: en; MessagesFile: compiler:Default.isl
 
 [Messages]
+en.InstallingLabel=Installing [name], this may take a few minutes...
 en.WelcomeLabel1=Welcome to the [name] Installer
-en.WelcomeLabel2=This will install [name/ver] on your computer. Please close all other applications before continuing.
+en.WelcomeLabel2=This will install [name/ver] on your computer. This will install Ruby 1.8.7, Git, Sqlite3, DevKit, and Rails 3. Your PATH will be modified so that when you start a console process ruby, git and rails are all available to you. Please close any console applications before continuing.
 en.WizardLicense={#InstallerName} License Agreement
 en.LicenseLabel=
-en.LicenseLabel3=Please read the following License Agreement and accept the terms before continuing the installation.
+en.LicenseLabel3=Please read the following License Agreements and accept the terms before continuing the installation.
 en.LicenseAccepted=I &accept the Licenses
 en.LicenseNotAccepted=I &decline the Licenses
 en.WizardSelectDir=Installation Destination and Optional Tasks
