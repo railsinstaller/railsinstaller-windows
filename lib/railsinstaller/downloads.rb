@@ -5,7 +5,7 @@ module RailsInstaller
 
   # Original download() code taken from Rubinius and then butchered ;)
   # https://github.com/evanphx/rubinius/blob/master/configure#L307-350
-  def download(package, count = 3)
+  def self.download(package, count = 3)
 
    filename = File.basename(package.url)
    return if File.exists?(File.join(RailsInstaller::Archives, filename))
