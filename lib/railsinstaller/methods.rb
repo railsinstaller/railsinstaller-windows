@@ -4,7 +4,7 @@ module RailsInstaller
   # unzip:
   # Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
   #
-  def unzip(package)
+  def self.unzip(package)
 
     filename  = File.basename(package.url)
     base_path = File.dirname(filename)
@@ -71,7 +71,7 @@ module RailsInstaller
   #
   # Used to extract a non-zip file using BSDTar
   #
-  def extract(package)
+  def self.extract(package)
 
     Dir.chdir(RailsInstaller::Archives) do
 
@@ -187,7 +187,7 @@ module RailsInstaller
   #
   # Requires: open-uri
   #
-  def install_utility
+  def self.install_utility
 
     # TODO: Merge this into download, simply check if object has a .binary attribute.
     if File.exists?(File.join(RailsInstaller::Stage, "bin", binary))
@@ -237,7 +237,7 @@ module RailsInstaller
   #
   # Copy required Sqlite3 files on to the stage
   #
-  def stage_sqlite
+  def self.stage_sqlite
 
     Sqlite3.files.each do |file|
 
@@ -257,7 +257,7 @@ module RailsInstaller
   #
   # Copy required Postgresql files on to the stage
   #
-  def stage_postgresql
+  def self.stage_postgresql
 
     PostgresServer.files.each do |file|
 
@@ -277,7 +277,7 @@ module RailsInstaller
   #
   # Add functionality to DevKit object that was loaded during configure.
   #
-  def link_devkit_with_ruby
+  def self.link_devkit_with_ruby
 
     devkit_path = File.join(Stage, DevKit.target)
 
@@ -299,7 +299,7 @@ module RailsInstaller
 
   end
 
-  def stage_git
+  def self.stage_git
     # TODO: adjust git config for CRLF => LF autoadjust.
 
     gitconfig = File.join(Stage, Git.target, "etc", "gitconfig")
@@ -314,7 +314,7 @@ module RailsInstaller
 
   end
 
-  def stage_gems
+  def self.stage_gems
     section Gems
 
     build_gems(File.join(Stage, Ruby187.rename), Gems.list)
@@ -328,14 +328,14 @@ module RailsInstaller
     })
   end
 
-  def stage_rails_sample_application
+  def self.stage_rails_sample_application
     # Generate sample rails application in the Rails application directory on
     # stage.
     section Rails
     ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
   end
 
-  def stage_msvc_runtime
+  def self.stage_msvc_runtime
     # MSVC Runtime 2008
     # Required for Postgresql Server
     # download(MsvcRuntime.url)
@@ -350,7 +350,7 @@ module RailsInstaller
   # build_gems
   #
   # loops over each gemname and triggers it to be built.
-  def build_gems(ruby_path, gems)
+  def self.build_gems(ruby_path, gems)
 
     if gems.is_a?(Array)
 
@@ -376,7 +376,7 @@ module RailsInstaller
 
   end
 
-  def build_gem(ruby_path, gemname, options = {})
+  def self.build_gem(ruby_path, gemname, options = {})
 
     printf " => Staging gem #{gemname}\n" if $Flags[:verbose]
 
@@ -394,7 +394,7 @@ module RailsInstaller
 
   end
 
-  def ruby_binary(name, command, action, ruby_path, options = {})
+  def self.ruby_binary(name, command, action, ruby_path, options = {})
 
     printf " => rails #{command} #{action}\n" if $Flags[:verbose]
 
@@ -412,7 +412,7 @@ module RailsInstaller
 
   end
 
-  def iscc(*params)
+  def self.iscc(*params)
     executable = nil
 
     # look for InnoSetup compiler in the PATH
@@ -443,7 +443,7 @@ module RailsInstaller
   #
   # Runs Shell commands, single point of shell contact.
   #
-  def sh(command, options = {})
+  def self.sh(command, options = {})
 
     stage_bin_path = File.join(RailsInstaller::Stage, "bin")
 
@@ -460,11 +460,11 @@ module RailsInstaller
   end
 
 
-  def log(text)
+  def self.log(text)
     printf %Q[#{text}\n]
   end
 
-  def section(text)
+  def self.section(text)
     printf %Q{\n== #{text}\n\n}
   end
 
