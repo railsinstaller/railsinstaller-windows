@@ -28,6 +28,6 @@ end
 end
 
 module RailsInstaller
-  extend RailsInstaller::Utilities
+  extend RailsInstaller::Methods
   extend RailsInstaller::Downloads
 end
