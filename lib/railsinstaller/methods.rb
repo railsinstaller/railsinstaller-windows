@@ -1,5 +1,7 @@
 module RailsInstaller::Methods
 
+  require File.expand_path(File.join(RailsInstaller::Root,"lib", "railsinstaller", "components.rb"))
+
   #
   # unzip:
   # Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
