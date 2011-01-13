@@ -406,7 +406,7 @@ module RailsInstaller
 
     command += options[:args] if options[:args]
 
-    applications_path = File.join(RailsInstaller::Stage, "Rails")
+    applications_path = File.join(RailsInstaller::Stage, "Sites")
 
     FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
 
