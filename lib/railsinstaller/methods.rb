@@ -340,7 +340,7 @@ module RailsInstaller
   def self.stage_msvc_runtime
     # MSVC Runtime 2008
     # Required for Postgresql Server
-    download(MsvcRuntime)
+    # download(MsvcRuntime)
 
     # FileUtils.mv(
     #   File.join(RailsInstaller::Archives, File.basename(MsvcRuntime.url)),
