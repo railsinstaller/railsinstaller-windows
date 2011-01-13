@@ -43,7 +43,7 @@
 ; Build Installer details using above values
 #define InstallerName "RailsInstaller " + InstallerVersion
 #define InstallerPublisher "RailsInstaller Team"
-#define InstallerHomepage "http://www.railsinstaller.org"
+#define InstallerHomepage "http://www.railsinstaller.org/"
 
 #define CurrentYear GetDateTimeString('yyyy', '', '')
 
@@ -91,8 +91,8 @@ en.WelcomeLabel2=This will install [name/ver] on your computer. This will instal
 en.WizardLicense={#InstallerName} License Agreement
 en.LicenseLabel=
 en.LicenseLabel3=Please read the following License Agreements and accept the terms before continuing the installation.
-en.LicenseAccepted=I &accept the Licenses
-en.LicenseNotAccepted=I &decline the Licenses
+en.LicenseAccepted=I &accept all of the Licenses
+en.LicenseNotAccepted=I &decline any of the Licenses
 en.WizardSelectDir=Installation Destination and Optional Tasks
 en.SelectDirDesc=
 en.SelectDirLabel3=Setup will install [name] into the following folder. Click Install to continue or click Browse to use a different one.

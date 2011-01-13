@@ -89,7 +89,7 @@ begin
   URLText.Top := TmpLabel.Top;
   URLText.Left := TmpLabel.Left + TmpLabel.Width + ScaleX(4);
   URLText.AutoSize := True;
-  URLText.Caption := 'http://railsinstaller.org';
+  URLText.Caption := 'http://railsinstaller.org/';
   URLText.Cursor := crHand;
   URLText.Font.Color := clBlue;
   URLText.OnClick := @URLText_OnClick;
@@ -99,7 +99,7 @@ begin
   TmpLabel.Top := ScaleY(196);
   TmpLabel.Left := ScaleX(176);
   TmpLabel.AutoSize := True;
-  TmpLabel.Caption := 'Support group:';
+  TmpLabel.Caption := 'Mailing List:';
 
   URLText := TNewStaticText.Create(HostPage);
   URLText.Parent := HostPage;
@@ -116,7 +116,7 @@ begin
   TmpLabel.Top := ScaleY(212);
   TmpLabel.Left := ScaleX(176);
   TmpLabel.AutoSize := True;
-  TmpLabel.Caption := 'Wiki:';
+  TmpLabel.Caption := 'IRC:';
 
   URLText := TNewStaticText.Create(HostPage);
   URLText.Parent := HostPage;
@@ -133,7 +133,7 @@ begin
   URLText.Top := TmpLabel.Top;
   URLText.Left := TmpLabel.Left + TmpLabel.Width + ScaleX(4);
   URLText.AutoSize := True;
-  URLText.Caption := 'http://webchat.freenode.net/?channels=rvm,rubyinstaller,railsinstaller';
+  URLText.Caption := 'http://webchat.freenode.net/?channels=railsinstaller';
   URLText.Cursor := crHand;
   URLText.Font.Color := clBlue;
   URLText.OnClick := @URLText_OnClick;
