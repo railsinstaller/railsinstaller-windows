@@ -121,6 +121,9 @@ Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem
 Name: {group}\Start Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
+[Run]
+Filename: "{app}\{#RubyPath}\bin\ruby.exe"; Parameters: "dk.rb install --force"; WorkingDir: "{app}\DevKit"; Flags: runhidden
+
 [Code]
 #include "util.iss"
 #include "railsinstaller_gui.iss"
