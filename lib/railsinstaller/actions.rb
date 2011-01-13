@@ -32,6 +32,7 @@ module RailsInstaller
   # self contained installer using Inno Setup scripting.
   #
   def self.package!
+
     version = File.read(File.join(RailsInstaller::Root, "VERSION.txt")).chomp
 
     printf "Packaging... this *will* take a while...\n"
