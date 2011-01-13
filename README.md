@@ -1,14 +1,14 @@
-== RailsInstaller
+# RailsInstaller
 
 Rails development environment installer for Windows
 
-== Overview
+## Overview
 
 The goal of this project is to generate an installer that when run installs all
 of the most common components for a Rails development environment with no
 required prerequisites on a Windows system.
 
-== How to Contribute
+## How to Contribute
 
 The entry point to the system is via Rake.
 
@@ -40,20 +40,19 @@ The entry point to the system is via Rake.
 
 7. Use the generated RailsInstaller.exe and be happy!
 
-== Development Kit (DevKit)
+### Development Kit (DevKit)
 
 A MSYS/MinGW based toolkit that enables RailsInstaller to build native C/C++
 packages, both for Ruby and gems. DevKit is built and maintained by the
 wonderful folks over at the RubyInstaller (http://rubyinstaller.org/) project.
 
 
-== Ruby 1.8.7 on Windows
+### Ruby 1.8.7 on Windows
 
 RubyInstaller is a self contained package installer which installs Ruby and
 RubyGems on a windows system, head over to http://rubyinstaller.org/ for more
 information.
 
-== Inno Setup
+### Packaging/Installer
 
-Inno Setup is a free installer for Windows programs, you can find more information
-about it on it's website http://www.jrsoftware.org/isinfo.php
+We are using [Inno Setup](http://www.jrsoftware.org/isinfo.php "Inno Setup"), a free installer for Windows programs.
