@@ -16,4 +16,4 @@
   :website: http://blog.mmediasys.com/
 
 - Ruby Installer Team and Contributors
-  :website: http://rubyinstaller.org/team/
+  :website: http://rubyinstaller.org/about/contributors
