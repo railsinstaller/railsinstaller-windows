@@ -144,7 +144,7 @@ begin
 
       if IsModifyPath then
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
-        ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
+        ModifyPath([ExpandConstant('{app}') + '{app}\Git\cmd']);
 
     end else
       MsgBox('Looks like you''ve got on older, unsupported Windows version.' #13 +
@@ -170,7 +170,7 @@ begin
     begin
       if GetPreviousData('PathModified', 'no') = 'yes' then
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
-        ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
+        ModifyPath([ExpandConstant('{app}') + '{app}\Git\cmd']);
     end;
   end;
 end;
