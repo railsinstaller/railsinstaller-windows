@@ -108,11 +108,9 @@ Source: {#StagePath}\Sites\*; DestDir: {app}\Sites; Flags: recursesubdirs create
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
-; RubyInstaller identification for admin
 ; FIXME: Proper registry keys for RailsInstaller (admin)
 ;Root: HKLM; Subkey: Software\RailsInstaller; ValueType: string; ValueName: ; ValueData: ; Flags: uninsdeletevalue uninsdeletekeyifempty; Check: IsAdmin
 
-; RubyInstaller identification for non-admin
 ; FIXME: Proper registry key for RailsInstaller (user)
 ;Root: HKCU; Subkey: Software\RailsInstaller; ValueType: string; ValueName: ; ValueData: ; Flags: uninsdeletevalue uninsdeletekeyifempty; Check: IsNotAdmin
 
@@ -120,7 +118,6 @@ Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
 Name: {group}\Start Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
-; Name: {commondesktop}\{#MyAppVersionName}; Filename: {app}\{#MyAppExeName}; Tasks: desktopicon; WorkingDir: {app}
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Code]
