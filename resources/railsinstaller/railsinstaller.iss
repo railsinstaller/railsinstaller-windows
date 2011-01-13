@@ -103,7 +103,8 @@ en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
-Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: config.yml Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
 Source: {#StagePath}\Sites\*; DestDir: {app}\Sites; Flags: recursesubdirs createallsubdirs
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
@@ -170,4 +171,16 @@ begin
         ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
     end;
   end;
+end;
+
+procedure UpdateDevKitConfig(RubyPath: string; FileName: string);
+var
+  S: String;
+begin
+  // Make YAML happy :-)
+  S := ExpandConstant(RubyPath);
+  StringChangeEx(S, '\', '/', True);
+
+  // Update DevKit config.yml with the installation path
+  SaveStringToFile(ExpandConstant(FileName), '- ' + S, False);
 end;
