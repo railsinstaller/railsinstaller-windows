@@ -13,8 +13,6 @@ module RailsInstaller
 
   @@config.each_pair do |key,value|
 
-    printf "  => #{value[:name]} = #{value.inspect}\n" if $Flags[:verbose]
-
     const_set(value[:name], OpenStruct.new(value))
 
   end
