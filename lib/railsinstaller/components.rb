@@ -11,8 +11,6 @@ module RailsInstaller
     ).result(binding)
   )
 
-  printf "DEBUG: Config: #{@@config.inspect}" if $Flags[:verbose]
-
   @@config.each_pair do |key,value|
 
     printf "  => #{value[:name]} = #{value.inspect}\n" if $Flags[:verbose]

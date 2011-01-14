@@ -35,7 +35,7 @@ module RailsInstaller
 
     version = File.read(File.join(RailsInstaller::Root, "VERSION.txt")).chomp
 
-    printf "Packaging... this *will* take a while...\n"
+    printf "\nPackaging... this *will* take a while...\n"
 
     iscc "\"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
           "/dInstallerVersion=#{version}",

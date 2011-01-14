@@ -95,7 +95,7 @@ en.LicenseAccepted=I &accept all of the Licenses
 en.LicenseNotAccepted=I &decline any of the Licenses
 en.WizardSelectDir=Installation Destination and Optional Tasks
 en.SelectDirDesc=
-en.SelectDirLabel3=Setup will install [name] into the following folder. Click Install to continue or click Browse to use a different one.
+en.SelectDirLabel3=[name] will be installed into the following folder. Click Install to continue or click Browse to use a different one.
 en.SelectDirBrowseLabel=Please avoid any folder name that contains spaces (e.g. Program Files).
 en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 
