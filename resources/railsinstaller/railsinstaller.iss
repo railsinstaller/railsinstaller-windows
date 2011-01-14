@@ -86,7 +86,7 @@ Name: en; MessagesFile: compiler:Default.isl
 
 [Messages]
 en.InstallingLabel=Installing [name], this may take a few minutes...
-en.WelcomeLabel1=Welcome to the [name] Installer
+en.WelcomeLabel1=Welcome to [name] Installer
 en.WelcomeLabel2=This will install [name/ver] on your computer. This will install Ruby 1.8.7, Git, Sqlite3, DevKit, and Rails 3. Your PATH will be modified so that when you start a console process ruby, git and rails are all available to you. Please close any console applications before continuing.
 en.WizardLicense={#InstallerName} License Agreement
 en.LicenseLabel=
@@ -94,7 +94,7 @@ en.LicenseLabel3=Please read the following License Agreements and accept the ter
 en.LicenseAccepted=I &accept all of the Licenses
 en.LicenseNotAccepted=I &decline any of the Licenses
 en.WizardSelectDir=Installation Destination and Optional Tasks
-en.SelectDirDesc=
+en.SelectDirDesc=This is the location that Ruby, DevKit, Git, Rails and Sqlite will be installed to.
 en.SelectDirLabel3=[name] will be installed into the following folder. Click Install to continue or click Browse to use a different one.
 en.SelectDirBrowseLabel=Please avoid any folder name that contains spaces (e.g. Program Files).
 en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
