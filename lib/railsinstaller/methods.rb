@@ -89,16 +89,21 @@ module RailsInstaller
       bsdtar      = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
       sevenzip    = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
 
-      if package.type == "utility" && File.exist?(File.join(RailsInstaller::Stage, "bin", package.binary))
+      if package.category == "utility" &&
+        File.exist?(File.join(RailsInstaller::Stage, "bin", package.binary))
+
         printf "#{package.name} already on stage.\n"
+
         return
+
       end
 
       printf " => Extracting '#{filename}' to the stage.\n" if $Flags[:verbose]
 
       FileUtils.mkdir_p(RailsInstaller::Stage) unless File.directory?(RailsInstaller::Stage)
 
-      case package.type
+      case package.category
+
         when "utility" # Remove target file, if exists.
 
           target = File.join(RailsInstaller::Stage, "bin", package.binary)
@@ -115,7 +120,7 @@ module RailsInstaller
           end
 
         else
-        raise "Unknown package type.\npackage type should be one of 'utility' or a 'component'?"
+        raise "Unknown package category'#{package.category}'.\npackage category should be one of {'utility','component'}?"
       end
 
       archive = File.join(RailsInstaller::Archives, filename)
@@ -155,7 +160,7 @@ module RailsInstaller
 
         if package.rename
 
-          case package.type
+          case package.category
 
             when "component"
 
