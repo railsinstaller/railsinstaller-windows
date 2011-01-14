@@ -16,8 +16,8 @@ SET RUBY_DIR=
 SET ROOT_DIR=
 
 REM Display Ruby and Git version
-ruby.exe -v
 git --version
+ruby.exe -v
+rails -v
 
-REM Start out in the Sites directory
-cd %HOMEDRIVE%\Sites
+REM NOTE we start out in the Sites directory as that is the working dir set.
