@@ -85,9 +85,9 @@ SignTool=risigntool sign /a /d $q{#InstallerName}$q /du $q{#InstallerHomepage}$q
 Name: en; MessagesFile: compiler:Default.isl
 
 [Messages]
-en.InstallingLabel=Installing [name], this may take a few minutes...
-en.WelcomeLabel1=Welcome to [name] Installer
-en.WelcomeLabel2=This will install [name/ver] on your computer. This will install Ruby 1.8.7, Git, Sqlite3, DevKit, and Rails 3. Your PATH will be modified so that when you start a console process ruby, git and rails are all available to you. Please close any console applications before continuing.
+en.InstallingLabel=Installing [name], this will take a few minutes...
+en.WelcomeLabel1=Welcome to [name] Installer!
+en.WelcomeLabel2=This will install [name/ver] on your computer which includes Ruby 1.8.7, Git, Sqlite3, DevKit, and Rails 3.  Please close any console applications before continuing.
 en.WizardLicense={#InstallerName} License Agreement
 en.LicenseLabel=
 en.LicenseLabel3=Please read the following License Agreements and accept the terms before continuing the installation.
@@ -105,7 +105,7 @@ Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Excludes: "devki
 Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: config.yml Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
-Source: {#StagePath}\Sites\*; DestDir: {app}\Sites; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\Sites\*; DestDir: {%HOMEDRIVE}\Sites; Flags: recursesubdirs createallsubdirs
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
@@ -118,7 +118,8 @@ Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 [Icons]
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
-Name: {group}\Start Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat; WorkingDir: {%HOMEDRIVE}{%HOMEPATH}; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
+Name: {group}\Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat; WorkingDir: {%HOMEDRIVE}\Sites; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
+; {%HOMEPATH%}
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Run]

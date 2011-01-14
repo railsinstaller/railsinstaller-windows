@@ -1,22 +1,23 @@
 @ECHO OFF
-REM Determine where is RUBY_BIN (where this script is)
+REM Determine where is RUBY_DIR (which is where this script is)
 PUSHD %~dp0.
-SET RUBY_BIN=%CD%
+SET RUBY_DIR=%CD%
 POPD
 
-REM Now determine Root (.. from RUBY_BIN)
-PUSHD %RUBY_BIN%\..
+REM Determine RailsInstaller Root (parent directory of Ruby)
+PUSHD %RUBY_DIR%\..
 SET ROOT_DIR=%CD%
 POPD
 
-REM Add RUBY_BIN to the PATH, DevKit and then Git
-REM RUBY_BIN takes higher priority to avoid other tools conflict
-SET PATH=%RUBY_BIN%\bin;%ROOT_DIR%\DevKit\bin;%ROOT_DIR%\Git\cmd;%PATH%
-SET RUBY_BIN=
+REM Add RUBY_DIR\bin to the PATH, DevKit\bin and then Git\cmd
+REM RUBY_DIR\bin takes higher priority to avoid other tools conflict
+SET PATH=%RUBY_DIR%\bin;%ROOT_DIR%\DevKit\bin;%ROOT_DIR%\Git\cmd;%PATH%
+SET RUBY_DIR=
 SET ROOT_DIR=
 
-REM Display Ruby version and Git versions
+REM Display Ruby and Git version
 ruby.exe -v
-rails --version
 git --version
-cd %ROOT_DIR%\Sites
+
+REM Start out in the Sites directory
+cd %HOMEDRIVE%\Sites
