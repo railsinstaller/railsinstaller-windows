@@ -17,3 +17,7 @@
 
 - Ruby Installer Team and Contributors
   :website: http://rubyinstaller.org/about/contributors
+
+- Gerlando Piro
+  :email: gpiro@engineyard.com
+  :contribution: Graphics work for the install wizard.

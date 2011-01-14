@@ -41,7 +41,8 @@
 #endif
 
 ; Build Installer details using above values
-#define InstallerName "RailsInstaller " + InstallerVersion
+#define InstallerName "RailsInstaller"
+#define InstallerNameWithVersion InstallerName + " " + InstallerVersion
 #define InstallerPublisher "RailsInstaller Team"
 #define InstallerHomepage "http://www.railsinstaller.org/"
 
@@ -52,7 +53,7 @@
 ; Do not use the same AppId value in installers for other applications!
 AppId={{613C3EA5-1248-4E35-B61A-6D0B31BBC0DB}
 AppName={#InstallerName}
-AppVerName={#InstallerName}
+AppVerName={#InstallerNameWithVersion}
 AppPublisher={#InstallerPublisher}
 AppPublisherURL={#InstallerHomepage}
 AppVersion={#InstallerVersion}
@@ -78,7 +79,7 @@ ChangesAssociations=yes
 ChangesEnvironment=yes
 
 #if Defined(SignPackage) == 1
-SignTool=risigntool sign /a /d $q{#InstallerName}$q /du $q{#InstallerHomepage}$q /t $qhttp://timestamp.comodoca.com/authenticode$q $f
+SignTool=risigntool sign /a /d $q{#InstallerNameWithVersion}$q /du $q{#InstallerHomepage}$q /t $qhttp://timestamp.comodoca.com/authenticode$q $f
 #endif
 
 [Languages]
@@ -105,7 +106,7 @@ Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Excludes: "devki
 Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: config.yml Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
-Source: {#StagePath}\Sites\*; DestDir: {%HOMEDRIVE}\Sites; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\Sites\*; DestDir: {sd}\Sites; Flags: recursesubdirs createallsubdirs
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
@@ -118,7 +119,7 @@ Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 [Icons]
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
-Name: {group}\Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat; WorkingDir: {%HOMEDRIVE}\Sites; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
+Name: {group}\Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat; WorkingDir: {sd}\Sites; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
 ; {%HOMEPATH%}
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
