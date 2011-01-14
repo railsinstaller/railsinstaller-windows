@@ -1,3 +1,7 @@
+0.0.3 - Many bugfixes and minor tweaks.
+        DevKit Integration Fix.
+        RailsInstaller Wizard Images.
+
 0.0.2 - Wizard Screen and functionality tweaks.
         Added sample Rails3 application in a directory for application projects.
 				Tweaked git config to always convert CRLF to LF.
