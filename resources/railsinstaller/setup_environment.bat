@@ -15,6 +15,8 @@ SET PATH=%RUBY_DIR%\bin;%ROOT_DIR%\DevKit\bin;%ROOT_DIR%\Git\cmd;%PATH%
 SET RUBY_DIR=
 SET ROOT_DIR=
 
+SET HOME=%HOMEDRIVE%%HOMEPATH%
+
 REM Display Ruby and Git version
 git --version
 ruby.exe -v
