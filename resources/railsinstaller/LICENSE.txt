@@ -2,10 +2,16 @@ Copyright (c) 20010-2011 RailsInstaller Team.
 
 Except:
 
-  Ruby is copyrighted free software by Yukihiro Matsumoto.
-  http://www.ruby-lang.org/en/LICENSE.txt
+  * Ruby is copyrighted free software by Yukihiro Matsumoto.
+    http://www.ruby-lang.org/en/LICENSE.txt
 
-  3rd party libraries (OpenSSL, ZLib, etc.)
+  * DevKit is licensed via the RubyInstaller project:
+    http://rubyinstaller.org/
+
+  * Git is licensed under GNU GPL v2.0
+    http://www.gnu.org/licenses/gpl-2.0.txt
+
+  * 3rd party libraries (OpenSSL, ZLib, etc.)
 
 
 This software is distributed under the terms of MIT license.
