@@ -7,7 +7,7 @@
     - rake
     - rails
     - json
-    - sqlite3-ruby
+    - sqlite3
 
 :msvc_runtime:
   :name: MsvcRuntime
