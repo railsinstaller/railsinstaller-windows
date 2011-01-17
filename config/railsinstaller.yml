@@ -8,6 +8,7 @@
     - rails
     - json
     - sqlite3
+    - rubyzip2
 
 :msvc_runtime:
   :name: MsvcRuntime
