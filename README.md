@@ -10,6 +10,8 @@ required prerequisites on a Windows system.
 
 ## How to Contribute
 
+TODO - update README to contain - How to develop RailsInstaller using RailsInstaller. Push the specifics to the Wiki.
+
 The entry point to the system is via Rake.
 
 1. Download and install Install the Development Kit [DevKit]
