@@ -9,6 +9,7 @@
     - json
     - sqlite3
     - rubyzip2
+    - POpen4
 
 :msvc_runtime:
   :name: MsvcRuntime

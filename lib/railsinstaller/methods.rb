@@ -458,11 +458,13 @@ module RailsInstaller
 
     printf "\nDEBUG: > %s\n\n", command if $Flags[:verbose]
 
-    output, error, status = Open3.capture3(command)
 
-    if $Flags[:verbose]
-      puts output
-      puts error unless error.empty?
+    POpen4::popen4(command) do |stdout, stderr, stdin, pid|
+      if $Flags[:versbose]
+        out, error = stdout.read, stderr.read
+        puts out unless out.empty?
+        puts error unless error.empty?
+      end
     end
   end
 
