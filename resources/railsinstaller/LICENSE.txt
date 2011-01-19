@@ -11,6 +11,9 @@ Except:
   * Git is licensed under GNU GPL v2.0
     http://www.gnu.org/licenses/gpl-2.0.txt
 
+  * Microsoft Visual C++ Redistributable Package (x86)
+    http://www.microsoft.com/downloads/en/details.aspx?FamilyId=32BC1BEE-A3F9-4C13-9C99-220B62A191EE&displaylang=en
+
   * 3rd party libraries (OpenSSL, ZLib, etc.)
 
 
