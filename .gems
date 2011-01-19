@@ -1,3 +1,4 @@
 rubyzip2 -v2.0.1
-POpen4 -v0.1.4
+win32-open3
+POpen4
 rails -v3.0.3
