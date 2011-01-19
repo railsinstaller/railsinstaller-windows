@@ -11,5 +11,3 @@ FileUtils.cp(
   File.join(tmp_path,file)
 )
 
-exec "#{File.join(tmp_path, file)} /q"
-
