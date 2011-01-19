@@ -334,22 +334,33 @@ module RailsInstaller
   end
 
   def self.stage_rails_sample_application
+
     # Generate sample rails application in the Rails application directory on
     # stage.
     section Rails
+
     sample = File.join(Stage, "Sites", "sample")
+
     FileUtils.rm_rf(sample) if File.exist?(sample)
+
     ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
+
   end
 
   # MSVC Runtime 2008 is Required for Postgresql Server
   def self.stage_msvc_runtime
+
     download(MsvcRuntime)
+
+    pkg_path = File.join(RailsInstaller::Stage, "pkg")
+
+    FileUtils.mkdir_p(pkg_path) unless File.exist?(pkg_path)
 
     FileUtils.cp(
       File.join(RailsInstaller::Archives, File.basename(MsvcRuntime.url)),
-      File.join(RailsInstaller::Stage, File.basename(MsvcRuntime.url))
+      File.join(pkg_path, File.basename(MsvcRuntime.url))
     )
+
   end
 
   #

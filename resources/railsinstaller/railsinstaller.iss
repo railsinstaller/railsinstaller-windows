@@ -107,6 +107,7 @@ Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createalls
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: "config.yml"; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
 Source: {#StagePath}\Sites\*; DestDir: {sd}\Sites; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\pkg\*; DestDir: {sd}\redist; Flags: recursesubdirs createallsubdirs
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
@@ -125,6 +126,7 @@ Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Run]
 Filename: "{app}\{#RubyPath}\bin\ruby.exe"; Parameters: "dk.rb install --force"; WorkingDir: "{app}\DevKit"; Flags: runhidden
+Filename: "{app}\{#RubyPath}\bin\ruby.exe"; Parameters: "install_msvc_runtime.rb {app}\pkg {tmp}"; WorkingDir: "{app}\scripts"; Flags: runhidden
 
 [Code]
 #include "util.iss"
