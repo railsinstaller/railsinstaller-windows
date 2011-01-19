@@ -107,7 +107,6 @@ Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createalls
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: "config.yml"; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
 Source: {#StagePath}\Sites\*; DestDir: {sd}\Sites; Flags: recursesubdirs createallsubdirs
-Source: {#StagePath}\scripts\*; DestDir: {app}\scripts; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\pkg\vcredist_x86.exe; DestDir: {tmp}; Flags: deleteafterinstall
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
