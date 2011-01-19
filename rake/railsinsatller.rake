@@ -33,7 +33,7 @@ task :bootstrap do
 
   end
 
-  printf "Bootstrapped.\nDo not forget to download and install InnoSetup: kj\n"
+  printf "Bootstrapped.\nDo not forget to download and install InnoSetup, see README for more information. \n"
 
 end
 
