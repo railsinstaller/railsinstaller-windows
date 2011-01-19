@@ -10,37 +10,33 @@ required prerequisites on a Windows system.
 
 ## How to Contribute
 
-TODO - update README to contain - How to develop RailsInstaller using RailsInstaller. Push the specifics to the Wiki.
+RailsInstaller is bootstrapped, built and packaged via rake tasks.
 
-The entry point to the system is via Rake.
-
-1. Download and install Install the Development Kit [DevKit]
-
-2. Download and Install Ruby 1.8.7
-
-   (1.8.7 recommended for maximum compatibility at this time)
+1. Download and install the latest RailsInstaller from
+   http://railsinstaller.org/
 
 
-2 3/16. [[ hackety hack... ]]
+2. Bootstrap the project, from the project root run
 
+  > rake bootstrap
 
-3. Use DevKit to build all components on the stage
-
-  > rake railsinstaller:build
-
-4. Install require gems:
-
-  > gem install rubyzip2 rake rails
-
-5. Install latest Inno Setup Quick Start Pack, ensure iscc.exe is in your PATH
+3. Install latest Inno Setup Quick Start Pack, ensure iscc.exe is in your PATH
 
    http://www.jrsoftware.org/isdl.php#qsp
 
+4. [[ hackety hack... ]]
+
+
+5. Download and build all components on the stage
+
+  > rake build
+
 6. Use Inno Setup to package RailsInstaller
 
-  > rake railsinstaller:package
+  > rake package
 
-7. Use the generated RailsInstaller.exe and be happy!
+7. Use the generated RailsInstaller.exe, be happy and prosperous! Be
+   sure to share it with all of your friends!
 
 ### Development Kit (DevKit)
 
@@ -57,4 +53,5 @@ information.
 
 ### Packaging/Installer
 
-We are using [Inno Setup](http://www.jrsoftware.org/isinfo.php "Inno Setup"), a free installer for Windows programs.
+We are using [Inno Setup](http://www.jrsoftware.org/isinfo.php "Inno Setup"),
+a free installer for Windows programs.

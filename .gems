@@ -1,0 +1,4 @@
+rake -v0.8.7
+rubyzip2 -v2.0.1
+POpen4 -v0.1.4
+rails -v3.0.3
