@@ -342,8 +342,8 @@ module RailsInstaller
     ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
   end
 
+  # MSVC Runtime 2008 is Required for Postgresql Server
   def self.stage_msvc_runtime
-    # MSVC Runtime 2008, Required for Postgresql Server
     download(MsvcRuntime)
 
     FileUtils.cp(
