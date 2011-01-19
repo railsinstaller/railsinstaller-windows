@@ -107,8 +107,8 @@ Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createalls
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: "config.yml"; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
 Source: {#StagePath}\Sites\*; DestDir: {sd}\Sites; Flags: recursesubdirs createallsubdirs
-Source: {#StagePath}\scripts\*; DestDir: {sd}\scripts; Flags: recursesubdirs createallsubdirs
-Source: {#StagePath}\pkg\*; DestDir: {sd}\pkg; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\scripts\*; DestDir: {app}\scripts; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\pkg\*; DestDir: {app}\pkg; Flags: recursesubdirs createallsubdirs
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
