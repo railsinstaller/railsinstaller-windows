@@ -9,7 +9,9 @@
     - json
     - sqlite3
     - rubyzip2
+    - win32-open3
     - POpen4
+    - rb-readline
 
 :msvc_runtime:
   :name: MsvcRuntime

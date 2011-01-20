@@ -107,7 +107,9 @@ Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createalls
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: "config.yml"; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
 Source: {#StagePath}\Sites\*; DestDir: {sd}\Sites; Flags: recursesubdirs createallsubdirs
-Source: {#StagePath}\pkg\vcredist_x86.exe; DestDir: {tmp}; Flags: deleteafterinstall
+; TODO: Instead of running the full vcredist, simply extract and bundle the dll
+;       files with an associated manifest.
+; Source: {#StagePath}\pkg\vcredist_x86.exe; DestDir: {tmp}; Flags: deleteafterinstall
 Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 
 [Registry]
@@ -126,7 +128,9 @@ Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Run]
 Filename: "{app}\{#RubyPath}\bin\ruby.exe"; Parameters: "dk.rb install --force"; WorkingDir: "{app}\DevKit"; Flags: runhidden
-Filename: "{tmp}\vcredist_x86.exe"; StatusMsg: "Installing Microsoft Visual C++ 2008 SP1 Redistributable Package (x86)..." ; Parameters: "/q"; WorkingDir: "{tmp}"; Flags: runhidden
+; TODO: Instead of running the full vcredist, simply extract and bundle the dll
+;       files with an associated manifest.
+; Filename: "{tmp}\vcredist_x86.exe"; StatusMsg: "Installing Microsoft Visual C++ 2008 SP1 Redistributable Package (x86)..." ; Parameters: "/q"; WorkingDir: "{tmp}"; Flags: runhidden
 
 [Code]
 #include "util.iss"
