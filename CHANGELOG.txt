@@ -1,3 +1,7 @@
+1.0.1 - Added rb-readline and a few other bundled gems.
+
+1.0.0 - Initial Release, same features as 0.0.3
+
 0.0.3 - Many bugfixes and minor tweaks.
         DevKit Integration Fix.
         RailsInstaller Wizard Images.
