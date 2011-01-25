@@ -8,6 +8,7 @@
     - rails
     - json
     - sqlite3
+    - sqlite3-ruby
     - rubyzip2
     - win32-open3
     - POpen4
