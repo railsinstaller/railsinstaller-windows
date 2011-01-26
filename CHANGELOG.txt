@@ -1,3 +1,5 @@
+1.0.2 - Include both sqlite3 and older sqlite3-ruby (which rails 3.0.3 likes best to date)
+
 1.0.1 - Added rb-readline and a few other bundled gems.
 
 1.0.0 - Initial Release, same features as 0.0.3
