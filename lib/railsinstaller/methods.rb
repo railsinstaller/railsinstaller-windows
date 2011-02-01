@@ -224,7 +224,7 @@ module RailsInstaller
 
         extract(binary)
 
-        printf " => Instaling #{binary} to #{File.join(RailsInstaller::Stage, "bin")}\n"
+        printf " => Installing #{binary} to #{File.join(RailsInstaller::Stage, "bin")}\n"
 
         FileUtils.mkdir_p(RailsInstaller::Stage, "bin") unless File.directory?(RailsInstaller::Stage, "bin")
 
@@ -344,6 +344,23 @@ module RailsInstaller
     FileUtils.rm_rf(sample) if File.exist?(sample)
 
     ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
+
+  end
+
+  # Renders setup scripts to be used post-installation
+  # They have installation-sensitive information (installation path)
+  def self.stage_setup_scripts
+
+      section Scripts
+
+    pkg_path = File.join(RailsInstaller::Stage, "scripts")
+
+    FileUtils.mkdir_p(pkg_path) unless File.exist?(pkg_path)
+
+    FileUtils.cp(
+      File.join(RailsInstaller::Scripts, "setup_ssh.bat"),
+      File.join(pkg_path, "setup_ssh.bat")
+    )
 
   end
 

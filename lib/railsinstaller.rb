@@ -2,6 +2,7 @@ module RailsInstaller # Ensure that the RailsInstaller project root is defined.
   Root       = File.expand_path(File.join(File.dirname(__FILE__), ".."))
   Stage      = File.expand_path(File.join(Root, "stage"))
   Archives   = File.expand_path(File.join(Root, "archives"))
+  Scripts    = File.expand_path(File.join(Root, "resources/scripts"))
   PackageDir = File.expand_path(File.join(Root, "pkg"))
 end
 
