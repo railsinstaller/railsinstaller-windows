@@ -35,17 +35,24 @@ module RailsInstaller
   #
   def self.package!
 
-    version = File.read(File.join(RailsInstaller::Root, "VERSION.txt")).chomp
+    unless %x{iscc --version}.grep("Inno Setup 5")
+      printf "ERROR: Inno Setup 5 is required in order to package RailsInstaller.\n"
+      printf "  http://www.jrsoftware.org/isdl.php#qsp\n"
+      printf "Please see README for full RailsInstaller instructions.\n"
+      exit 1
+    end
+
+    railsinstaller_version = File.read(File.join(RailsInstaller::Root, "VERSION.txt")).chomp
 
     printf "\nPackaging... this *will* take a while...\n"
 
     iscc "\"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
-          "/dInstallerVersion=#{version}",
+          "/dInstallerVersion=#{railsinstaller_version}",
           "/dStagePath=\"#{RailsInstaller::Stage}\"",
           "/dRubyPath=\"#{RailsInstaller::Ruby187.rename}\"",
           "/dResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
           "/o\"#{RailsInstaller::PackageDir}\"",
-          "/frailsinstaller-#{version}"
+          "/frailsinstaller-#{railsinstaller_version}"
 
   end
 
