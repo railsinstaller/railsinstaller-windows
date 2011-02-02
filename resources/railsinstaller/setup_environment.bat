@@ -1,8 +1,9 @@
+@ECHO OFF
+
 REM
 REM Environment setup file for RailsInstaller.
 REM
 
-@ECHO OFF
 REM
 REM First we Determine where is RUBY_DIR
 REM (which is where this script is)
@@ -38,12 +39,14 @@ REM with ENV["HOME"]
 REM
 SET HOME=%HOMEDRIVE%%HOMEPATH%
 
-REM Display Git, Ruby and Rails versions
+REM Display Git Verison
 git --version
 
-ruby -v
+REM Display Ruby Version
+%RUBY_DIR%\bin\ruby.exe -v
 
-rails -v
+REM Display Rails version
+%RUBY_DIR%\bin\rails.bat -v
 
 REM NOTE we start out in the Sites directory as that is the working dir set.
 REM cd %HOMEDRIVE%\Sites
