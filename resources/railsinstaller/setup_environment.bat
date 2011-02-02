@@ -30,7 +30,7 @@ SET ROOT_DIR=
 REM
 REM Create the HOME\Sites directory.
 REM
-IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\Sites. (md %HOMEDRIVE%%HOMEPATH%\Sites.)
+IF NOT EXIST %HOMEDRIVE%\Sites. (md %HOMEDRIVE%\Sites.)
 
 REM
 REM Set the HOME environment variables for Ruby & Gems to use
@@ -46,5 +46,5 @@ ruby -v
 rails -v
 
 REM NOTE we start out in the Sites directory as that is the working dir set.
-REM cd %HOMEDRIVE%%HOMEPATH%\Sites
+REM cd %HOMEDRIVE%\Sites
 
