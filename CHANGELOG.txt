@@ -1,3 +1,7 @@
+1.0.3 - Installer now throws an error on rake package if Inno Setup 5 not found
+        Added Ruby gem bin directory to the path in setup_environment.bat
+				Added creation of Sites directory in the users home instead of root
+
 1.0.2 - Include both sqlite3 and older sqlite3-ruby (which rails 3.0.3 likes best to date)
 
 1.0.1 - Added rb-readline and a few other bundled gems.
