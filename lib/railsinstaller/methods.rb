@@ -420,7 +420,7 @@ module RailsInstaller
 
     command += %Q( -v#{options[:version]} ) if options[:version]
 
-    command += %Q( --no-rdoc --no-ri )
+    command += %Q( --env-shebang --no-rdoc --no-ri )
 
     command += options[:args] if options[:args]
 
