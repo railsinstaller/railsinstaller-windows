@@ -35,7 +35,7 @@
   :name: Ruby187
   :regex: '^.*$'
   # :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.8.7-p330-i386-mingw32.7z"
-  :url: "http://rubyforge.org/frs/download.php/74293/rubyinstaller-1.8.7-p334.exe"
+  :url: "http://rubyforge.org/frs/download.php/74293/rubyinstaller-1.8.7-p334-i386-ming232.7z"
   :rename: Ruby1.8.7
 
 :ruby192:

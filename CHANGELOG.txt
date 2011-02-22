@@ -1,3 +1,5 @@
+1.0.5 - Ruby Updating to 1.8.7-p334 for released Security Updates.
+
 1.0.4 - Moved Sites location back to %HOMEDRIVE%\Sites
 
 1.0.3 - Installer now throws an error on rake package if Inno Setup 5 not found
