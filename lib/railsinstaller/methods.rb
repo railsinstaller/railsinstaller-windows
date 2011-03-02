@@ -351,15 +351,15 @@ module RailsInstaller
   # They have installation-sensitive information (installation path)
   def self.stage_setup_scripts
 
-      section Scripts
+    section Scripts
 
-    pkg_path = File.join(RailsInstaller::Stage, "scripts")
+    scripts_path = File.join(RailsInstaller::Stage, "scripts")
 
-    FileUtils.mkdir_p(pkg_path) unless File.exist?(pkg_path)
+    FileUtils.mkdir_p(scripts_path) unless File.exist?(scripts_path)
 
     FileUtils.cp(
-      File.join(RailsInstaller::Scripts, "setup_ssh.bat"),
-      File.join(pkg_path, "setup_ssh.bat")
+      File.join(RailsInstaller::Scripts, "config_check.rb"),
+      File.join(scripts_path, "config_check.rb")
     )
 
   end
