@@ -20,7 +20,7 @@ Config =
 # Methods
 #
 def run(command)
-  $stderr.puts "Running #{command}" if Debug
+  $stderr.puts "Running #{command}" if Config[:debug]
   %x{#{command}}.chomp
 end
 
