@@ -37,18 +37,18 @@ end
 #
 # Configuration
 #
-printf Config[:banner]
+puts Config[:banner]
 
 ["name","email"].each do |key|
   while git_config("user.#{key}").empty?
     if Config[:git_config_incomplete]
-      printf Config[:git_config_incomplete]
+      puts Config[:git_config_incomplete]
 			Config[:git_config_incomplete] = nil
 		end
-    printf Config["git_#{key}_prompt".to_sym]
+    puts Config["git_#{key}_prompt".to_sym]
     value = gets.chomp
     next if value.empty?
-    printf "\nSetting user.#{key} to #{value}"
+    puts "\nSetting user.#{key} to #{value}"
     run %Q{#{Config[:git]} config --global user.#{key} "#{value}"}
   end
 end
@@ -61,7 +61,7 @@ generate_ssh_key                     unless File.exist? Config[:ssh_key]
 #
 # Emit Summary
 #
-printf "---
+puts "---
 git:
   user.name:  #{git_config("user.name")}
   user.email: #{git_config("user.email")}
