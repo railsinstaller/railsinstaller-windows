@@ -12,6 +12,7 @@ Config =
     :home       => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"] ),
     :ssh_path   => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh" ),
     :ssh_key    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa"),
+    :ssh_pub_key    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa.pub"),
     :ssh_keygen => File.join( File.dirname(File.dirname($0)), "Git", "bin", "ssh-keygen.exe"),
     :git        => File.join( File.dirname(File.dirname($0)), "Git", "bin", "git.exe")
     :cat        => File.join( File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
@@ -28,7 +29,7 @@ end
 def generate_ssh_key
   run %Q{#{Config[:ssh_keygen]} -f "#{Config[:ssh_key]}" -t rsa -b 2048 -N "" -C "#{git_config("user.name")} <#{git_config("user.email")}>"}
 
-  run %Q{echo #{File.open(Config[:ssh_key], 'r') { |file| file.read }} | clip}
+  run %Q{echo #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }} | clip}
 
   puts "NOTE: Your public key has been generated and copied to your clipboard."
 end
@@ -78,8 +79,8 @@ rails:
   version:    #{run "rails -v"}
 
 ssh:
-  public_key_location: #{Config[:ssh_key]}
-  public_key_contents: #{File.open(Config[:ssh_key], 'r') { |file| file.read }}
+  public_key_location: #{Config[:ssh_pub_key]}
+  public_key_contents: #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }}
 
 "
 
