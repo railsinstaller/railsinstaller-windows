@@ -14,7 +14,7 @@ Config =
     :ssh_key    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa"),
     :ssh_pub_key    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa.pub"),
     :ssh_keygen => File.join( File.dirname(File.dirname($0)), "Git", "bin", "ssh-keygen.exe"),
-    :git        => File.join( File.dirname(File.dirname($0)), "Git", "bin", "git.exe")
+    :git        => File.join( File.dirname(File.dirname($0)), "Git", "bin", "git.exe"),
     :cat        => File.join( File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
   }
 
