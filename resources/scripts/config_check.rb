@@ -4,10 +4,10 @@ require "fileutils"
 
 Config =
   {
-    :banner => "# Rails Environment Configuration.\n",
+    :banner => "\n# Rails Environment Configuration.\n",
     :git_config_incomplete => "\nYour git configuration is incomplete.\nuser.name and user.email are required for properly using git and services such \nas GitHub ( http://github.com/ ).\n",
-    :git_name_prompt => " name > ",
-    :git_email_prompt => " email > ",
+    :git_name_prompt => "\n name > ",
+    :git_email_prompt => "\n email > ",
     :railsinstaller_path => File.dirname(File.dirname($0)),
     :home       => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"] ),
     :ssh_path   => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh" ),
@@ -46,7 +46,7 @@ printf Config[:banner]
     printf Config["git_#{key}_prompt".to_sym]
     value = gets.chomp
     next if value.empty?
-    printf "Setting user.#{key} to #{value}"
+    printf "\nSetting user.#{key} to #{value}"
     run %Q{#{Config[:git]} config --global user.#{key} "#{value}"}
   end
 end
