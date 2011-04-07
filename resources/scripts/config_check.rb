@@ -56,7 +56,7 @@ end
 FileUtils.mkdir_p(Config[:ssh_path]) unless File.exist? Config[:ssh_path]
 generate_ssh_key                     unless File.exist? Config[:ssh_key]
 
-# File.open(Config[:ssh_key], 'r') { |file| id_rsa_pub = file.read }
+File.open(Config[:ssh_key], 'r') { |file| id_rsa_pub = file.read }
 
 #
 # Emit Summary
@@ -77,7 +77,7 @@ rails:
 
 ssh:
   public_key_location: #{Config[:ssh_key]}
-  public_key_contents: #{run "cat #{Config[:ssh_key]}"}
+  public_key_contents: #{id_rsa_pub}
 
 "
 
