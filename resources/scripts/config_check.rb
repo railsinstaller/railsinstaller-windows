@@ -28,7 +28,7 @@ end
 def generate_ssh_key
   run %Q{#{Config[:ssh_keygen]} -f "#{Config[:ssh_key]}" -t rsa -b 2048 -N "" -C "#{git_config("user.name")} <#{git_config("user.email")}>"}
 
-  run %Q{#{Config[:cat]} "%homedrive%%homepath%\.ssh\id_rsa.pub" | clip}
+  run %Q{echo #{File.open(Config[:ssh_key], 'r') { |file| file.read }} | clip}
 
   puts "NOTE: Your public key has been generated and copied to your clipboard."
 end
@@ -60,9 +60,6 @@ end
 FileUtils.mkdir_p(Config[:ssh_path]) unless File.exist? Config[:ssh_path]
 generate_ssh_key                     unless File.exist? Config[:ssh_key]
 
-@id_rsa_pub = ""
-File.open(Config[:ssh_key], 'r') { |file| @id_rsa_pub = file.read }
-
 #
 # Emit Summary
 #
@@ -82,7 +79,7 @@ rails:
 
 ssh:
   public_key_location: #{Config[:ssh_key]}
-  public_key_contents: #{run "#{Config[:cat]} \"#{Config[:ssh_key]}\""}
+  public_key_contents: #{File.open(Config[:ssh_key], 'r') { |file| file.read }}
 
 "
 
