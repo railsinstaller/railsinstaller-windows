@@ -357,10 +357,14 @@ module RailsInstaller
 
     FileUtils.mkdir_p(scripts_path) unless File.exist?(scripts_path)
 
-    FileUtils.cp(
-      File.join(RailsInstaller::Scripts, "config_check.rb"),
-      File.join(scripts_path, "config_check.rb")
-    )
+    scripts = %w( config_check.rb sshkey sshkey.bat )
+
+    scripts.each do |file|
+      FileUtils.cp(
+        File.join(RailsInstaller::Scripts, file),
+        File.join(scripts_path, file)
+      )
+    end
 
   end
 
