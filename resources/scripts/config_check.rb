@@ -29,9 +29,9 @@ end
 def generate_ssh_key
   run %Q{#{Config[:ssh_keygen]} -f "#{Config[:ssh_key]}" -t rsa -b 2048 -N "" -C "#{git_config("user.name")} <#{git_config("user.email")}>"}
 
-  run %Q{echo #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }} | clip}
+  run %Q{clip < "#{Config[:ssh_pub_key]}"}
 
-  puts "NOTE: Your public key has been automatically generated for you."
+  puts "\nNOTE: Your public key has been automatically generated for you."
 end
 
 def git_config(key)
@@ -65,7 +65,8 @@ generate_ssh_key                     unless File.exist? Config[:ssh_key]
 #
 # Emit Summary
 #
-puts "---
+puts "
+---
 git:
   user.name:  #{git_config("user.name")}
   user.email: #{git_config("user.email")}
