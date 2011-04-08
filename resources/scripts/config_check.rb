@@ -6,8 +6,8 @@ Config =
   {
     :banner => "\n# Rails Environment Configuration.\n",
     :git_config_incomplete => "\nYour git configuration is incomplete.\nuser.name and user.email are required for properly using git and services such \nas GitHub ( http://github.com/ ).\n",
-    :git_name_prompt => "\n name > ",
-    :git_email_prompt => "\n email > ",
+    :git_name_prompt => "\n Please enter your name, for example mine is: Wayne E. Seguin\nname > ",
+    :git_email_prompt => "\n Please enter your email address, for example mine is: wayneeseguin@gmail.com\nemail > ",
     :railsinstaller_path => File.dirname(File.dirname($0)),
     :home        => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"] ),
     :ssh_path    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh" ),
@@ -31,7 +31,7 @@ def generate_ssh_key
 
   run %Q{echo #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }} | clip}
 
-  puts "NOTE: Your public key has been generated and copied to your clipboard."
+  puts "NOTE: Your public key has been automatically generated for you."
 end
 
 def git_config(key)
