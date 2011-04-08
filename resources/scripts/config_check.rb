@@ -9,13 +9,13 @@ Config =
     :git_name_prompt => "\n name > ",
     :git_email_prompt => "\n email > ",
     :railsinstaller_path => File.dirname(File.dirname($0)),
-    :home       => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"] ),
-    :ssh_path   => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh" ),
-    :ssh_key    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa"),
-    :ssh_pub_key    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa.pub"),
-    :ssh_keygen => File.join( File.dirname(File.dirname($0)), "Git", "bin", "ssh-keygen.exe"),
-    :git        => File.join( File.dirname(File.dirname($0)), "Git", "bin", "git.exe"),
-    :cat        => File.join( File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
+    :home        => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"] ),
+    :ssh_path    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh" ),
+    :ssh_key     => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa"),
+    :ssh_pub_key => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa.pub"),
+    :ssh_keygen  => File.join( File.dirname(File.dirname($0)), "Git", "bin", "ssh-keygen.exe"),
+    :git         => File.join( File.dirname(File.dirname($0)), "Git", "bin", "git.exe"),
+    :cat         => File.join( File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
   }
 
 #
@@ -49,7 +49,8 @@ puts Config[:banner]
       puts Config[:git_config_incomplete]
 			Config[:git_config_incomplete] = nil
 		end
-    printf "%s" Config["git_#{key}_prompt".to_sym]
+
+    printf '%s', Config["git_#{key}_prompt".to_sym]
 
     value = gets.chomp
     next if value.empty?
