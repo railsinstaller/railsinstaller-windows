@@ -18,6 +18,8 @@ Config =
     :cat         => File.join( File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
   }
 
+@notes = []
+
 #
 # Methods
 #
@@ -31,7 +33,7 @@ def generate_ssh_key
 
   run %Q{clip < "#{Config[:ssh_pub_key]}"}
 
-  puts "\nNOTE: Your public ssh key (id_rsa.pub) has been automatically generated and copied to your clipboard."
+  @notes << "\nYour public ssh key (id_rsa.pub) has been automatically generated and copied to your clipboard."
 end
 
 def git_config(key)
@@ -83,6 +85,8 @@ rails:
 ssh:
   public_key_location: #{Config[:ssh_pub_key]}
   public_key_contents: #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }}
+
+#{@notes.empty? ? "" : "NOTES:\n * #{@notes.join("\n * ")}"}
 
 "
 
