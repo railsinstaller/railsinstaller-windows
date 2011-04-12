@@ -33,7 +33,7 @@ def generate_ssh_key
 
   run %Q{clip < "#{Config[:ssh_pub_key]}"}
 
-  @notes << "\nYour public ssh key (id_rsa.pub) has been automatically generated and copied to your clipboard."
+  @notes << "Your public ssh key (id_rsa.pub) has been automatically generated and copied to your clipboard."
 end
 
 def git_config(key)
@@ -86,7 +86,7 @@ ssh:
   public_key_location: #{Config[:ssh_pub_key]}
   public_key_contents: #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }}
 
-#{@notes.empty? ? "" : "NOTES:\n * #{@notes.join("\n * ")}"}
+#{@notes.empty? ? "" : "NOTES:\n\n  #{@notes.join("\n  ")}"}
 
 "
 
