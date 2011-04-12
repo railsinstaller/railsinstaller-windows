@@ -38,6 +38,7 @@ SET HOME=%HOMEDRIVE%%HOMEPATH%
 
 REM Check configurations for Git and SSH
 ruby %1\scripts\config_check.rb
+ruby.exe "require 'rbconfig' ; file=%%\"#{RbConfig::CONFIG['bindir']}/../../scripts/config_check.rb\" ; load file"
 
 REM NOTE that we start out in the Sites directory as the current working dir
 REM cd %HOMEDRIVE%\Sites
