@@ -37,7 +37,7 @@ REM
 SET HOME=%HOMEDRIVE%%HOMEPATH%
 
 REM Check configurations for Git and SSH
-ruby %HOMEDRIVE%\RailsInstaller\scripts\config_check.rb
+ruby %1\scripts\config_check.rb
 
 REM NOTE that we start out in the Sites directory as the current working dir
 REM cd %HOMEDRIVE%\Sites

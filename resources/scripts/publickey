@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+id_rsa_pub = File.join(ENV["HOMEDRIVE"],ENV["HOMEPATH"],".ssh","id_rsa","pub")
+
+%x{clip < "#{id_rsa_pub}"}
+
+puts "\nYour public ssh key (id_rsa.pub) has been copied to your clipboard."
+

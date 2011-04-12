@@ -31,7 +31,7 @@ def generate_ssh_key
 
   run %Q{clip < "#{Config[:ssh_pub_key]}"}
 
-  puts "\nNOTE: Your public key has been automatically generated for you."
+  puts "\nNOTE: Your public ssh key (id_rsa.pub) has been automatically generated and copied to your clipboard."
 end
 
 def git_config(key)
