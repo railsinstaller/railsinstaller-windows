@@ -368,7 +368,7 @@ module RailsInstaller
 
     binscripts = %w( publickey.bat )
 
-    scripts.each do |file|
+    binscripts.each do |file|
       FileUtils.cp(
         File.join(RailsInstaller::Scripts, file),
         File.join(Stage, Ruby187.rename, "bin", file)
