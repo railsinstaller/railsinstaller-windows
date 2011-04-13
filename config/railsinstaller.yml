@@ -6,7 +6,6 @@
   :list:
     - rake
     - rails
-    - json
     - sqlite3
     - sqlite3-ruby
     - rubyzip2
