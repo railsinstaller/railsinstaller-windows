@@ -1,6 +1,6 @@
-@ECHO OFF
-IF NOT "%~f0" == "~f0" GOTO :WinNT
-@"ruby.exe" "require 'rbconfig' ; file=%%\"#{RbConfig::CONFIG['bindir']}/pubkey\" ; load file" %1 %2 %3 %4 %5 %6 %7 %8 %9
-GOTO :EOF
-:WinNT
-@"ruby.exe" "%~dpn0" %*
+@echo off
+if exist "%HOMEDRIVE%%HOMEPATH%\.ssh\id_rsa.pub" (
+  clip < "%HOMEDRIVE%%HOMEPATH%\.ssh\id_rsa.pub"
+  echo Your public ssh key has been copied to your clipboard.
+)
+@echo on
