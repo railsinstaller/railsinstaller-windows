@@ -13,6 +13,11 @@ required prerequisites on a Windows system.
 RailsInstaller is bootstrapped, built and packaged via rake tasks.
 
 1. Download and install the [latest RailsInstaller](http://railsinstaller.org/)
+1. Clone the project
+
+    > git clone https://github.com/railsinstaller/railsinstaller-windows.git
+    > cd railsinstaller-windows
+
 1. Bootstrap the project, from the project root run
 
     > rake bootstrap
