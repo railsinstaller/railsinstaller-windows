@@ -48,26 +48,26 @@ built and packaged via rake tasks.
 
 1. Implement your new feature / fix your bug in the railsinstaller project code.
 
-  Configuration of the packages are to be included is done in the
-  config/railsinstaller.yml file.
+   Configuration of the packages are to be included is done in the
+   config/railsinstaller.yml file.
 
-  Building of the installer into the stage path for packaging happens from
-  the Ruby code in the lib/ directory, starting from the file
+   Building of the installer into the stage path for packaging happens from
+   the Ruby code in the lib/ directory, starting from the file
 
-    lib/railsinstaller/actions.rb
+     lib/railsinstaller/actions.rb
 
-  Methods are implemented in
+   Methods are implemented in
 
-    lib/railsinstaller/methods.rb
+     lib/railsinstaller/methods.rb
 
-  In order to kick off a build into staging run the following rake command.
+   In order to kick off a build into staging run the following rake command.
 
-    > rake build
+     > rake build
 
-  Packaging of the installer from the stage path into an executable can be done
-  via the following rake command.
+   Packaging of the installer from the stage path into an executable can be done
+   via the following rake command.
 
-    > rake package
+     > rake package
 
 1. Download and build all components on the stage
 
