@@ -12,20 +12,25 @@ required prerequisites on a Windows system.
 
 RailsInstaller is bootstrapped, built and packaged via rake tasks.
 
-1. Download and install the latest RailsInstaller from
-   http://railsinstaller.org/
+1. Download and install the [latest RailsInstaller](http://railsinstaller.org/)
 1. Bootstrap the project, from the project root run
+
     > rake bootstrap
+
 1. Install latest
    [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
    ensure iscc.exe is in your PATH
 1. Hackety hack!!! Type it like you mean it!!!
 1. Download and build all components on the stage
+
     > rake build
+
 1. Use Inno Setup to package RailsInstaller
+
     > rake package
-1. Use the generated RailsInstaller.exe, be happy and prosperous! Be
-   sure to share it with all of your friends!
+
+1. Use the generated RailsInstaller.exe, be happy and prosperous!
+   Be sure to share it with all of your friends!
 
 ### Configuration
 
@@ -42,7 +47,7 @@ Methods are implemented in
 In order to kick off a build into staging run the following rake command.
     > rake build
 
-## Packaging
+### Packaging
 
 Packaging of the installer from the stage path into an executable can be done
 via the following rake command.
@@ -55,7 +60,7 @@ packages, both for Ruby and gems. DevKit is built and maintained by the
 wonderful folks over at the RubyInstaller (http://rubyinstaller.org/) project.
 
 
-### Ruby 1.8.7 on Windows
+### Ruby 1.8.7/1.9.2 on Windows
 
 RubyInstaller is a self contained package installer which installs Ruby and
 RubyGems on a windows system, head over to http://rubyinstaller.org/ for more
@@ -65,3 +70,4 @@ information.
 
 We are using [Inno Setup](http://www.jrsoftware.org/isinfo.php "Inno Setup"),
 a free installer for Windows programs.
+
