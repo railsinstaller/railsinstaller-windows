@@ -65,16 +65,13 @@ built and packaged via rake tasks.
 
     > rake build
 
-1. Use Inno Setup to package RailsInstaller
+1. Use Inno Setup to package RailsInstaller (NOTE that You can run the package
+   task with --trace for debugging output if the package fails to build.)
 
     > rake package
 
 1. Your shiny new RailsInstaller package will be located in the pkg/
    directory after the package task completes.
-
-1. You can run the package task with --trace for debugging output.
-
-    > rake package --trace
 
 1. Once you have verified your Push your feature branch up to GitHub
 
