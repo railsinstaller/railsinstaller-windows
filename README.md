@@ -27,6 +27,7 @@ RailsInstaller is bootstrapped, built and packaged via rake tasks.
    [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
    ensure iscc.exe is in your PATH
 1. Hackety hack!!! Type it like you mean it!!!
+   Meaning implement your feature in the railsinstaller project code.
 1. Download and build all components on the stage
 
     > rake build
