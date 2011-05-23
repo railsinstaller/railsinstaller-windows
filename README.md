@@ -29,6 +29,15 @@ built and packaged via rake tasks.
 
     > cd railsinstaller-windows
 
+1. Update from origin master branch and checkout a new topic branch for
+   your feature/bugfix.
+
+    > git checkout master
+
+    > git pull origin master
+
+    > git checkout -b mybranchname
+
 1. Bootstrap the project, from the project root run
 
     > rake bootstrap
@@ -39,6 +48,27 @@ built and packaged via rake tasks.
 
 1. Implement your new feature / fix your bug in the railsinstaller project code.
 
+  Configuration of the packages are to be included is done in the
+  config/railsinstaller.yml file.
+
+  Building of the installer into the stage path for packaging happens from
+  the Ruby code in the lib/ directory, starting from the file
+
+    lib/railsinstaller/actions.rb
+
+  Methods are implemented in
+
+    lib/railsinstaller/methods.rb
+
+  In order to kick off a build into staging run the following rake command.
+
+    > rake build
+
+  Packaging of the installer from the stage path into an executable can be done
+  via the following rake command.
+
+    > rake package
+
 1. Download and build all components on the stage
 
     > rake build
@@ -47,35 +77,15 @@ built and packaged via rake tasks.
 
     > rake package
 
-1. Push your topic branch to your repository and issue a
-   [pull request](http://help.github.com/pull-requests/)
+1. Your shiny new RailsInstaller package will be located in.
 
-### Configuration
+1. Once you have verified your Push your feature branch up to GitHub
 
-Configuration of the packages are to be included is done in the
-config/railsinstaller.yml file.
+    > git commit -a -m "Implemented featureX/bugfixX which <description>..."
 
-### Building
+    > git push origin mybranchname
 
-Building of the installer into the stage path for packaging happens from
-the Ruby code in the lib/ directory, starting from the file
-
-    lib/railsinstaller/actions.rb
-
-Methods are implemented in
-
-    lib/railsinstaller/methods.rb
-
-In order to kick off a build into staging run the following rake command.
-
-    > rake build
-
-### Packaging
-
-Packaging of the installer from the stage path into an executable can be done
-via the following rake command.
-
-    > rake package
+1. Now issue a [pull request](http://help.github.com/pull-requests/) on GitHub
 
 ### Development Kit (DevKit)
 
