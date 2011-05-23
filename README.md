@@ -29,7 +29,7 @@ built and packaged via rake tasks.
 
 1. Clone your fork of the project
 
-    > git clone git@github.com:<<your github user name>>/railsinstaller-windows
+    > git clone git@github.com:{{your github user name}}/railsinstaller-windows
 
     > cd railsinstaller-windows
 
