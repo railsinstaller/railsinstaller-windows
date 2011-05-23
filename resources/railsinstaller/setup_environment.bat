@@ -36,8 +36,13 @@ REM Set the HOME environment variables for Ruby & Gems to use with ENV["HOME"]
 REM
 SET HOME=%HOMEDRIVE%%HOMEPATH%
 
+SET RailsInstallerPath=%1
 REM Check configurations for Git and SSH
-ruby %HOMEDRIVE%\RailsInstaller\scripts\config_check.rb
+IF EXIST %RailsInstallerPath% (
+  ruby %RailsInstallerPath%\scripts\config_check.rb
+) ELSE (
+  ruby.exe "require 'rbconfig' ; file=%%\"#{RbConfig::
+)
 
 REM NOTE that we start out in the Sites directory as the current working dir
 REM cd %HOMEDRIVE%\Sites

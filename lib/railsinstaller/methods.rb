@@ -357,12 +357,21 @@ module RailsInstaller
 
     FileUtils.mkdir_p(scripts_path) unless File.exist?(scripts_path)
 
-    scripts = %w( config_check.rb sshkey sshkey.bat )
+    scripts = %w( config_check.rb )
 
     scripts.each do |file|
       FileUtils.cp(
         File.join(RailsInstaller::Scripts, file),
         File.join(scripts_path, file)
+      )
+    end
+
+    binscripts = %w( publickey.bat )
+
+    binscripts.each do |file|
+      FileUtils.cp(
+        File.join(RailsInstaller::Scripts, file),
+        File.join(Stage, Ruby187.rename, "bin", file)
       )
     end
 

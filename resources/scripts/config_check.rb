@@ -6,8 +6,8 @@ Config =
   {
     :banner => "\n# Rails Environment Configuration.\n",
     :git_config_incomplete => "\nYour git configuration is incomplete.\nuser.name and user.email are required for properly using git and services such \nas GitHub ( http://github.com/ ).\n",
-    :git_name_prompt => "\n name > ",
-    :git_email_prompt => "\n email > ",
+    :git_name_prompt => "\n Please enter your name, for example mine is: Wayne E. Seguin\nname > ",
+    :git_email_prompt => "\n Please enter your email address, for example mine is: wayneeseguin@gmail.com\nemail > ",
     :railsinstaller_path => File.dirname(File.dirname($0)),
     :home        => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"] ),
     :ssh_path    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh" ),
@@ -17,6 +17,8 @@ Config =
     :git         => File.join( File.dirname(File.dirname($0)), "Git", "bin", "git.exe"),
     :cat         => File.join( File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
   }
+
+@notes = []
 
 #
 # Methods
@@ -29,9 +31,9 @@ end
 def generate_ssh_key
   run %Q{#{Config[:ssh_keygen]} -f "#{Config[:ssh_key]}" -t rsa -b 2048 -N "" -C "#{git_config("user.name")} <#{git_config("user.email")}>"}
 
-  run %Q{echo #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }} | clip}
+  run %Q{clip < "#{Config[:ssh_pub_key]}"}
 
-  puts "NOTE: Your public key has been generated and copied to your clipboard."
+  @notes << "Your public ssh key (id_rsa.pub) has been automatically generated and copied to your clipboard."
 end
 
 def git_config(key)
@@ -65,7 +67,8 @@ generate_ssh_key                     unless File.exist? Config[:ssh_key]
 #
 # Emit Summary
 #
-puts "---
+puts "
+---
 git:
   user.name:  #{git_config("user.name")}
   user.email: #{git_config("user.email")}
@@ -82,6 +85,8 @@ rails:
 ssh:
   public_key_location: #{Config[:ssh_pub_key]}
   public_key_contents: #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }}
+
+#{@notes.empty? ? "" : "NOTES:\n\n  #{@notes.join("\n  ")}"}
 
 "
 
