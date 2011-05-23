@@ -13,8 +13,12 @@ required prerequisites on a Windows system.
 RailsInstaller project code repository is located on GitHub and is bootstrapped,
 built and packaged via rake tasks.
 
-1. Download and install the
-   [latest RailsInstaller](http://railsinstaller.org/)
+1. Download and install the latest
+   [RailsInstaller](http://railsinstaller.org/)
+
+1. Download and install latest
+   [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
+   ensure iscc.exe is in your PATH
 
 1. Open the RailsInstaller Command prompt from the start menu RailsInstaller
    group and change directories to where you like to keep your projects.
@@ -42,15 +46,9 @@ built and packaged via rake tasks.
 
     > rake bootstrap
 
-1. Install latest
-   [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
-   ensure iscc.exe is in your PATH
-
 1. Implement your new feature / fix your bug in the railsinstaller project code.
-
    Configuration of the packages are to be included is done in the
    config/railsinstaller.yml file.
-
    Building of the installer into the stage path for packaging happens from
    the Ruby code in the lib/ directory, starting from the file
 
