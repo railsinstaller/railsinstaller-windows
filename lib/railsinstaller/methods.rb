@@ -389,29 +389,17 @@ module RailsInstaller
   #
   # loops over each gemname and triggers it to be built.
   def self.build_gems(ruby_path, gems)
-
     if gems.is_a?(Array)
-
       gems.each do |name|
-
         build_gem(ruby_path, name)
-
       end
-
     elsif gems.is_a?(Hash)
-
       gems.each_pair do |name, version |
-
         build_gem(ruby_path, name,version)
-
       end
-
     else
-
       build_gem(gems)
-
     end
-
   end
 
   def self.build_gem(ruby_path, gemname, options = {})

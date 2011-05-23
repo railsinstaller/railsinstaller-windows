@@ -4,7 +4,8 @@
   :title: Ruby Gems
   :category: gems
   :list:
-    - rake
+    -
+      rake: 0.8.7
     - rails
     - json
     - sqlite3
