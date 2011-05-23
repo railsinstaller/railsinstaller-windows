@@ -14,29 +14,39 @@ RailsInstaller is bootstrapped, built and packaged via rake tasks.
 
 1. Download and install the latest RailsInstaller from
    http://railsinstaller.org/
-
-
-2. Bootstrap the project, from the project root run
-
-  > rake bootstrap
-
-3. Install latest Inno Setup Quick Start Pack, ensure iscc.exe is in your PATH
-
-   http://www.jrsoftware.org/isdl.php#qsp
-
-4. [[ hackety hack... ]]
-
-
-5. Download and build all components on the stage
-
-  > rake build
-
-6. Use Inno Setup to package RailsInstaller
-
-  > rake package
-
-7. Use the generated RailsInstaller.exe, be happy and prosperous! Be
+1. Bootstrap the project, from the project root run
+    > rake bootstrap
+1. Install latest
+   [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
+   ensure iscc.exe is in your PATH
+1. Hackety hack!!! Type it like you mean it!!!
+1. Download and build all components on the stage
+    > rake build
+1. Use Inno Setup to package RailsInstaller
+    > rake package
+1. Use the generated RailsInstaller.exe, be happy and prosperous! Be
    sure to share it with all of your friends!
+
+### Configuration
+
+Configuration of the packages are to be included is done in the
+config/railsinstaller.yml file.
+
+### Building
+
+Building of the installer into the stage path for packaging happens from
+the Ruby code in the lib/ directory, starting from the file
+    lib/railsinstaller/actions.rb
+Methods are implemented in
+    lib/railsinstaller/methods.rb
+In order to kick off a build into staging run the following rake command.
+    > rake build
+
+## Packaging
+
+Packaging of the installer from the stage path into an executable can be done
+via the following rake command.
+    > rake package
 
 ### Development Kit (DevKit)
 
