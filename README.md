@@ -48,16 +48,22 @@ config/railsinstaller.yml file.
 
 Building of the installer into the stage path for packaging happens from
 the Ruby code in the lib/ directory, starting from the file
+
     lib/railsinstaller/actions.rb
+
 Methods are implemented in
+
     lib/railsinstaller/methods.rb
+
 In order to kick off a build into staging run the following rake command.
+
     > rake build
 
 ### Packaging
 
 Packaging of the installer from the stage path into an executable can be done
 via the following rake command.
+
     > rake package
 
 ### Development Kit (DevKit)
