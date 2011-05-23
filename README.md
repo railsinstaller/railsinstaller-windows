@@ -51,17 +51,11 @@ built and packaged via rake tasks.
    config/railsinstaller.yml file.
    Building of the installer into the stage path for packaging happens from
    the Ruby code in the lib/ directory, starting from the file
-
-     lib/railsinstaller/actions.rb
-
-   Methods are implemented in
-
-     lib/railsinstaller/methods.rb
-
-   In order to kick off a build into staging run the following rake command.
+   lib/railsinstaller/actions.rb. Methods are implemented in
+   lib/railsinstaller/methods.rb. In order to kick off a build into staging run
+   the following rake command.
 
      > rake build
-
    Packaging of the installer from the stage path into an executable can be done
    via the following rake command.
 
@@ -75,7 +69,12 @@ built and packaged via rake tasks.
 
     > rake package
 
-1. Your shiny new RailsInstaller package will be located in.
+1. Your shiny new RailsInstaller package will be located in the pkg/
+   directory after the package task completes.
+
+1. You can run the package task with --trace for debugging output.
+
+    > rake package --trace
 
 1. Once you have verified your Push your feature branch up to GitHub
 
