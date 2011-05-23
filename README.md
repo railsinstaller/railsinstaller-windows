@@ -10,12 +10,22 @@ required prerequisites on a Windows system.
 
 ## How to Contribute
 
-RailsInstaller is bootstrapped, built and packaged via rake tasks.
+RailsInstaller project code repository is located on GitHub and is bootstrapped,
+built and packaged via rake tasks.
 
-1. Download and install the [latest RailsInstaller](http://railsinstaller.org/)
-1. Clone the project
+1. Download and install the
+   [latest RailsInstaller](http://railsinstaller.org/)
 
-    > git clone https://github.com/railsinstaller/railsinstaller-windows.git
+1. Open the RailsInstaller Command prompt from the start menu RailsInstaller
+   group and change directories to where you like to keep your projects.
+
+1. [Fork](http://help.github.com/fork-a-repo/)
+   the [RailsInstaller project on github](https://github.com/railsinstaller/railsinstaller-windows.git)
+   into your own github account
+
+1. Clone your fork of the project
+
+    > git clone git@github.com:<<your github user name>>/railsinstaller-windows
 
     > cd railsinstaller-windows
 
@@ -26,8 +36,9 @@ RailsInstaller is bootstrapped, built and packaged via rake tasks.
 1. Install latest
    [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
    ensure iscc.exe is in your PATH
-1. Hackety hack!!! Type it like you mean it!!!
-   Meaning implement your feature in the railsinstaller project code.
+
+1. Implement your new feature / fix your bug in the railsinstaller project code.
+
 1. Download and build all components on the stage
 
     > rake build
@@ -36,8 +47,8 @@ RailsInstaller is bootstrapped, built and packaged via rake tasks.
 
     > rake package
 
-1. Use the generated RailsInstaller.exe, be happy and prosperous!
-   Be sure to share it with all of your friends!
+1. Push your topic branch to your repository and issue a
+   [pull request](http://help.github.com/pull-requests/)
 
 ### Configuration
 
