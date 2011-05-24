@@ -20,12 +20,12 @@ built and packaged via rake tasks.
    [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
    ensure iscc.exe is in your PATH
 
-1. Open the RailsInstaller Command prompt from the start menu RailsInstaller
-   group and change directories to where you like to keep your projects.
-
 1. [Fork](http://help.github.com/fork-a-repo/)
    the [RailsInstaller project on github](https://github.com/railsinstaller/railsinstaller-windows.git)
    into your own github account
+
+1. Open the RailsInstaller Command prompt from the start menu RailsInstaller
+   group and change directories to where you like to keep your projects.
 
 1. Clone your fork of the project
 
@@ -47,31 +47,30 @@ built and packaged via rake tasks.
     > rake bootstrap
 
 1. Implement your new feature / fix your bug in the railsinstaller project code.
-   Configuration of the packages are to be included is done in the
-   config/railsinstaller.yml file.
-   Building of the installer into the stage path for packaging happens from
-   the Ruby code in the lib/ directory, starting from the file
-   lib/railsinstaller/actions.rb. Methods are implemented in
-   lib/railsinstaller/methods.rb. In order to kick off a build into staging run
-   the following rake command.
+   Configuration of the packages are to be included are found in the
+   config/railsinstaller.yml file. Building of the installer into the stage path
+   for packaging happens from the Ruby code in the lib/ directory, starting from
+   the file lib/railsinstaller/actions.rb. Methods called from actions
+   file are implemented in lib/railsinstaller/methods.rb. In order to kick off a
+   build into the stage/ directory run the following rake command.
 
-     > rake build
-   Packaging of the installer from the stage path into an executable can be done
-   via the following rake command.
-
-     > rake package
-
-1. Download and build all components on the stage
+1. Next build all components on the stage
 
     > rake build
 
+1. We are now ready to package the installer for testing/distribution.
+   Packaging of the installer from the stage path into an executable can be done
+   via the following rake command. This creates the executable (.exe)
+   package file in the pkg/ directory from the files staged during the
+   build process in the stage/ directory.
+
+     > rake package
+
 1. Use Inno Setup to package RailsInstaller (NOTE that You can run the package
-   task with --trace for debugging output if the package fails to build.)
+   task with --trace for debugging output if the package fails to build or if
+   you simply want to see what is being done as it is done).
 
     > rake package
-
-1. Your shiny new RailsInstaller package will be located in the pkg/
-   directory after the package task completes.
 
 1. Once you have verified your Push your feature branch up to GitHub
 
@@ -81,18 +80,26 @@ built and packaged via rake tasks.
 
 1. Now issue a [pull request](http://help.github.com/pull-requests/) on GitHub
 
-### Development Kit (DevKit)
+# RailsInstaller Components
 
-A MSYS/MinGW based toolkit that enables RailsInstaller to build native C/C++
-packages, both for Ruby and gems. DevKit is built and maintained by the
-wonderful folks over at the RubyInstaller (http://rubyinstaller.org/) project.
-
+The next few sections detail the core copmonents that make up RailsInstaller.
 
 ### Ruby 1.8.7/1.9.2 on Windows
 
 RubyInstaller is a self contained package installer which installs Ruby and
 RubyGems on a windows system, head over to http://rubyinstaller.org/ for more
 information.
+
+### Development Kit (DevKit)
+
+A MSYS/MinGW based toolkit that enables RailsInstaller to build native C/C++
+packages, both for Ruby and gems. DevKit is built and maintained by the
+wonderful folks over at the RubyInstaller (http://rubyinstaller.org/) project.
+
+### Git
+
+The git version that is bundled into RailsInstaller is
+[msysgit](http://code.google.com/p/msysgit/)
 
 ### Packaging/Installer
 
