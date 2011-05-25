@@ -6,7 +6,11 @@
   :list:
     -
       rake: 0.8.7
-    - rails
+    - 
+      rails: "~>3.0.0"
+    - 
+      activerecord-sqlserver-adapter: "~>3.0.0"
+    - tiny_tds
     - sqlite3
     - sqlite3-ruby
     - rubyzip2
