@@ -1,5 +1,4 @@
 module RailsInstaller
-
   #
   # Load initial objects (OpenStruct) from railsinstaller.yml
   #
@@ -12,9 +11,6 @@ module RailsInstaller
   )
 
   @@config.each_pair do |key,value|
-
     const_set(value[:name], OpenStruct.new(value))
-
   end
-
 end

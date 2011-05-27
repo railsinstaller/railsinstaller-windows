@@ -6,8 +6,8 @@ module RailsInstaller
   # Original download() code taken from Rubinius and then butchered ;)
   # https://github.com/evanphx/rubinius/blob/master/configure#L307-350
   def self.download(package, count = 3)
-
    filename = File.basename(package.url)
+
    return if File.exists?(File.join(RailsInstaller::Archives, filename))
 
    begin
@@ -26,26 +26,22 @@ module RailsInstaller
       http.get_response(uri) do |response|
 
         case response
-
           when Net::HTTPNotFound
 
             raise NET::HTTPNotFound, "Looking for #{url} and received a 404!"
             return false
 
           when Net::HTTPClientError
-
             print "ERROR: Client Error : #{response.inspect}\n"
             return false
 
           when Net::HTTPRedirection
-
             raise "Too many redirections for the original url, halting." if count <= 0
             print "Redirected to #{response["Location"]}\n" if verbose
             package.url = response["location"]
             return download(package, count - 1)
 
           when Net::HTTPOK
-
             temp_file = Tempfile.new("download-#{filename}")
             temp_file.binmode
 
@@ -53,7 +49,10 @@ module RailsInstaller
             total = response.header["Content-Length"].to_i
 
             # Ensure that the destination directory exists.
-            FileUtils.mkdir_p(RailsInstaller::Archives) unless File.directory?(RailsInstaller::Archives)
+            unless File.directory?(RailsInstaller::Archives)
+              FileUtils.mkdir_p(RailsInstaller::Archives)
+            end
+
             if File.exist?(File.join(RailsInstaller::Archives, filename))
               FileUtils.rm_f(File.join(RailsInstaller::Archives,filename))
             end
@@ -76,27 +75,18 @@ module RailsInstaller
 
               print "\n\n"
             end
-
           else
-
             raise RuntimeError, "Failed to download #{url}: #{response.message}"
-
         end
-
       end
 
    rescue Exception => exception
-
       if File.exists?(File.join(RailsInstaller::Archives, filename))
         File.unlink(File.join(RailsInstaller::Archives,filename))
       end
-
       printf "ERROR: #{exception.message}\n"
-
       return false
-
     end
-
     return true
   end
 end
