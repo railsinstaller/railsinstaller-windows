@@ -5,11 +5,14 @@
   :category: gems
   :list:
     -
-      rake: 0.8.7
-    - 
-      rails: "~>3.0.0"
-    - 
-      activerecord-sqlserver-adapter: "~>3.0.0"
+      :name: rake
+      :version: 0.8.7
+    -
+      :name: rails
+      :version: "~>3.0.0"
+    -
+      :name: activerecord-sqlserver-adapter
+      :version: "~>3.0.0"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
