@@ -311,10 +311,20 @@ module RailsInstaller
     end
   end
 
-  def self.build_gem(ruby_path, gemname, options = {})
-    printf " => Staging gem #{gemname}\n" if $Flags[:verbose]
+  def self.build_gem(ruby_path, gem, options = {})
+    if gem.is_a?(Hash)
+      gem.each_pair do |gem_name,gem_version|
+        gem_install(gem_name,options.merge(:version => gem_version))
+      end
+    else
+      gem_install(gem,options)
+    end
+  end
+
+  def self.gem_install(gem,options={})
+    printf " => Staging gem #{gem}\n" if $Flags[:verbose]
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
-    line = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gemname})
+    line = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gem})
     line += %Q( -v#{options[:version]} ) if options[:version]
     line += %Q( --env-shebang --no-rdoc --no-ri )
     line += options[:args] if options[:args]
