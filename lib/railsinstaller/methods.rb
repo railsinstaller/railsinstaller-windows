@@ -327,8 +327,6 @@ module RailsInstaller
     line += %Q( -v"#{options[:version]}" ) if options[:version]
     line += %Q( --env-shebang --no-rdoc --no-ri )
     line += options[:args] if options[:args]
-
-    printf("DEBUG> %s\n", line) if $Flags[:verbose]
     sh line
   end
 
