@@ -314,7 +314,7 @@ module RailsInstaller
   def self.build_gem(ruby_path, gem, options = {})
     if gem.is_a?(Hash)
       gem.each_pair do |gem_name,gem_version|
-        gem_install(gem_name,options.merge({:version => gem_version)})
+        gem_install(gem_name,options.merge({:version => gem_version}))
       end
     else
       gem_install(ruby_path,gem,options)
