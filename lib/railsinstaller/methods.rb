@@ -317,11 +317,11 @@ module RailsInstaller
         gem_install(gem_name,options.merge(:version => gem_version))
       end
     else
-      gem_install(gem,options)
+      gem_install(ruby_path,gem,options)
     end
   end
 
-  def self.gem_install(gem,options={})
+  def self.gem_install(ruby_path,gem,options={})
     printf " => Staging gem #{gem}\n" if $Flags[:verbose]
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
     line = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gem})
