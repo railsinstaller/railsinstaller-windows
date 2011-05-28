@@ -193,7 +193,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.mv(
           File.join(Stage, file),
-          File.join(Stage, Ruby187.rename, "bin", file)
+          File.join(Stage, Ruby192.rename, "bin", file)
         )
       end
     end
@@ -207,7 +207,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.cp(
           File.join(Stage, PostgresServer.target, "bin", file),
-          File.join(Stage, Ruby187.rename, "bin", file)
+          File.join(Stage, Ruby192.rename, "bin", file)
         )
       end
     end
@@ -218,7 +218,7 @@ module RailsInstaller
   #
   def self.link_devkit_with_ruby
     devkit_path = File.join(Stage, DevKit.target)
-    ruby_path = File.join(Stage, Ruby187.rename)
+    ruby_path = File.join(Stage, Ruby192.rename)
     FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
     Dir.chdir(devkit_path) do
       File.open("config.yml", 'w') do |file|
@@ -239,8 +239,8 @@ module RailsInstaller
 
   def self.stage_gems
     section Gems
-    build_gems(File.join(Stage, Ruby187.rename), Gems.list)
-    build_gem(File.join(Stage, Ruby187.rename), "pg", {
+    build_gems(File.join(Stage, Ruby192.rename), Gems.list)
+    build_gem(File.join(Stage, Ruby192.rename), "pg", {
       :args => [
           "--",
           "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
@@ -255,7 +255,7 @@ module RailsInstaller
     section Rails
     sample = File.join(Stage, "Sites", "sample")
     FileUtils.rm_rf(sample) if File.exist?(sample)
-    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby187.rename))
+    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby192.rename))
   end
 
   # Renders setup scripts to be used post-installation
@@ -275,7 +275,7 @@ module RailsInstaller
     %w( publickey.bat ).each do |file|
       FileUtils.cp(
         File.join(RailsInstaller::Scripts, file),
-        File.join(Stage, Ruby187.rename, "bin", file)
+        File.join(Stage, Ruby192.rename, "bin", file)
       )
     end
   end

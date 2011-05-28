@@ -9,10 +9,10 @@
       :version: "0.8.7"
     -
       :name: rails
-      :version: "~> 3.0.0"
+      :version: "~> 3.1.0.rc1"
     -
       :name: activerecord-sqlserver-adapter
-      :version: "~> 3.0.0"
+      :version: "~> 3.1.0.rc1"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
@@ -49,14 +49,15 @@
   :title: Ruby 1.9.2
   :name: Ruby192
   :regex: '^.*$'
-  :url: "http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/ruby-1.9.2-p136-i386-mingw32.7z"
+  :url: "https://rubyforge.org/frs/download.php/74299/ruby-1.9.2-p180-i386-mingw32.7z"
+
   :rename: Ruby1.9.2
 
 :git:
   :category: component
   :title: Git 1.7.3.1
   :name: Git
-  :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.3.1-preview20101002.7z"
+  :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.4-preview20110204.7z"
   :target: "Git"
   :regex: '^.*$'
 
@@ -80,7 +81,7 @@
     - msvcr90.dll
     - libxml2.dll
   :regex: '^.*$'
-  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows-binaries.zip"
+  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.4-windows-binaries.zip"
 
 :rails:
   :name: Rails
