@@ -49,7 +49,7 @@
   :title: Ruby 1.9.2
   :name: Ruby192
   :regex: '^.*$'
-  :url: "https://rubyforge.org/frs/download.php/74299/ruby-1.9.2-p180-i386-mingw32.7z"
+  :url: "http://rubyforge.org/frs/download.php/74299/ruby-1.9.2-p180-i386-mingw32.7z"
 
   :rename: Ruby1.9.2
 
