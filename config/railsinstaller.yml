@@ -112,14 +112,14 @@
     - sqlite3.def
     - sqlite3.exe
   :regex: '^.+\.exe$'
-  :url: http://www.sqlite.org/sqlite-3_7_3.zip
+  :url: http://www.sqlite.org/sqlite-3_7_6_3.zip
 
 :sqlite3_dll:
   :name: Sqlite3Dll
   :title: Sqlite3 Dll
   :category: component
   :regex: '^.+\.dll$'
-  :url: http://www.sqlite.org/sqlitedll-3_7_3.zip
+  :url: http://www.sqlite.org/sqlitedll-3_7_6_3.zip
 
 :ssl_certificates:
   :name: SSLCertificates
