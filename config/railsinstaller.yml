@@ -20,6 +20,7 @@
     - win32-open3
     - POpen4
     - rb-readline
+    - therubyracer
 
 :msvc_runtime:
   :name: MsvcRuntime
