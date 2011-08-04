@@ -6,13 +6,13 @@
   :list:
     -
       :name: rake
-      :version: "0.8.7"
+      :version: "0.9.2"
     -
       :name: rails
-      :version: "3.1.0.rc3"
+      :version: "3.1.0.rc5"
     -
       :name: activerecord-sqlserver-adapter
-      :version: "3.1.0.rc2"
+      :version: "3.1.0.rc5"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
@@ -20,7 +20,7 @@
     - win32-open3
     - POpen4
     - rb-readline
-    - therubyracer
+#    - therubyracer
 
 :msvc_runtime:
   :name: MsvcRuntime
@@ -50,8 +50,7 @@
   :title: Ruby 1.9.2
   :name: Ruby192
   :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/74299/ruby-1.9.2-p180-i386-mingw32.7z"
-
+  :url: "http://rubyforge.org/frs/download.php/75128/ruby-1.9.2-p290-i386-mingw32.7z"
   :rename: Ruby1.9.2
 
 :git:
