@@ -261,6 +261,10 @@ module RailsInstaller
     applications_path = File.join(RailsInstaller::Stage, "Sites")
     FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
     Dir.chdir(applications_path) { sh line }
+    # now bootstrap gems...
+
+    build_gem(File.join(Stage, Ruby192.rename), "bundler")
+    ruby_binary("bundle", "bundle", "", File.join(Stage, Ruby192.rename))
   end
 
   def self.stage_rails_sample_application
