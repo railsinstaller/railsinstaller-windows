@@ -249,6 +249,20 @@ module RailsInstaller
     })
   end
 
+  def self.stage_todo_application
+    section RailsTodo
+    todo_path = File.join(Stage, "Sites", "todo")
+    FileUtils.rm_rf(todo_path) if File.exist?(todo_path)
+
+    git_binary = File.join(Stage, Git.target, "bin", "git")
+
+    line = %q(#{git_binary} clone https://github.com/engineyard/todo todo)
+
+    applications_path = File.join(RailsInstaller::Stage, "Sites")
+    FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
+    Dir.chdir(applications_path) { sh line }
+  end
+
   def self.stage_rails_sample_application
     # Generate sample rails application in the Rails application directory on
     # stage.

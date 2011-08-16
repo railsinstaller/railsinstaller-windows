@@ -88,6 +88,11 @@
   :title: Rails 3 sample application
   :category: gem
 
+:rails_todo:
+  :name: RailsTodo
+  :title: Rails 3 Todo Sample application
+  :category: gem
+
 :rails_docs:
   :name: RailsDocs
   :title: Rails 3 Documentation
