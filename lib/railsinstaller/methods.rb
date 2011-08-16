@@ -256,7 +256,7 @@ module RailsInstaller
 
     git_binary = File.join(Stage, Git.target, "bin", "git")
 
-    line = %q(#{git_binary} clone https://github.com/engineyard/todo todo)
+    line = %Q(#{git_binary} clone https://github.com/engineyard/todo todo)
 
     applications_path = File.join(RailsInstaller::Stage, "Sites")
     FileUtils.mkdir_p applications_path unless File.exist?(applications_path)

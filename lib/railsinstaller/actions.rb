@@ -25,8 +25,6 @@ module RailsInstaller
 
     stage_todo_application
 
-    stage_rails_sample_application
-
     stage_setup_scripts
 
     stage_msvc_runtime
