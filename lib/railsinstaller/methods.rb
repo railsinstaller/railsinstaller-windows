@@ -82,7 +82,7 @@ module RailsInstaller
         return
       end
 
-      printf " => Extracting '#{filename}' to the stage.\n" if $Flags[:verbose]
+      printf " => Extracting "#{filename}" to the stage.\n" if $Flags[:verbose]
 
       FileUtils.mkdir_p(RailsInstaller::Stage) unless File.directory?(RailsInstaller::Stage)
 
@@ -99,7 +99,7 @@ module RailsInstaller
             FileUtils.rm_rf(target_path)
           end
         else
-        raise "Unknown package category'#{package.category}'.\npackage category should be one of {'utility','component'}?"
+        raise "Unknown package category"#{package.category}".\npackage category should be one of {"utility","component"}?"
       end
 
       archive = File.join(RailsInstaller::Archives, filename)
@@ -221,7 +221,7 @@ module RailsInstaller
     ruby_path = File.join(Stage, Ruby192.rename)
     FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
     Dir.chdir(devkit_path) do
-      File.open("config.yml", 'w') do |file|
+      File.open("config.yml", "w") do |file|
         file.write(%Q(---\n- #{ruby_path}))
       end
       sh %Q{#{File.join(ruby_path, "bin", "ruby")} dk.rb install}
@@ -245,7 +245,7 @@ module RailsInstaller
           "--",
           "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
           "--with-pg-lib=#{File.join(Stage, "pgsql", "lib")}"
-      ].join(' ')
+      ].join(" ")
     })
   end
 
@@ -263,7 +263,12 @@ module RailsInstaller
     Dir.chdir(applications_path) { sh line }
     # now bootstrap gems...
 
-    build_gem(File.join(Stage, Ruby192.rename), "bundler")
+    if File.exist?(File.join(todo_path,".git"))
+      FileUtils.rm_rf(File.join(todo_path,".git"))
+    end
+
+    gem_install File.join(Stage, Ruby192.rename), "bundler"
+
     ruby_binary("bundle", "bundle", "", File.join(Stage, Ruby192.rename))
   end
 
@@ -354,9 +359,7 @@ module RailsInstaller
     line = %Q(#{File.join(ruby_path, "bin", "ruby")} -S #{name} #{line} #{action})
     line += options[:args] if options[:args]
     applications_path = File.join(RailsInstaller::Stage, "Sites")
-    unless File.exist?(applications_path)
-      FileUtils.mkdir_p applications_path
-    end
+    FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
     Dir.chdir(applications_path) { sh line }
   end
 
@@ -364,26 +367,24 @@ module RailsInstaller
     executable = nil
 
     # look for InnoSetup compiler in the PATH
-    found = ENV['PATH'].split(File::PATH_SEPARATOR).find do |path|
-      File.exist?(File.join(path, 'iscc.exe')) && File.executable?(File.join(path, 'iscc.exe'))
+    found = ENV["PATH"].split(File::PATH_SEPARATOR).find do |path|
+      File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
     end
 
     # not found?
     if found
-      executable = 'iscc.exe'
+      executable = "iscc.exe"
     else
-      path = File.join(ENV['ProgramFiles'], 'Inno Setup 5')
-      if File.exist?(File.join(path, 'iscc.exe')) && File.executable?(File.join(path, 'iscc.exe'))
+      path = File.join(ENV["ProgramFiles"], "Inno Setup 5")
+      if File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
         path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR)
-        ENV['PATH'] = "#{path}#{File::PATH_SEPARATOR}#{ENV['PATH']}" unless ENV['PATH'].include?(path)
-        executable = 'iscc.exe'
+        ENV["PATH"] = "#{path}#{File::PATH_SEPARATOR}#{ENV["PATH"]}" unless ENV["PATH"].include?(path)
+        executable = "iscc.exe"
       end
     end
-
     cmd = [executable]
     cmd.concat(params)
-
-    sh cmd.join(' ')
+    sh cmd.join(" ")
   end
 
   #
