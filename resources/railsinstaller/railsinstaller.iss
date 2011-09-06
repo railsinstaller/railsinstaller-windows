@@ -9,14 +9,14 @@
 ; Usage:
 ;  iscc rubyinstaller.iss /dInstallerVersion=0.1.0
 ;                         /dStagePath=stage
-;                         /dRubyPath=Ruby/1.8.7
+;                         /dRubyPath=Ruby/1.9.2
 ;                         [/dInstVersion=26-OCT-2009]
 
 ; Full example:
 ; iscc resouces\railsinstaller\railsinstaller.iss \
 ;       /dInstallerVersion=0.1.0 \
 ;       /dStagePath=stage \
-;       /dRubyPath=Ruby1.8.7 \
+;       /dRubyPath=Ruby1.9.2 \
 ;       /opkg
 ;       /frailsinstaller-0.1.0.exe
 
