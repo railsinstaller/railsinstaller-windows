@@ -23,7 +23,7 @@ module RailsInstaller
 
     stage_gems
 
-    stage_rails_sample_application
+    stage_todo_application
 
     stage_setup_scripts
 
