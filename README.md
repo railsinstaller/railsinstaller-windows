@@ -48,13 +48,13 @@ built and packaged via rake tasks.
 
 1. Implement your new feature and/or fix your bug in your newly forked Railsinstaller project code.
 
-   * The configuration file for specifying required packages can be found at
+  * The configuration file for specifying required packages can be found at
    config/railsinstaller.yml file.
 
-	 * Building of the installer into the stage path for packaging is implemented by the Ruby
+  * Building of the installer into the stage path for packaging is implemented by the Ruby
 		 code in the lib/ directory, starting with the file lib/railsinstaller/actions.rb.
 
-	 * Methods called by the actions file are implemented by lib/railsinstaller/methods.rb.
+  * Methods called by the actions file are implemented by lib/railsinstaller/methods.rb.
 
 1. Next build all components onto the stage (into the stage/ directory).
 
@@ -64,10 +64,10 @@ built and packaged via rake tasks.
 
     > rake package
 
-		* This creates the executable (.exe) package file in the pkg/ directory from the files staged
+  * This creates the executable (.exe) package file in the pkg/ directory from the files staged
 			during the build process in the stage/ directory.
 			
-		* NOTE - You can run the package task with --trace for debugging output if the package
+  * NOTE - You can run the package task with --trace for debugging output if the package
 			fails to build or if you simply want to see what is being done as it is done).
 
 1. Once you have verified your new feature/bug-fix, push your branch up to GitHub.
