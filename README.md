@@ -49,12 +49,12 @@ built and packaged via rake tasks.
 1. Implement your new feature and/or fix your bug in your newly forked Railsinstaller project code.
 
   * The configuration file for specifying required packages can be found at
-   config/railsinstaller.yml file.
+   config/railsinstaller.yml.
 
-  * Building of the installer into the stage path for packaging is implemented by the Ruby
+  * Building of the installer into the stage path for packaging is implemented by Ruby
 		 code in the lib/ directory, starting with the file lib/railsinstaller/actions.rb.
 
-  * Methods called by the actions file are implemented by lib/railsinstaller/methods.rb.
+  * Methods called by the actions.rb file are implemented by lib/railsinstaller/methods.rb.
 
 1. Next build all components onto the stage (into the stage/ directory).
 
