@@ -11,7 +11,7 @@ end
   require name
 end
 
-gem "rubyzip2", "~> 2.0.1"
+gem "rubyzip2", "~> 2.0.2"
 
 %w[ globals ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
