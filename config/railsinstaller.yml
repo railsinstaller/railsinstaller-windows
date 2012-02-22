@@ -33,7 +33,7 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe"
+  :url: "https://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
 
 :ruby192:
   :category: component
