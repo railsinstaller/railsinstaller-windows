@@ -15,7 +15,6 @@
     - sqlite3
     - sqlite3-ruby
     - rubyzip
-    - POpen4
     - rb-readline
     - coffee-rails
 
