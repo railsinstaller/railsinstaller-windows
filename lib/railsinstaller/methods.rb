@@ -398,13 +398,8 @@ module RailsInstaller
 
     printf "\nDEBUG: > %s\n\n", line if $Flags[:verbose]
 
-    POpen4::popen4(line) do |stdout, stderr, stdin, pid|
-      if $Flags[:versbose]
-        out, error = stdout.read, stderr.read
-        puts out unless out.empty?
-        puts error unless error.empty?
-      end
-    end
+    output, status = Open3.capture2e(line)
+    puts output.read unless output.empty?  if $Flags[:versbose]
   end
 
   def self.log(text)
