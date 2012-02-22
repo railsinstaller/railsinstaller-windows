@@ -53,9 +53,9 @@
 
 :git:
   :category: component
-  :title: Git 1.7.6
+  :title: Git 1.7.9
   :name: Git
-  :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.6-preview20110709.7z"
+  :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.9-preview20120201.7z"
   :target: "Git"
   :regex: '^.*$'
 
