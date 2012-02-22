@@ -14,11 +14,11 @@
 
 ; Full example:
 ; iscc resouces\railsinstaller\railsinstaller.iss \
-;       /dInstallerVersion=0.1.0 \
+;       /dInstallerVersion=2.1.0 \
 ;       /dStagePath=stage \
 ;       /dRubyPath=Ruby1.9.2 \
 ;       /opkg
-;       /frailsinstaller-0.1.0.exe
+;       /frailsinstaller-2.1.0.exe
 
 #if Defined(InstallerVersion) == 0
   #error Please provide a InstallerVersion definition using a /d parameter.
