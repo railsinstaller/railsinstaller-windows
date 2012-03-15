@@ -75,11 +75,11 @@ git:
   version:    #{run "git --version"}
 
 ruby:
-  bin:        #{File.join(Config[:railsinstaller_path], "Ruby1.8.7", "bin", "ruby.exe")}
+  bin:        #{File.join(Config[:railsinstaller_path], "Ruby1.9.2", "bin", "ruby.exe")}
   version:    #{run "ruby -v"}
 
 rails:
-  bin:        #{File.join(Config[:railsinstaller_path], "Ruby1.8.7", "bin", "rails.bat")}
+  bin:        #{File.join(Config[:railsinstaller_path], "Ruby1.9.2", "bin", "rails.bat")}
   version:    #{run "rails -v"}
 
 ssh:
