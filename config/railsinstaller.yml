@@ -17,6 +17,8 @@
     - rubyzip
     - rb-readline
     - coffee-rails
+    - jquery-rails
+    - sass-rails
 
 :msvc_runtime:
   :name: MsvcRuntime
