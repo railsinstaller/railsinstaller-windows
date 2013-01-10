@@ -5,7 +5,7 @@
 // License: MIT
 
 var
-  PathChkBox, PathExtChkBox: TCheckBox;
+  PathChkBox, PathExtChkBox, GitChkBox: TCheckBox;
 
 function IsAssociated(): Boolean;
 begin
@@ -15,6 +15,11 @@ end;
 function IsModifyPath(): Boolean;
 begin
   Result := PathChkBox.Checked;
+end;
+
+function InstallGit() : Boolean;
+begin
+	Result := GitChkBox.Checked;
 end;
 
 procedure ParseSilentTasks();
@@ -63,12 +68,22 @@ begin
 
   Page := PageFromID(wpSelectDir);
 
+  GitChkBox := TCheckBox.Create(Page);
+  GitChkBox.Parent := Page.Surface;
+  GitChkBox.State := cbChecked;
+  GitChkBox.Caption := 'Install Git (recommended) ';
+  GitChkBox.Alignment := taRightJustify;
+  GitChkBox.Top := ScaleY(95);
+  GitChkBox.Left := ScaleX(18);
+  GitChkBox.Width := Page.SurfaceWidth;
+  GitChkBox.Height := ScaleY(17);
+  
   PathChkBox := TCheckBox.Create(Page);
   PathChkBox.Parent := Page.Surface;
   PathChkBox.State := cbChecked;
-  PathChkBox.Caption := 'Add executables for Ruby, Git and DevKit to the PATH ';
+  PathChkBox.Caption := 'Add executables for Ruby, DevKit and Git (if checked above) to the PATH ';
   PathChkBox.Alignment := taRightJustify;
-  PathChkBox.Top := ScaleY(95);
+  PathChkBox.Top := ScaleY(125);
   PathChkBox.Left := ScaleX(18);
   PathChkBox.Width := Page.SurfaceWidth;
   PathChkBox.Height := ScaleY(17);

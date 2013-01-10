@@ -4,22 +4,21 @@
   :title: Ruby Gems
   :category: gems
   :list:
-    -
-      :name: rake
-      :version: "0.9.2"
+    - rake
     -
       :name: rails
-      :version: "3.1.0"
+      :version: "3.2.11"
     -
       :name: activerecord-sqlserver-adapter
-      :version: "3.1.0"
+      :version: "3.2.11"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
-    - rubyzip2
-    - win32-open3
-    - POpen4
+    - rubyzip
     - rb-readline
+    - coffee-rails
+    - jquery-rails
+    - sass-rails
 
 :msvc_runtime:
   :name: MsvcRuntime
@@ -34,15 +33,7 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe"
-
-:ruby187:
-  :category: component
-  :title: Ruby 1.8.7
-  :name: Ruby187
-  :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/75108/ruby-1.8.7-p352-i386-mingw32.7z"
-  :rename: Ruby1.8.7
+  :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
 
 :ruby192:
   :category: component
@@ -52,11 +43,19 @@
   :url: "http://rubyforge.org/frs/download.php/75128/ruby-1.9.2-p290-i386-mingw32.7z"
   :rename: Ruby1.9.2
 
+:ruby193:
+  :category: component
+  :title: Ruby 1.9.3
+  :name: Ruby193
+  :regex: '^.*$'
+  :url: "http://rubyforge.org/frs/download.php/76643/ruby-1.9.3-p362-i386-mingw32.7z"
+  :rename: Ruby1.9.3
+
 :git:
   :category: component
-  :title: Git 1.7.3.1
+  :title: Git 1.8.0
   :name: Git
-  :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.6-preview20110709.7z"
+  :url: "http://msysgit.googlecode.com/files/PortableGit-1.8.0-preview20121022.7z"
   :target: "Git"
   :regex: '^.*$'
 
@@ -85,6 +84,11 @@
 :rails:
   :name: Rails
   :title: Rails 3 sample application
+  :category: gem
+
+:rails_todo:
+  :name: RailsTodo
+  :title: Rails 3 Todo Sample application
   :category: gem
 
 :rails_docs:
