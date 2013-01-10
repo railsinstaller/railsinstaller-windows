@@ -21,7 +21,7 @@ module RailsInstaller
       end
 
       uri = URI.parse(package.url)
-
+	  
       print "Downloading from #{package.url} to #{RailsInstaller::Archives}\n" if $Flags[:verbose]
       http.get_response(uri) do |response|
 
@@ -37,7 +37,7 @@ module RailsInstaller
 
           when Net::HTTPRedirection
             raise "Too many redirections for the original url, halting." if count <= 0
-            print "Redirected to #{response["Location"]}\n" if verbose
+            print "Redirected to #{response["Location"]}\n" if $Flags[:verbose]
             package.url = response["location"]
             return download(package, count - 1)
 

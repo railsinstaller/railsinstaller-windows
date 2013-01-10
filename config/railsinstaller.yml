@@ -7,10 +7,10 @@
     - rake
     -
       :name: rails
-      :version: "3.2.1"
+      :version: "3.2.11"
     -
       :name: activerecord-sqlserver-adapter
-      :version: "3.2.1"
+      :version: "3.2.11"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
@@ -33,7 +33,7 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
+  :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
 
 :ruby192:
   :category: component
@@ -48,14 +48,14 @@
   :title: Ruby 1.9.3
   :name: Ruby193
   :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/75849/ruby-1.9.3-p125-i386-mingw32.7z"
+  :url: "http://rubyforge.org/frs/download.php/76643/ruby-1.9.3-p362-i386-mingw32.7z"
   :rename: Ruby1.9.3
 
 :git:
   :category: component
-  :title: Git 1.7.9
+  :title: Git 1.8.0
   :name: Git
-  :url: "http://msysgit.googlecode.com/files/PortableGit-1.7.9-preview20120201.7z"
+  :url: "http://msysgit.googlecode.com/files/PortableGit-1.8.0-preview20121022.7z"
   :target: "Git"
   :regex: '^.*$'
 
