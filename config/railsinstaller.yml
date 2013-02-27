@@ -7,10 +7,10 @@
     - rake
     -
       :name: rails
-      :version: "3.2.1"
+      :version: "3.2.2"
     -
       :name: activerecord-sqlserver-adapter
-      :version: "3.2.1"
+      :version: "3.2.2"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
@@ -33,8 +33,8 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "https://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
-
+  :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.1-20101214-1400-sfx.exe"
+  
 :ruby192:
   :category: component
   :title: Ruby 1.9.2
