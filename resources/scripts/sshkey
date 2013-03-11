@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+pub_key_file = File.join(ENV["HOMEDRIVE"],ENV["HOMEPATH"],".ssh","id_rsa","pub")
+
+ssh_pub_key = File.open(pub_key_file,'r') { |file| file.read }
+
+%x{echo #{ssh_pub_key} | clip}

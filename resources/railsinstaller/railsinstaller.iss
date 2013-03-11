@@ -9,16 +9,16 @@
 ; Usage:
 ;  iscc rubyinstaller.iss /dInstallerVersion=0.1.0
 ;                         /dStagePath=stage
-;                         /dRubyPath=Ruby/1.8.7
+;                         /dRubyPath=Ruby/1.9.2
 ;                         [/dInstVersion=26-OCT-2009]
 
 ; Full example:
 ; iscc resouces\railsinstaller\railsinstaller.iss \
-;       /dInstallerVersion=0.1.0 \
+;       /dInstallerVersion=2.1.0 \
 ;       /dStagePath=stage \
-;       /dRubyPath=Ruby1.8.7 \
+;       /dRubyPath=Ruby1.9.2 \
 ;       /opkg
-;       /frailsinstaller-0.1.0.exe
+;       /frailsinstaller-2.1.0.exe
 
 #if Defined(InstallerVersion) == 0
   #error Please provide a InstallerVersion definition using a /d parameter.
@@ -88,7 +88,7 @@ Name: en; MessagesFile: compiler:Default.isl
 [Messages]
 en.InstallingLabel=Installing [name], this will take a few minutes...
 en.WelcomeLabel1=Welcome to [name]!
-en.WelcomeLabel2=This will install [name/ver] on your computer which includes Ruby 1.9.2, Rails 3.1, Git, Sqlite3, DevKit, and TinyTDS with FreeTDS.  Please close any console applications before continuing.
+en.WelcomeLabel2=This will install [name/ver] on your computer which includes Ruby 1.9.3, Rails 3.2.12, Git, Sqlite3, DevKit, and TinyTDS with FreeTDS.  Please close any console applications before continuing.
 en.WizardLicense={#InstallerName} License Agreement
 en.LicenseLabel=
 en.LicenseLabel3=Please read the following License Agreements and accept the terms before continuing the installation.
@@ -103,7 +103,7 @@ en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Excludes: "devkit.*, operating_system.*"; Flags: recursesubdirs createallsubdirs
-Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\Git\*; DestDir: {app}\Git; Check: InstallGit; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: "config.yml"; Flags: recursesubdirs createallsubdirs
 Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
 Source: {#StagePath}\Sites\*; DestDir: {sd}\Sites; Flags: recursesubdirs createallsubdirs
@@ -124,13 +124,13 @@ Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; WorkingDir: {app}\{#RubyPath} ; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
 Name: {group}\Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
-Name: {group}\Git Bash; Filename: {sys}\cmd.exe; Parameters: "/c """"{app}\Git\bin\sh.exe"" --login -i"""; WorkingDir: {sd}\Sites; IconFilename: {app}\Git\etc\git.ico; Flags: createonlyiffileexists
+Name: {group}\Git Bash; Filename: {sys}\cmd.exe; Parameters: "/c """"{app}\Git\bin\sh.exe"" --login -i"""; WorkingDir: {sd}\Sites; IconFilename: {app}\Git\etc\git.ico; Check: InstallGit; Flags: createonlyiffileexists
 ; {%HOMEPATH%}
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Run]
 Filename: "{app}\{#RubyPath}\bin\ruby.exe"; Parameters: "dk.rb install --force"; WorkingDir: "{app}\DevKit"; Flags: runhidden
-Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; Description: "Configure git and ssh when installation has completed.";  Flags: postinstall nowait skipifsilent
+Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; Description: "Configure git and ssh when installation has completed."; Check: InstallGit; Flags: postinstall nowait skipifsilent
 
 ; TODO: Instead of running the full vcredist, simply extract and bundle the dll
 ;       files with an associated manifest.
@@ -157,7 +157,8 @@ begin
 
       if IsModifyPath then
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
-        ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
+		if InstallGit then
+			ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
 
     end else
       MsgBox('Looks like you''ve got on older, unsupported Windows version.' #13 +
@@ -171,6 +172,8 @@ begin
   {* store install choices so we can use during uninstall *}
   if IsModifyPath then
     SetPreviousData(PreviousDataKey, 'PathModified', 'yes');
+  if InstallGit then
+	SetPreviousData(PreviousDataKey, 'GitInstalled', 'yes');
 
   SetPreviousData(PreviousDataKey, 'RailsInstallerId', '{#InstallerVersion}');
 end;
@@ -182,8 +185,11 @@ begin
     if UsingWinNT then
     begin
       if GetPreviousData('PathModified', 'no') = 'yes' then
+	    begin
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
-        ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
+	    if GetPreviousData('GitInstalled', 'no') = 'yes' then
+		  ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
+		end
     end;
   end;
 end;
