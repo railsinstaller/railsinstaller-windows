@@ -2,7 +2,7 @@ module RailsInstaller
 
   #
   # unzip:
-  # Requires: rubyzip2 (gem install rubyzip2) # require "zip/zip"
+  # Requires: rubyzip (gem install rubyzip) # require "zip/zip"
   #
   def self.unzip(package)
     filename  = File.basename(package.url)

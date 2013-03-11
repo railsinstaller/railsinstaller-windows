@@ -124,7 +124,7 @@ Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; WorkingDir: {app}\{#RubyPath} ; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
 Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
 Name: {group}\Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
-Name: {group}\Git Bash; Filename: {sys}\cmd.exe; Parameters: "/c """"{app}\Git\bin\sh.exe"" --login -i"""; WorkingDir: {sd}\Sites; IconFilename: {app}\Git\etc\git.ico; Flags: createonlyiffileexists
+Name: {group}\Git Bash; Filename: {sys}\cmd.exe; Parameters: "/c """"{app}\Git\bin\sh.exe"" --login -i"""; WorkingDir: {sd}\Sites; IconFilename: {app}\Git\etc\git.ico; Check: InstallGit; Flags: createonlyiffileexists
 ; {%HOMEPATH%}
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 

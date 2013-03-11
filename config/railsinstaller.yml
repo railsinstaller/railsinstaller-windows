@@ -48,7 +48,7 @@
   :title: Ruby 1.9.3
   :name: Ruby193
   :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/76753/ruby-1.9.3-p385-i386-mingw32.7z"
+  :url: "http://rubyforge.org/frs/download.php/76799/ruby-1.9.3-p392-i386-mingw32.7z"
   :rename: Ruby1.9.3
 
 :git:
@@ -79,7 +79,7 @@
     - msvcr90.dll
     - libxml2.dll
   :regex: '^.*$'
-  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.0.2-1-windows-binaries.zip"
+  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.2.3-1-windows-binaries.zip"
 
 :rails:
   :name: Rails
@@ -115,14 +115,14 @@
     - sqlite3.def
     - sqlite3.exe
   :regex: '^.+\.exe$'
-  :url: http://www.sqlite.org/sqlite-3_7_3.zip
+  :url: http://www.sqlite.org/sqlite-shell-win32-x86-3071502.zip
 
 :sqlite3_dll:
   :name: Sqlite3Dll
   :title: Sqlite3 Dll
   :category: component
   :regex: '^.+\.dll$'
-  :url: http://www.sqlite.org/sqlitedll-3_7_3.zip
+  :url: http://www.sqlite.org/sqlite-dll-win32-x86-3071502.zip
 
 :ssl_certificates:
   :name: SSLCertificates
@@ -144,11 +144,11 @@
   :name: MySQLServer
   :title: MySQL Community Server
   :category: component
-  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
+  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.10-winx64.zip"
   :regex: '^.*$'
   :urls:
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx64.zip"
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.5/mysql-5.5.8-winx32.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.10-winx64.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.10-win32.zip"
 
 :bsdtar:
   :name: BSDTar
@@ -166,5 +166,5 @@
   :target: bin
   :binary: "7za.exe"
   :regex: '^7za\.exe$'
-  :url: "http://voxel.dl.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
+  :url: "http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
 
