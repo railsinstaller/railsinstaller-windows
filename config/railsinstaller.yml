@@ -50,6 +50,14 @@
   :regex: '^.*$'
   :url: "http://rubyforge.org/frs/download.php/76799/ruby-1.9.3-p392-i386-mingw32.7z"
   :rename: Ruby1.9.3
+  
+:ruby200:
+  :category: component
+  :title: Ruby 2.0.0
+  :name: Ruby200
+  :regex: '^.*$'
+  :url: "http://rubyforge.org/frs/download.php/76807/ruby-2.0.0-p0-i386-mingw32.7z"
+  :rename: Ruby2.0.0
 
 :git:
   :category: component
@@ -115,14 +123,14 @@
     - sqlite3.def
     - sqlite3.exe
   :regex: '^.+\.exe$'
-  :url: http://www.sqlite.org/sqlite-shell-win32-x86-3071502.zip
+  :url: http://sqlite.org/2013/sqlite-shell-win32-x86-3071602.zip
 
 :sqlite3_dll:
   :name: Sqlite3Dll
   :title: Sqlite3 Dll
   :category: component
   :regex: '^.+\.dll$'
-  :url: http://www.sqlite.org/sqlite-dll-win32-x86-3071502.zip
+  :url: http://sqlite.org/2013/sqlite-dll-win32-x86-3071602.zip
 
 :ssl_certificates:
   :name: SSLCertificates
