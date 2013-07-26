@@ -32,7 +32,7 @@ built and packaged via rake tasks.
 
     > cd railsinstaller-windows
 
-1. Update from origin master (or 2.0.0) branch and checkout a new topic branch for your feature/bugfix.
+1. Update from origin master (or 3.0.0) branch and checkout a new topic branch for your feature/bugfix.
 
     > git checkout master
 
@@ -61,7 +61,7 @@ built and packaged via rake tasks.
     > rake package
 
   * This creates the executable (.exe) package file in the pkg/ directory from the files staged during the build process in the stage/ directory.
-			
+
   * NOTE - You can run the package task with --trace for debugging output if the package fails to build or if you simply want to see what is being done as it is done).
 
 1. Once you have verified your new feature/bug-fix, push your branch up to GitHub.
@@ -76,7 +76,7 @@ built and packaged via rake tasks.
 
 The next few sections detail the core components that make up RailsInstaller.
 
-### Ruby 1.9.3 on Windows
+### Ruby 2.0.0 on Windows
 
 RubyInstaller is a self contained package installer which installs Ruby and RubyGems on a windows system, head over to [http://rubyinstaller.org/](http://rubyinstaller.org/) for more information.
 
