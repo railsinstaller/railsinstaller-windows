@@ -21,7 +21,7 @@ module RailsInstaller
     Dir.chdir(RailsInstaller::Archives) do
       archive = File.join(RailsInstaller::Archives, filename)
 
-      Zip::ZipFile.open(archive) do |zipfile|
+      Zip::File.open(archive) do |zipfile|
         printf "zipfile: #{zipfile.inspect}\n" if $Flags[:verbose]
 
         if regex
