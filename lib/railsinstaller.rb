@@ -6,7 +6,7 @@ module RailsInstaller # Ensure that the RailsInstaller project root is defined.
   PackageDir = File.expand_path(File.join(Root, "pkg"))
 end
 
-%w[ rubygems fileutils ostruct yaml erb uri open-uri open3 zip/zip ].each do |name|
+%w[ rubygems fileutils ostruct yaml erb uri open-uri open3 zip ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
   require name
 end
