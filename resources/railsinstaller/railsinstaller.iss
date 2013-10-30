@@ -84,6 +84,7 @@ SignTool=risigntool sign /a /d $q{#InstallerNameWithVersion}$q /du $q{#Installer
 
 [Languages]
 Name: en; MessagesFile: compiler:Default.isl
+Name: pt-br; MessagesFile: compiler:Languages\BrazilianPortuguese.isl
 
 [Messages]
 en.InstallingLabel=Installing [name], this will take a few minutes...
