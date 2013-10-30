@@ -60,7 +60,6 @@ AppVersion={#InstallerVersion}
 DefaultGroupName={#InstallerName}
 DefaultDirName={sd}\RailsInstaller
 DisableProgramGroupPage=true
-LicenseFile=LICENSE.txt
 Compression=lzma2/ultra64
 SolidCompression=true
 AlwaysShowComponentsList=false
@@ -83,8 +82,8 @@ SignTool=risigntool sign /a /d $q{#InstallerNameWithVersion}$q /du $q{#Installer
 #endif
 
 [Languages]
-Name: en; MessagesFile: compiler:Default.isl
-Name: pt-br; MessagesFile: compiler:Languages\BrazilianPortuguese.isl
+Name: "en"; MessagesFile: "compiler:Default.isl"; LicenseFile: "LICENSE.txt"
+Name: "pt-br"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"; LicenseFile: "LICENSE-BR.txt"
 
 [Messages]
 en.InstallingLabel=Installing [name], this will take a few minutes...
