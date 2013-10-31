@@ -12,3 +12,24 @@ SelectDirDesc=This is the location that Ruby, DevKit, Git, Rails and Sqlite will
 SelectDirLabel3=[name] will be installed into the following folder. Click Install to continue or click Browse to use a different one.
 SelectDirBrowseLabel=Please avoid any folder name that contains spaces (e.g. Program Files).
 DiskSpaceMBLabel=Required free disk space: ~[mb] MB
+
+[CustomMessages]
+IrbIconName=Interactive Ruby
+RubyGemsDocIconName=RubyGems Documentation Server
+CmdWithRailsIconName=Command Prompt with Ruby and Rails
+GitBashIconName=Git Bash
+ConfigureGitCheckBoxDescription=Configure git and ssh when installation has completed.
+SelectedTasksLog=Selected Tasks - Path: %d
+OlderWindowsVersionMsg=Looks like you've got on older, unsupported Windows version. Proceeding with a reduced feature set installation.
+InstallGitCheckBox=Install Git (recommended)
+AddToPathCheckBox=Add executables for Ruby, DevKit and Git (if checked above) to the PATH
+WebSiteLabel=Web Site:
+MailingListLabel=Mailing List:
+IRCLabel=IRC:
+InstallButton=&Install
+PrependingPathExtLog=Empty HKCU %s, prepending %PATHEXT% to new value
+PathUpdateLog=%s updated to: %s
+OriginalPathValueLog=Original %s: %s
+DeletedEmptyValueLog=Uninstaller deleted empty %s to match original config
+NoChangesNeedLog=No changes need for %s
+ItemAlreadyInPathLog=%s already on %s in original config; not modifying %s

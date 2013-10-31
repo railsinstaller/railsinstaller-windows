@@ -59,12 +59,12 @@ begin
 
   try
     RegQueryStringValue(RootKey, SubKey, RegValue, OrigData);
-    Log('Original ' + AnsiUppercase(RegValue) + ': ' + OrigData);
+    Log(Format(CustomMessage('OriginalPathValueLog'), [AnsiUppercase(RegValue), OrigData]));
 
     // ensure originally empty users PATHEXT also contains system values
     if (RootKey = HKCU) and (AnsiUppercase(RegValue) = 'PATHEXT') and (OrigData = '') then
     begin
-      Log('Empty HKCU ' + AnsiUppercase(RegValue) + ', prepending %PATHEXT% to new value');
+      Log(Format(CustomMessage('PrependingPathExtLog'), [AnsiUppercase(RegValue)]));
       OrigData := ('%' + RegValue + '%');
     end;
 
@@ -80,7 +80,7 @@ begin
         'PATH': RegWriteExpandStringValue(RootKey, SubKey, 'Path', NewPathish);
         'PATHEXT': RegWriteExpandStringValue(RootKey, SubKey, 'PATHEXT', NewPathish);
       end;
-      Log(AnsiUppercase(RegValue) + ' updated to: ' + NewPathish);
+      Log(Format(CustomMessage('PathUpdateLog'), [AnsiUppercase(RegValue), NewPathish])  );
 
       // remove values if empty after uninstaller reverts its mods
       if IsUninstaller then
@@ -92,13 +92,12 @@ begin
           if (Tmp = '') or (Tmp = TmpExpandable) then
           begin
             RegDeleteValue(RootKey, SubKey, RegValue);
-            Log('uninstaller deleted empty ' + AnsiUppercase(RegValue) +
-                ' to match original config');
+            Log(Format(CustomMessage('DeletedEmptyValueLog'), [AnsiUppercase(RegValue)]));
           end;
         end;
       end;
     end else  // no reg change needed
-      Log('no changes need for ' + AnsiUppercase(RegValue));
+      Log(Format(CustomMessage('NoChangesNeedLog'), [AnsiUppercase(RegValue)]));
   finally
     PathishList.Free;
   end;
@@ -192,8 +191,7 @@ begin
         end;
         RegChangeFlag := True;
       end else  // already in existing config, no need for update; log it
-        Log(Item + ' already on ' + AnsiUppercase(RegValue) +
-          ' in original config; not modifying ' + AnsiUppercase(RegValue));
+        Log(Format(CustomMessage('ItemAlreadyInPathLog'), [Item, AnsiUppercase(RegValue), AnsiUppercase(RegValue)]));
     end else  // uninstalling...
     begin
       I := SrcList.IndexOf(Item);
