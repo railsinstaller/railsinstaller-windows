@@ -61,7 +61,7 @@ built and packaged via rake tasks.
     > rake package
 
   * This creates the executable (.exe) package file in the pkg/ directory from the files staged during the build process in the stage/ directory.
-			
+
   * NOTE - You can run the package task with --trace for debugging output if the package fails to build or if you simply want to see what is being done as it is done).
 
 1. Once you have verified your new feature/bug-fix, push your branch up to GitHub.

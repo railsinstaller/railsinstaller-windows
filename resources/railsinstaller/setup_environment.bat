@@ -47,4 +47,3 @@ IF EXIST %RailsInstallerPath% (
 
 REM NOTE that we start out in the Sites directory as the current working dir
 REM cd %HOMEDRIVE%\Sites
-
