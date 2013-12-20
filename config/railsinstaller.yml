@@ -35,14 +35,6 @@
   :target: 'DevKit'
   :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
 
-:ruby192:
-  :category: component
-  :title: Ruby 1.9.2
-  :name: Ruby192
-  :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/75128/ruby-1.9.2-p290-i386-mingw32.7z"
-  :rename: Ruby1.9.2
-
 :ruby193:
   :category: component
   :title: Ruby 1.9.3
