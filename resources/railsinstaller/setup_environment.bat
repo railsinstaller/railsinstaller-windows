@@ -28,9 +28,9 @@ SET RUBY_DIR=
 SET ROOT_DIR=
 
 REM
-REM Create the HOME\Sites directory.
+REM Create the %HOMEDRIVE%\Sites directory.
 REM
-IF NOT EXIST %HOMEDRIVE%\Sites. (md %HOMEDRIVE%\Sites.)
+IF NOT EXIST %HOMEDRIVE%\Sites MD %HOMEDRIVE%\Sites
 
 REM
 REM Set the HOME environment variables for Ruby & Gems to use with ENV["HOME"]
@@ -46,4 +46,4 @@ IF EXIST %RailsInstallerPath% (
 )
 
 REM NOTE that we start out in the Sites directory as the current working dir
-REM cd %HOMEDRIVE%\Sites
+IF EXIST %HOMEDRIVE%\Sites CD %HOMEDRIVE%\Sites
