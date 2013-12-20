@@ -48,7 +48,7 @@
   :title: Ruby 1.9.3
   :name: Ruby193
   :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/76953/ruby-1.9.3-p429-i386-mingw32.7z"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-1.9.3-p484-i386-mingw32.7z"
   :rename: Ruby1.9.3
 
 :git:
