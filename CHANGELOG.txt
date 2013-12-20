@@ -1,4 +1,5 @@
-2.2.2 - Ruby 1.9.3-p429, Rails 3.2.14
+2.2.2 - Ruby 1.9.3-p484, Rails 3.2.16, git 1.8.4, postgresql-9.3.2-1, sqlite 3.8.2, mysql-5.6.15
+
 2.2.0 - Updated main components to the latest version (Ruby 1.9.3-p362,
         Rails 3.2.11, git 1.8.0).
         Users can now exclude Git from the setup process (maybe it is already installed).
