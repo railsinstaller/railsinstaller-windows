@@ -1,15 +1,16 @@
-2.2.2 - Ruby 1.9.3-p429, Rails 3.2.14
+2.2.2 - Ruby 1.9.3-p484, Rails 3.2.16, git 1.8.4, postgresql-9.3.2-1, sqlite 3.8.2, mysql-5.6.15
+
 2.2.0 - Updated main components to the latest version (Ruby 1.9.3-p362,
-		Rails 3.2.11, git 1.8.0).
-		Users can now exclude Git from the setup process (maybe it is already installed).
-		
+        Rails 3.2.11, git 1.8.0).
+        Users can now exclude Git from the setup process (maybe it is already installed).
+
 2.0.0 - Ruby 1.9.2-p290,  Rails 3.1, Active Record SQLServer Adapter, TinyTDS,
         git 1.7.6, bundler 1.0.18.
 
 1.1.0 - Automatic help for user git configuration on console start.
         Automatic ssh key configuration on console start.
         Configuration summary output on console start.
-				git-bash shortcut is now added to the RailsInstaller start menu group.
+        git-bash shortcut is now added to the RailsInstaller start menu group.
 
 1.0.5 - Ruby Updating to 1.8.7-p334 for released Security Updates.
 
@@ -17,7 +18,7 @@
 
 1.0.3 - Installer now throws an error on rake package if Inno Setup 5 not found
         Added Ruby gem bin directory to the path in setup_environment.bat
-				Added creation of Sites directory in the users home instead of root
+        Added creation of Sites directory in the users home instead of root
 
 1.0.2 - Include both sqlite3 and older sqlite3-ruby (which rails 3.0.3 likes best to date)
 
@@ -31,7 +32,7 @@
 
 0.0.2 - Wizard Screen and functionality tweaks.
         Added sample Rails3 application in a directory for application projects.
-				Tweaked git config to always convert CRLF to LF.
+        Tweaked git config to always convert CRLF to LF.
 
 0.0.1 - Initial build and package tasks functional, includes Ruby 1.8.7, Git
         DevKit and Sqlite3.

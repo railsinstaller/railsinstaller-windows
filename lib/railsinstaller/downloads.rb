@@ -21,7 +21,7 @@ module RailsInstaller
       end
 
       uri = URI.parse(package.url)
-	  
+
       print "Downloading from #{package.url} to #{RailsInstaller::Archives}\n" if $Flags[:verbose]
       http.get_response(uri) do |response|
 

@@ -16,7 +16,7 @@ Except:
 
   * FreeTDS is licensed under the GNU LGPL license.
     http://www.gnu.org/licenses/lgpl-2.0.html
-  
+
   * 3rd party libraries (OpenSSL, ZLib, etc.)
 
 
