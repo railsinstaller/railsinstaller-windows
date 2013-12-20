@@ -58,6 +58,7 @@ built and packaged via rake tasks.
 
 1. Use Inno Setup to package the installer into an executable (.exe) for testing/distribution.
 
+    > SET PATH=C:\Program Files\Inno Setup 5;%PATH%
     > rake package
 
   * This creates the executable (.exe) package file in the pkg/ directory from the files staged during the build process in the stage/ directory.
