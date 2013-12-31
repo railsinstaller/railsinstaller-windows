@@ -88,7 +88,7 @@ A MSYS/MinGW based toolkit that enables RailsInstaller to build native C/C++ pac
 ### Git
 
 The git version that is bundled into RailsInstaller is
-[msysgit](http://code.google.com/p/msysgit/).
+[msysgit](http://msysgit.github.io/).
 
 ### Packaging/Installer
 
