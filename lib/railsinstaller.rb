@@ -15,15 +15,15 @@ gem "rubyzip"
 
 %w[ globals ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
-  require File.expand_path(File.join(RailsInstaller::Root,"lib", "setup", name +'.rb'))
+  require File.expand_path(File.join(RailsInstaller::Root, "lib", "setup", name + '.rb'))
 end
 
 %w[ stdlib ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
-  require File.expand_path(File.join(RailsInstaller::Root,"lib", "extensions", name +'.rb'))
+  require File.expand_path(File.join(RailsInstaller::Root, "lib", "extensions", name + '.rb'))
 end
 
 %w[ components methods downloads actions ].each do |name|
   printf "Loading #{name}...\n" if $Flags[:verbose]
-  require File.expand_path(File.join(RailsInstaller::Root,"lib", "railsinstaller", name +'.rb'))
+  require File.expand_path(File.join(RailsInstaller::Root, "lib", "railsinstaller", name + '.rb'))
 end
