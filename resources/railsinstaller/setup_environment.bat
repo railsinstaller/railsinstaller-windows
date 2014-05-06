@@ -5,14 +5,14 @@ REM Environment setup file for RailsInstaller.
 REM
 
 REM
-REM First we Determine where is RUBY_DIR (which is where this script is)
+REM First we determine where is RUBY_DIR (which is where this script is)
 REM
 PUSHD %~dp0.
 SET RUBY_DIR=%CD%
 POPD
 
 REM
-REM Now Determine the RailsInstaller Root directory (parent directory of Ruby)
+REM Now determine the RailsInstaller root directory (parent directory of Ruby)
 REM
 PUSHD %RUBY_DIR%\..
 SET ROOT_DIR=%CD%
@@ -28,9 +28,9 @@ SET RUBY_DIR=
 SET ROOT_DIR=
 
 REM
-REM Create the HOME\Sites directory.
+REM Create the %HOMEDRIVE%\Sites directory.
 REM
-IF NOT EXIST %HOMEDRIVE%\Sites. (md %HOMEDRIVE%\Sites.)
+IF NOT EXIST %HOMEDRIVE%\Sites MD %HOMEDRIVE%\Sites
 
 REM
 REM Set the HOME environment variables for Ruby & Gems to use with ENV["HOME"]
@@ -46,5 +46,4 @@ IF EXIST %RailsInstallerPath% (
 )
 
 REM NOTE that we start out in the Sites directory as the current working dir
-REM cd %HOMEDRIVE%\Sites
-
+IF EXIST %HOMEDRIVE%\Sites CD %HOMEDRIVE%\Sites

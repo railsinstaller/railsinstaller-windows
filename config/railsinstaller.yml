@@ -7,7 +7,7 @@
     - rake
     -
       :name: rails
-      :version: "3.2.14"
+      :version: "3.2.18"
     -
       :name: activerecord-sqlserver-adapter
       :version: "3.2.12"
@@ -35,20 +35,12 @@
   :target: 'DevKit'
   :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
 
-:ruby192:
-  :category: component
-  :title: Ruby 1.9.2
-  :name: Ruby192
-  :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/75128/ruby-1.9.2-p290-i386-mingw32.7z"
-  :rename: Ruby1.9.2
-
 :ruby193:
   :category: component
   :title: Ruby 1.9.3
   :name: Ruby193
   :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/76799/ruby-1.9.3-p392-i386-mingw32.7z"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-1.9.3-p545-i386-mingw32.7z"
   :rename: Ruby1.9.3
   
 :ruby200:
@@ -61,9 +53,9 @@
 
 :git:
   :category: component
-  :title: Git 1.8.1.2
+  :title: Git 1.9.2
   :name: Git
-  :url: "http://msysgit.googlecode.com/files/PortableGit-1.8.1.2-preview20130201.7z"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/PortableGit-1.9.2-preview20140411.7z"
   :target: "Git"
   :regex: '^.*$'
 
@@ -87,7 +79,7 @@
     - msvcr90.dll
     - libxml2.dll
   :regex: '^.*$'
-  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.2.3-1-windows-binaries.zip"
+  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.3.4-3-windows-binaries.zip"
 
 :rails:
   :name: Rails
@@ -123,14 +115,14 @@
     - sqlite3.def
     - sqlite3.exe
   :regex: '^.+\.exe$'
-  :url: http://sqlite.org/2013/sqlite-shell-win32-x86-3071602.zip
+  :url: http://sqlite.org/2014/sqlite-shell-win32-x86-3080403.zip
 
 :sqlite3_dll:
   :name: Sqlite3Dll
   :title: Sqlite3 Dll
   :category: component
   :regex: '^.+\.dll$'
-  :url: http://sqlite.org/2013/sqlite-dll-win32-x86-3071602.zip
+  :url: http://sqlite.org/2014/sqlite-dll-win32-x86-3080403.zip
 
 :ssl_certificates:
   :name: SSLCertificates
@@ -152,11 +144,11 @@
   :name: MySQLServer
   :title: MySQL Community Server
   :category: component
-  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.10-winx64.zip"
+  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.17-winx64.zip"
   :regex: '^.*$'
   :urls:
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.10-winx64.zip"
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.10-win32.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.17-winx64.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.17-win32.zip"
 
 :bsdtar:
   :name: BSDTar
@@ -175,4 +167,3 @@
   :binary: "7za.exe"
   :regex: '^7za\.exe$'
   :url: "http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
-

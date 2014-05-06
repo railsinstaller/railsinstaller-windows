@@ -83,4 +83,3 @@ I think I covered all the steps above, for sure rake tasks can be
 cleaned to make it more clear the dependencies :-)
 
 Hope that helps,
-

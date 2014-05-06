@@ -10,7 +10,7 @@
     </OBJECT><% rdocs.each do |rdoc| %>
     <UL>
       <LI><OBJECT type="text/sitemap">
-            <param name="Name" value="<%= rdoc[:title] %>"><% if rdoc[:file] =~ /\.chm$/ %> 
+            <param name="Name" value="<%= rdoc[:title] %>"><% if rdoc[:file] =~ /\.chm$/ %>
             <param name="Local" value="<%= rdoc[:file] %>::/index.html">
           </OBJECT>
           <OBJECT type="text/sitemap">

@@ -18,31 +18,34 @@ built and packaged via rake tasks.
 
 1. Download and install latest
    [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
-   add iscc.exe is in your PATH
+   add iscc.exe in your PATH
 
-1. [Fork](http://help.github.com/fork-a-repo/)
+1. [Fork](https://help.github.com/articles/fork-a-repo)
    the [RailsInstaller project on github](https://github.com/railsinstaller/railsinstaller-windows.git)
-   into your own github account.
+   into your own GitHub account.
 
 1. Open the the command prompt from the start menu and change directory to where you like to keep your projects.
 
 1. Clone your fork of the project.
 
-    > git clone git@github.com:{{your github user name}}/railsinstaller-windows
-
-    > cd railsinstaller-windows
+    ```bash
+    git clone https://github.com/{{your GitHub user name}}/railsinstaller-windows.git
+    cd railsinstaller-windows
+    ```
 
 1. Update from origin master (or 3.0.0) branch and checkout a new topic branch for your feature/bugfix.
 
-    > git checkout master
-
-    > git pull origin master
-
-    > git checkout -b mybranchname
+    ```bash
+    git checkout master
+    git pull origin master
+    git checkout -b mybranchname
+    ```
 
 1. Bootstrap the project. From the project root run:
 
-    > rake bootstrap
+    ```bash
+    rake bootstrap
+    ```
 
 1. Implement your new feature and/or fix your bug in your newly forked Railsinstaller project code.
 
@@ -54,11 +57,16 @@ built and packaged via rake tasks.
 
 1. Next build all components onto the stage (into the stage/ directory)
 
-    > rake build
+    ```bash
+    rake build
+    ```
 
 1. Use Inno Setup to package the installer into an executable (.exe) for testing/distribution.
 
-    > rake package
+    ```bat
+    SET PATH=C:\Program Files\Inno Setup 5;%PATH%
+    rake package
+    ```
 
   * This creates the executable (.exe) package file in the pkg/ directory from the files staged during the build process in the stage/ directory.
 
@@ -66,11 +74,12 @@ built and packaged via rake tasks.
 
 1. Once you have verified your new feature/bug-fix, push your branch up to GitHub.
 
-    > git commit -a -m "Implemented featureX/bugfixX which <description>..."
+    ```bash
+    git commit -a -m "Implemented featureX/bugfixX which <description>..."
+    git push origin mybranchname
+    ```
 
-    > git push origin mybranchname
-
-1. Now issue a [pull request](http://help.github.com/pull-requests/) on GitHub.
+1. Now issue a [pull request](https://help.github.com/articles/using-pull-requests) on GitHub.
 
 # RailsInstaller Components
 
@@ -87,7 +96,7 @@ A MSYS/MinGW based toolkit that enables RailsInstaller to build native C/C++ pac
 ### Git
 
 The git version that is bundled into RailsInstaller is
-[msysgit](http://code.google.com/p/msysgit/).
+[msysgit](http://msysgit.github.io/).
 
 ### Packaging/Installer
 

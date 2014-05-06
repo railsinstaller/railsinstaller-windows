@@ -13,15 +13,15 @@ module RailsInstaller
     else
       target_path = File.join(base_path, package.target)
     end
-    regex     = Regexp.new(package.regex) unless package.regex.nil?
-    files     = []
+    regex = Regexp.new(package.regex) unless package.regex.nil?
+    files = []
 
     printf " => Extracting #{filename}\n"
 
     Dir.chdir(RailsInstaller::Archives) do
       archive = File.join(RailsInstaller::Archives, filename)
 
-      Zip::ZipFile.open(archive) do |zipfile|
+      Zip::File.open(archive) do |zipfile|
         printf "zipfile: #{zipfile.inspect}\n" if $Flags[:verbose]
 
         if regex
@@ -73,8 +73,8 @@ module RailsInstaller
       else
         target_path = File.join(RailsInstaller::Stage, package.target)
       end
-      bsdtar      = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
-      sevenzip    = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
+      bsdtar   = File.join(RailsInstaller::Stage, "bin", RailsInstaller::BSDTar.binary)
+      sevenzip = File.join(RailsInstaller::Stage, "bin", RailsInstaller::SevenZip.binary)
 
       if package.category == "utility" &&
         File.exist?(File.join(RailsInstaller::Stage, "bin", package.binary))
@@ -133,7 +133,7 @@ module RailsInstaller
                 end
 
                 source = File.basename(package.url, File.extname(package.url))
-                printf "DEBUG: source: %s\ntarget: %s\n", source, package.rename
+                printf "DEBUG: source: %s\ntarget: %s\n", source, package.rename if $Flags[:verbose]
                 FileUtils.mv(
                   File.basename(package.url, File.extname(package.url)),
                   package.rename

@@ -49,8 +49,8 @@ puts Config[:banner]
   while git_config("user.#{key}").empty?
     if Config[:git_config_incomplete]
       puts Config[:git_config_incomplete]
-			Config[:git_config_incomplete] = nil
-		end
+        Config[:git_config_incomplete] = nil
+      end
 
     printf '%s', Config["git_#{key}_prompt".to_sym]
 
