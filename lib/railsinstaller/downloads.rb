@@ -54,7 +54,7 @@ module RailsInstaller
             end
 
             if File.exist?(File.join(RailsInstaller::Archives, filename))
-              FileUtils.rm_f(File.join(RailsInstaller::Archives,filename))
+              FileUtils.rm_f(File.join(RailsInstaller::Archives, filename))
             end
 
             Dir.chdir(RailsInstaller::Archives) do
@@ -82,7 +82,7 @@ module RailsInstaller
 
    rescue Exception => exception
       if File.exists?(File.join(RailsInstaller::Archives, filename))
-        File.unlink(File.join(RailsInstaller::Archives,filename))
+        File.unlink(File.join(RailsInstaller::Archives, filename))
       end
       printf "ERROR: #{exception.message}\n"
       return false
