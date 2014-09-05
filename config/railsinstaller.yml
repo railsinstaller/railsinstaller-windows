@@ -16,9 +16,15 @@
     - sqlite3-ruby
     - rubyzip
     - rb-readline
-    - coffee-rails
-    - jquery-rails
-    - sass-rails
+    -
+      :name: coffee-rails
+      :version: "3.2.2"
+    -
+      :name: jquery-rails
+      :version: "1.0.19"
+    -
+      :name: sass-rails
+      :version: "3.2.6"
 
 :msvc_runtime:
   :name: MsvcRuntime
