@@ -45,7 +45,7 @@ end
 #
 puts Config[:banner]
 
-["name","email"].each do |key|
+["name", "email"].each do |key|
   while git_config("user.#{key}").empty?
     if Config[:git_config_incomplete]
       puts Config[:git_config_incomplete]

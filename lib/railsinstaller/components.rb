@@ -10,7 +10,7 @@ module RailsInstaller
     ).result(binding)
   )
 
-  @@config.each_pair do |key,value|
+  @@config.each_pair do |key, value|
     const_set(value[:name], OpenStruct.new(value))
   end
 end

@@ -263,8 +263,8 @@ module RailsInstaller
     Dir.chdir(applications_path) { sh line }
     # now bootstrap gems...
 
-    if File.exist?(File.join(todo_path,".git"))
-      FileUtils.rm_rf(File.join(todo_path,".git"))
+    if File.exist?(File.join(todo_path, ".git"))
+      FileUtils.rm_rf(File.join(todo_path, ".git"))
     end
 
     gem_install File.join(Stage, Ruby200.rename), "bundler"
@@ -327,10 +327,10 @@ module RailsInstaller
       end
     elsif gems.is_a?(Hash)
       gems.each_pair do |name, version |
-        build_gem(ruby_path, name,version)
+        build_gem(ruby_path, name, version)
       end
     else
-      build_gem(ruby_path,gems)
+      build_gem(ruby_path, gems)
     end
   end
 
@@ -339,11 +339,11 @@ module RailsInstaller
       options[:version] = gem[:version]
       gem_install(ruby_path,gem[:name], options)
     else
-      gem_install(ruby_path,gem,options)
+      gem_install(ruby_path,gem, options)
     end
   end
 
-  def self.gem_install(ruby_path,gem,options={})
+  def self.gem_install(ruby_path, gem,options = {})
     printf " => Staging gem #{gem}\n" if $Flags[:verbose]
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
     line = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gem} )
