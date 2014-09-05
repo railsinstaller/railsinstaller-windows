@@ -7,7 +7,7 @@
     - rake
     -
       :name: rails
-      :version: "3.2.18"
+      :version: "3.2.19"
     -
       :name: activerecord-sqlserver-adapter
       :version: "3.2.12"
@@ -33,7 +33,7 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "http://cloud.github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
 
 :ruby193:
   :category: component
@@ -45,9 +45,9 @@
 
 :git:
   :category: component
-  :title: Git 1.9.2
+  :title: Git 1.9.4
   :name: Git
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/PortableGit-1.9.2-preview20140411.7z"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/PortableGit-1.9.4-preview20140815.7z"
   :target: "Git"
   :regex: '^.*$'
 
@@ -71,7 +71,7 @@
     - msvcr90.dll
     - libxml2.dll
   :regex: '^.*$'
-  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.3.4-3-windows-binaries.zip"
+  :url: "http://get.enterprisedb.com/postgresql/postgresql-9.3.5-1-windows-binaries.zip"
 
 :rails:
   :name: Rails
@@ -107,14 +107,14 @@
     - sqlite3.def
     - sqlite3.exe
   :regex: '^.+\.exe$'
-  :url: http://sqlite.org/2014/sqlite-shell-win32-x86-3080403.zip
+  :url: http://sqlite.org/2014/sqlite-shell-win32-x86-3080600.zip
 
 :sqlite3_dll:
   :name: Sqlite3Dll
   :title: Sqlite3 Dll
   :category: component
   :regex: '^.+\.dll$'
-  :url: http://sqlite.org/2014/sqlite-dll-win32-x86-3080403.zip
+  :url: http://sqlite.org/2014/sqlite-dll-win32-x86-3080600.zip
 
 :ssl_certificates:
   :name: SSLCertificates
@@ -136,11 +136,11 @@
   :name: MySQLServer
   :title: MySQL Community Server
   :category: component
-  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.17-winx64.zip"
+  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.20-winx64.zip"
   :regex: '^.*$'
   :urls:
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.17-winx64.zip"
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.17-win32.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.20-winx64.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.20-win32.zip"
 
 :bsdtar:
   :name: BSDTar
