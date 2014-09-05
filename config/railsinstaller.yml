@@ -48,7 +48,7 @@
   :title: Ruby 2.0.0
   :name: Ruby200
   :regex: '^.*$'
-  :url: "http://rubyforge.org/frs/download.php/76957/ruby-2.0.0-p195-i386-mingw32.7z"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-2.0.0-p481-i386-mingw32.7z"
   :rename: Ruby2.0.0
 
 :git:
