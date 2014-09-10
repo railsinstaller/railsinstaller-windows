@@ -33,7 +33,7 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
 
 :ruby193:
   :category: component
