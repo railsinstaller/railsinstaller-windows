@@ -18,13 +18,13 @@
     - rb-readline
     -
       :name: coffee-rails
-      :version: "3.2.2"
+      :version: "4.0.1"
     -
       :name: jquery-rails
-      :version: "1.0.19"
+      :version: "3.1.2"
     -
       :name: sass-rails
-      :version: "3.2.6"
+      :version: "4.0.3"
 
 :msvc_runtime:
   :name: MsvcRuntime
