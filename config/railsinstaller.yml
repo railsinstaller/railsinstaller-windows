@@ -7,10 +7,10 @@
     - rake
     -
       :name: rails
-      :version: "3.2.19"
+      :version: "4.1.5"
     -
       :name: activerecord-sqlserver-adapter
-      :version: "3.2.12"
+      :version: "4.1.0"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
@@ -42,7 +42,7 @@
   :regex: '^.*$'
   :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-1.9.3-p545-i386-mingw32.7z"
   :rename: Ruby1.9.3
-  
+
 :ruby200:
   :category: component
   :title: Ruby 2.0.0
