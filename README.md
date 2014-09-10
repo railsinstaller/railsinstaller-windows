@@ -33,7 +33,7 @@ built and packaged via rake tasks.
     cd railsinstaller-windows
     ```
 
-1. Update from origin master (or 3.0.0) branch and checkout a new topic branch for your feature/bugfix.
+1. Update from origin master branch and checkout a new topic branch for your feature/bugfix.
 
     ```bash
     git checkout master
