@@ -71,17 +71,17 @@ begin
   GitChkBox := TCheckBox.Create(Page);
   GitChkBox.Parent := Page.Surface;
   GitChkBox.State := cbChecked;
-  GitChkBox.Caption := 'Install Git (recommended) ';
+  GitChkBox.Caption := CustomMessage('InstallGitCheckBox');
   GitChkBox.Alignment := taRightJustify;
   GitChkBox.Top := ScaleY(95);
   GitChkBox.Left := ScaleX(18);
   GitChkBox.Width := Page.SurfaceWidth;
   GitChkBox.Height := ScaleY(17);
-  
+
   PathChkBox := TCheckBox.Create(Page);
   PathChkBox.Parent := Page.Surface;
   PathChkBox.State := cbChecked;
-  PathChkBox.Caption := 'Add executables for Ruby, DevKit and Git (if checked above) to the PATH ';
+  PathChkBox.Caption := CustomMessage('AddToPathCheckBox');
   PathChkBox.Alignment := taRightJustify;
   PathChkBox.Top := ScaleY(125);
   PathChkBox.Left := ScaleX(18);
@@ -97,7 +97,7 @@ begin
   TmpLabel.Top := ScaleY(180);
   TmpLabel.Left := ScaleX(176);
   TmpLabel.AutoSize := True;
-  TmpLabel.Caption := 'Web Site:';
+  TmpLabel.Caption := CustomMessage('WebSiteLabel');
 
   URLText := TNewStaticText.Create(HostPage);
   URLText.Parent := HostPage;
@@ -114,7 +114,7 @@ begin
   TmpLabel.Top := ScaleY(196);
   TmpLabel.Left := ScaleX(176);
   TmpLabel.AutoSize := True;
-  TmpLabel.Caption := 'Mailing List:';
+  TmpLabel.Caption := CustomMessage('MailingListLabel');
 
   URLText := TNewStaticText.Create(HostPage);
   URLText.Parent := HostPage;
@@ -131,7 +131,7 @@ begin
   TmpLabel.Top := ScaleY(212);
   TmpLabel.Left := ScaleX(176);
   TmpLabel.AutoSize := True;
-  TmpLabel.Caption := 'IRC:';
+  TmpLabel.Caption := CustomMessage('IRCLabel');
 
   URLText := TNewStaticText.Create(HostPage);
   URLText.Parent := HostPage;
@@ -158,6 +158,6 @@ end;
 procedure CurPageChanged(CurPageID: Integer);
 begin
   if CurPageID = wpSelectDir then
-    WizardForm.NextButton.Caption := '&Install';
+    WizardForm.NextButton.Caption := CustomMessage('InstallButton');
 end;
 

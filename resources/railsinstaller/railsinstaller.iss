@@ -60,7 +60,6 @@ AppVersion={#InstallerVersion}
 DefaultGroupName={#InstallerName}
 DefaultDirName={sd}\RailsInstaller
 DisableProgramGroupPage=true
-LicenseFile=LICENSE.txt
 Compression=lzma2/ultra64
 SolidCompression=true
 AlwaysShowComponentsList=false
@@ -83,22 +82,8 @@ SignTool=risigntool sign /a /d $q{#InstallerNameWithVersion}$q /du $q{#Installer
 #endif
 
 [Languages]
-Name: en; MessagesFile: compiler:Default.isl
-
-[Messages]
-en.InstallingLabel=Installing [name], this will take a few minutes...
-en.WelcomeLabel1=Welcome to [name]!
-en.WelcomeLabel2=This will install [name/ver] on your computer which includes Ruby 2.0.0, Rails 4.1.5, Git, Sqlite3, DevKit, and TinyTDS with FreeTDS.  Please close any console applications before continuing.
-en.WizardLicense={#InstallerName} License Agreement
-en.LicenseLabel=
-en.LicenseLabel3=Please read the following License Agreements and accept the terms before continuing the installation.
-en.LicenseAccepted=I &accept all of the Licenses
-en.LicenseNotAccepted=I &decline any of the Licenses
-en.WizardSelectDir=Installation Destination and Optional Tasks
-en.SelectDirDesc=This is the location that Ruby, DevKit, Git, Rails and Sqlite will be installed to.
-en.SelectDirLabel3=[name] will be installed into the following folder. Click Install to continue or click Browse to use a different one.
-en.SelectDirBrowseLabel=Please avoid any folder name that contains spaces (e.g. Program Files).
-en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
+Name: "en"; MessagesFile: "compiler:Default.isl,Default.isl"; LicenseFile: "LICENSE.txt"
+Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl,Languages\BrazilianPortuguese.isl"; LicenseFile: "LICENSE-BR.txt"
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
@@ -121,16 +106,16 @@ Source: setup_environment.bat; DestDir: {app}\{#RubyPath}
 ;Root: HKCU; Subkey: Software\RailsInstaller; ValueType: string; ValueName: ; ValueData: ; Flags: uninsdeletevalue uninsdeletekeyifempty; Check: IsNotAdmin
 
 [Icons]
-Name: {group}\Interactive Ruby; Filename: {app}\{#RubyPath}\bin\irb.bat; WorkingDir: {app}\{#RubyPath} ; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
-Name: {group}\RubyGems Documentation Server; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
-Name: {group}\Command Prompt with Ruby and Rails; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
-Name: {group}\Git Bash; Filename: {sys}\cmd.exe; Parameters: "/c """"{app}\Git\bin\sh.exe"" --login -i"""; WorkingDir: {sd}\Sites; IconFilename: {app}\Git\etc\git.ico; Check: InstallGit; Flags: createonlyiffileexists
+Name: {group}\{cm:IrbIconName}; Filename: {app}\{#RubyPath}\bin\irb.bat; WorkingDir: {app}\{#RubyPath}; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists
+Name: {group}\{cm:RubyGemsDocIconName}; Filename: {app}\{#RubyPath}\bin\gem.bat; Parameters: server; IconFilename: {app}\{#RubyPath}\bin\ruby.exe; Flags: createonlyiffileexists runminimized
+Name: {group}\{cm:CmdWithRailsIconName}; Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; IconFilename: {sys}\cmd.exe; Flags: createonlyiffileexists
+Name: {group}\{cm:GitBashIconName}; Filename: {sys}\cmd.exe; Parameters: "/c """"{app}\Git\bin\sh.exe"" --login -i"""; WorkingDir: {sd}\Sites; IconFilename: {app}\Git\etc\git.ico; Check: InstallGit; Flags: createonlyiffileexists
 ; {%HOMEPATH%}
 Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Run]
 Filename: "{app}\{#RubyPath}\bin\ruby.exe"; Parameters: "dk.rb install --force"; WorkingDir: "{app}\DevKit"; Flags: runhidden
-Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; Description: "Configure git and ssh when installation has completed."; Check: InstallGit; Flags: postinstall nowait skipifsilent
+Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; Description: "{cm:ConfigureGitCheckBoxDescription}"; Check: InstallGit; Flags: postinstall nowait skipifsilent
 
 ; TODO: Instead of running the full vcredist, simply extract and bundle the dll
 ;       files with an associated manifest.
@@ -153,17 +138,15 @@ begin
   begin
     if UsingWinNT then
     begin
-      Log(Format('Selected Tasks - Path: %d', [PathChkBox.State]));
+      Log(Format(CustomMessage('SelectedTasksLog'), [PathChkBox.State]));
 
       if IsModifyPath then
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
-		if InstallGit then
-			ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
+  		if InstallGit then
+  			ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
 
     end else
-      MsgBox('Looks like you''ve got on older, unsupported Windows version.' #13 +
-             'Proceeding with a reduced feature set installation.',
-             mbInformation, MB_OK);
+      MsgBox(CustomMessage('OlderWindowsVersionMsg'), mbInformation, MB_OK);
   end;
 end;
 
