@@ -48,7 +48,7 @@ IF EXIST %RailsInstallerPath% (
 REM NOTE that we start out in the Sites directory as the current working dir
 IF EXIST %HOMEDRIVE%\Sites CD %HOMEDRIVE%\Sites
 REM
-REM Set the RAILS_WORKSPACE only if the user doesn't already did it
+REM Set the RAILS_WORKSPACE only if the user hasn't already done it
 REM
 IF [%RAILS_WORKSPACE%] == [] (
   SET RAILS_WORKSPACE=%HOMEDRIVE%\Sites
