@@ -7,7 +7,7 @@
     - rake
     -
       :name: rails
-      :version: "4.1.5"
+      :version: "4.1.8"
     -
       :name: activerecord-sqlserver-adapter
       :version: "4.1.0"
@@ -18,13 +18,13 @@
     - rb-readline
     -
       :name: coffee-rails
-      :version: "4.0.1"
+      :version: "4.1.0"
     -
       :name: jquery-rails
       :version: "3.1.2"
     -
       :name: sass-rails
-      :version: "4.0.3"
+      :version: "4.0.4"
 
 :msvc_runtime:
   :name: MsvcRuntime
@@ -121,14 +121,14 @@
     - sqlite3.def
     - sqlite3.exe
   :regex: '^.+\.exe$'
-  :url: http://sqlite.org/2014/sqlite-shell-win32-x86-3080600.zip
+  :url: http://sqlite.org/2014/sqlite-shell-win32-x86-3080702.zip
 
 :sqlite3_dll:
   :name: Sqlite3Dll
   :title: Sqlite3 Dll
   :category: component
   :regex: '^.+\.dll$'
-  :url: http://sqlite.org/2014/sqlite-dll-win32-x86-3080600.zip
+  :url: http://sqlite.org/2014/sqlite-dll-win32-x86-3080702.zip
 
 :ssl_certificates:
   :name: SSLCertificates
@@ -150,11 +150,11 @@
   :name: MySQLServer
   :title: MySQL Community Server
   :category: component
-  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.20-winx64.zip"
+  :url: "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.21-winx64.zip"
   :regex: '^.*$'
   :urls:
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.20-winx64.zip"
-    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.20-win32.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.21-winx64.zip"
+    - "http://mysql.mirrors.pair.com/Downloads/MySQL-5.6/mysql-5.6.21-win32.zip"
 
 :bsdtar:
   :name: BSDTar

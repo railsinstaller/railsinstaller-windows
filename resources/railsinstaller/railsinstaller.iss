@@ -88,7 +88,7 @@ Name: en; MessagesFile: compiler:Default.isl
 [Messages]
 en.InstallingLabel=Installing [name], this will take a few minutes...
 en.WelcomeLabel1=Welcome to [name]!
-en.WelcomeLabel2=This will install [name/ver] on your computer which includes Ruby 2.0.0, Rails 4.1.5, Git, Sqlite3, DevKit, and TinyTDS with FreeTDS.  Please close any console applications before continuing.
+en.WelcomeLabel2=This will install [name/ver] on your computer which includes Ruby 2.0.0, Rails 4.1.8, Git, Sqlite3, DevKit, and TinyTDS with FreeTDS.  Please close any console applications before continuing.
 en.WizardLicense={#InstallerName} License Agreement
 en.LicenseLabel=
 en.LicenseLabel3=Please read the following License Agreements and accept the terms before continuing the installation.
