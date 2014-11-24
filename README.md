@@ -85,7 +85,7 @@ built and packaged via rake tasks.
 
 The next few sections detail the core components that make up RailsInstaller.
 
-### Ruby 2.0.0 on Windows
+### Ruby 2.1.5 on Windows
 
 RubyInstaller is a self contained package installer which installs Ruby and RubyGems on a windows system, head over to [http://rubyinstaller.org/](http://rubyinstaller.org/) for more information.
 

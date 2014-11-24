@@ -41,13 +41,13 @@
   :target: 'DevKit'
   :url: "http://s3.amazonaws.com/railsinstaller/Resources/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
 
-:ruby200:
+:ruby210:
   :category: component
-  :title: Ruby 2.0.0
-  :name: Ruby200
+  :title: Ruby 2.1.0
+  :name: Ruby210
   :regex: '^.*$'
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-2.0.0-p598-i386-mingw32.7z"
-  :rename: Ruby2.0.0
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-2.1.5-i386-mingw32.7z"
+  :rename: Ruby2.1.0
 
 :git:
   :category: component
