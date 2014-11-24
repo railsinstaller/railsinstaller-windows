@@ -3,7 +3,7 @@ task :default do
 
   {bootstrap, build, package}
 
-See README for more details.\n\n"
+See README.md for more details.\n\n"
 end
 
 task :require_railsinstaller do
@@ -33,7 +33,7 @@ task :bootstrap do
 
   end
 
-  printf "Bootstrapped.\nDo not forget to download and install InnoSetup, see README for more information. \n"
+  printf "Bootstrapped.\nDo not forget to download and install Inno Setup, see README.md for more information. \n"
 
 end
 

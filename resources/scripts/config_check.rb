@@ -5,7 +5,7 @@ require "fileutils"
 Config =
   {
     :banner => "\n# Rails Environment Configuration.\n",
-    :git_config_incomplete => "\nYour git configuration is incomplete.\nuser.name and user.email are required for properly using git and services such \nas GitHub ( http://github.com/ ).\n",
+    :git_config_incomplete => "\nYour git configuration is incomplete.\nuser.name and user.email are required for properly using git and services such \nas GitHub ( https://github.com/ ).\n",
     :git_name_prompt => "\n Please enter your name, for example mine is: Wayne E. Seguin\nname > ",
     :git_email_prompt => "\n Please enter your email address, for example mine is: wayneeseguin@gmail.com\nemail > ",
     :railsinstaller_path => File.dirname(File.dirname($0)),

@@ -39,9 +39,9 @@ module RailsInstaller
   def self.package!
 
     unless %x{iscc --version}.scan("Inno Setup 5")
-      printf "ERROR: Inno Setup 5 is required in order to package RailsInstaller.\n"
+      printf "ERROR: Inno Setup is required in order to package RailsInstaller.\n"
       printf "  http://www.jrsoftware.org/isdl.php#qsp\n"
-      printf "Please see README for full RailsInstaller instructions.\n"
+      printf "Please see README.md for full RailsInstaller instructions.\n"
       exit 1
     end
 

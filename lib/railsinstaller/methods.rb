@@ -366,7 +366,7 @@ module RailsInstaller
   def self.iscc(*params)
     executable = nil
 
-    # look for InnoSetup compiler in the PATH
+    # look for Inno Setup compiler in the PATH
     found = ENV["PATH"].split(File::PATH_SEPARATOR).find do |path|
       File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
     end

@@ -1,4 +1,4 @@
-; RailsInstaller - InnoSetup Script
+; RailsInstaller - Inno Setup Script
 ; Adaptation from RubyInstaller installer script
 ;
 
