@@ -55,6 +55,13 @@ built and packaged via rake tasks.
 
   * Methods called by the actions.rb file are implemented by lib/railsinstaller/methods.rb.
 
+1. Fetch the SSL certificate and add it to the path
+
+    ```bash
+    rake ssl_cert
+    SET SSL_CERT_FILE=C:\RailsInstaller\cacert.pem
+    ```
+    
 1. Next build all components onto the stage (into the stage/ directory)
 
     ```bash
