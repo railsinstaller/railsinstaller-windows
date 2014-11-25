@@ -39,21 +39,21 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
+  :url: "http://cdn.rubyinstaller.org/archives/devkits/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
 
 :ruby200:
   :category: component
   :title: Ruby 2.0.0
   :name: Ruby200
   :regex: '^.*$'
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-2.0.0-p598-i386-mingw32.7z"
+  :url: "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.0.0-p598-i386-mingw32.7z"
   :rename: Ruby2.0.0
 
 :git:
   :category: component
   :title: Git 1.9.4
   :name: Git
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/PortableGit-1.9.4-preview20140929.7z"
+  :url: "https://github.com/msysgit/msysgit/releases/download/Git-1.9.4-preview20140929/PortableGit-1.9.4-preview20140929.7z"
   :target: "Git"
   :regex: '^.*$'
 
@@ -121,13 +121,6 @@
   :category: component
   :regex: '^.+\.dll$'
   :url: http://sqlite.org/2014/sqlite-dll-win32-x86-3080702.zip
-
-:ssl_certificates:
-  :name: SSLCertificates
-  :title: Certificates
-  :category: component
-  :url: http://curl.haxx.se/ca
-  :file: cacert.pem
 
 :mysql_gem:
   :name: Mysql
