@@ -1,5 +1,5 @@
 3.0.0 - Ruby 2.0.0-p598, Rails 4.1.8, activerecord-sqlserver-adapter 4.1.0,
-        coffee-rails 4.1.0, jquery-rails 3.1.2, sass-rails 4.0.4, sqlite 3.8.7.2,
+        coffee-rails 4.1.0, jquery-rails 3.1.2, sass-rails 4.0.5, sqlite 3.8.7.2,
         mysql-5.6.21.
 
 2.2.4 - Rails 3.2.19, git 1.9.4, sqlite 3.8.6, mysql-5.6.20
