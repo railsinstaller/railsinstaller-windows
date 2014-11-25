@@ -1,10 +1,8 @@
 class String
-  #
   # Converts a lower case and underscored string to UpperCamelCase.
   #
   # Examples:
-  #   "build_path".camelcase   # => "BuildPath"
-  #
+  #   "ruby_build_path".camelcase   # => "RubyBuildPath"
   def camelcase
     self.gsub(/(?:\A|_)(.)/) { $1.upcase }
   end

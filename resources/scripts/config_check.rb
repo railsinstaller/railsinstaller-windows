@@ -5,17 +5,17 @@ require "fileutils"
 Config =
   {
     :banner => "\n# Rails Environment Configuration.\n",
-    :git_config_incomplete => "\nYour git configuration is incomplete.\nuser.name and user.email are required for properly using git and services such \nas GitHub ( https://github.com/ ).\n",
+    :git_config_incomplete => "\nYour git configuration is incomplete.\nuser.name and user.email are required for properly using git and services such\nas GitHub (https://github.com/).\n",
     :git_name_prompt => "\n Please enter your name, for example mine is: Wayne E. Seguin\nname > ",
     :git_email_prompt => "\n Please enter your email address, for example mine is: wayneeseguin@gmail.com\nemail > ",
     :railsinstaller_path => File.dirname(File.dirname($0)),
-    :home        => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"] ),
-    :ssh_path    => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh" ),
-    :ssh_key     => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa"),
-    :ssh_pub_key => File.join( ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa.pub"),
-    :ssh_keygen  => File.join( File.dirname(File.dirname($0)), "Git", "bin", "ssh-keygen.exe"),
-    :git         => File.join( File.dirname(File.dirname($0)), "Git", "bin", "git.exe"),
-    :cat         => File.join( File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
+    :home        => File.join(ENV["HOMEDRIVE"], ENV["HOMEPATH"]),
+    :ssh_path    => File.join(ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh"),
+    :ssh_key     => File.join(ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa"),
+    :ssh_pub_key => File.join(ENV["HOMEDRIVE"], ENV["HOMEPATH"], ".ssh", "id_rsa.pub"),
+    :ssh_keygen  => File.join(File.dirname(File.dirname($0)), "Git", "bin", "ssh-keygen.exe"),
+    :git         => File.join(File.dirname(File.dirname($0)), "Git", "bin", "git.exe"),
+    :cat         => File.join(File.dirname(File.dirname($0)), "Git", "bin", "cat.exe")
   }
 
 @notes = []
@@ -52,7 +52,7 @@ puts Config[:banner]
         Config[:git_config_incomplete] = nil
       end
 
-    printf '%s', Config["git_#{key}_prompt".to_sym]
+    printf "%s", Config["git_#{key}_prompt".to_sym]
 
     value = gets.chomp
     next if value.empty?
@@ -84,7 +84,7 @@ rails:
 
 ssh:
   public_key_location: #{Config[:ssh_pub_key]}
-  public_key_contents: #{File.open(Config[:ssh_pub_key], 'r') { |file| file.read }}
+  public_key_contents: #{File.open(Config[:ssh_pub_key], "r") { |file| file.read }}
 
 #{@notes.empty? ? "" : "NOTES:\n\n  #{@notes.join("\n  ")}"}
 

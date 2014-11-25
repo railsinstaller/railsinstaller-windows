@@ -33,7 +33,7 @@ task :bootstrap do
 
   end
 
-  printf "Bootstrapped.\nDo not forget to download and install Inno Setup, see README.md for more information. \n"
+  printf "Bootstrapped.\nDo not forget to download and install Inno Setup, see README.md for more information.\n"
 
 end
 

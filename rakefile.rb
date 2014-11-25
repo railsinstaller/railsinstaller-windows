@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "rubygems" if RUBY_VERSION.match(/1.8/)
+require "rubygems"
 require "rake"
 
 # Ensure project root is in the LOAD_PATH
@@ -15,6 +15,7 @@ if Rake.application.options.trace
 end
 
 # Load all Rake Task definitions
-Dir["#{ProjectRoot}/rake/*.rake"].each do |rakefile|
-  load rakefile
+Dir["#{ProjectRoot}/rake/*.rake"].each do |file|
+  puts "Loading #{File.basename(file)}" if Rake.application.options.trace
+  load file
 end

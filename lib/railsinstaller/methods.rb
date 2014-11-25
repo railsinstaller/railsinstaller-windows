@@ -82,7 +82,7 @@ module RailsInstaller
         return
       end
 
-      printf " => Extracting "#{filename}" to the stage.\n" if $Flags[:verbose]
+      printf " => Extracting #{filename} to the stage.\n" if $Flags[:verbose]
 
       FileUtils.mkdir_p(RailsInstaller::Stage) unless File.directory?(RailsInstaller::Stage)
 
