@@ -200,6 +200,20 @@ module RailsInstaller
   end
 
   #
+  # Copy the SSL certificates on to the stage
+  #
+  # def self.stage_certificates
+    # SSLCertificates.files.each do |file|
+      # if File.exist?(File.join(Stage, file))
+        # FileUtils.mv(
+          # File.join(Stage, file),
+          # File.join(Stage, Ruby210.rename, "bin", file)
+        # )
+      # end
+    # end
+  # end
+
+  #
   # Copy required Postgresql files on to the stage
   #
   def self.stage_postgresql
@@ -348,7 +362,7 @@ module RailsInstaller
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
     line = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gem} )
     line << %Q( -v"#{options[:version]}" ) if options[:version]
-    line << %Q( --env-shebang --no-rdoc --no-ri --source http://rubygems.org )
+    line << %Q( --env-shebang --no-rdoc --no-ri --source https://rubygems.org )
     line << options[:args] if options[:args]
     sh line
   end
@@ -399,7 +413,7 @@ module RailsInstaller
     printf "\nDEBUG: > %s\n\n", line if $Flags[:verbose]
 
     output, status = Open3.capture2e(line)
-    puts output.read unless output.empty?  if $Flags[:versbose]
+    puts output.read unless output.empty? if $Flags[:versbose]
   end
 
   def self.log(text)

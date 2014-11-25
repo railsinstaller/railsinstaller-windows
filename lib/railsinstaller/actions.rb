@@ -5,15 +5,19 @@ module RailsInstaller
     components = [
       BSDTar, SevenZip, DevKit, Git, Ruby200,
       PostgresServer, Sqlite3, Sqlite3Dll
+      #, SSLCertificates
     ]
 
     components.each do |package|
       section  package.title
       download package
       extract  package
+      #unless package.title == "SSLCertificates"
     end
 
     stage_sqlite
+
+    #stage_certificates
 
     link_devkit_with_ruby
 

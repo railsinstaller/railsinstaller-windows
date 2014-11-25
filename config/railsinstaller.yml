@@ -126,8 +126,7 @@
   :name: SSLCertificates
   :title: Certificates
   :category: component
-  :url: http://curl.haxx.se/ca
-  :file: cacert.pem
+  :url: http://curl.haxx.se/ca/cacert.pem
 
 :mysql_gem:
   :name: Mysql
