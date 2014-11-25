@@ -122,13 +122,6 @@
   :regex: '^.+\.dll$'
   :url: http://sqlite.org/2014/sqlite-dll-win32-x86-3080702.zip
 
-:ssl_certificates:
-  :name: SSLCertificates
-  :title: Certificates
-  :category: component
-  :url: http://curl.haxx.se/ca
-  :file: cacert.pem
-
 :mysql_gem:
   :name: Mysql
   :title: MySQL Gem
