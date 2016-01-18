@@ -3,7 +3,7 @@ module RailsInstaller
   def self.build!
 
     components = [
-      BSDTar, SevenZip, DevKit, Git, Ruby210,
+      BSDTar, SevenZip, DevKit, Git, Ruby220,
       PostgresServer, Sqlite3, Sqlite3Dll
     ]
 
@@ -52,7 +52,7 @@ module RailsInstaller
     iscc "\"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
           "/dInstallerVersion=#{railsinstaller_version}",
           "/dStagePath=\"#{RailsInstaller::Stage}\"",
-          "/dRubyPath=\"#{RailsInstaller::Ruby210.rename}\"",
+          "/dRubyPath=\"#{RailsInstaller::Ruby220.rename}\"",
           "/dResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
           "/o\"#{RailsInstaller::PackageDir}\"",
           "/frailsinstaller-#{railsinstaller_version}"
