@@ -7,10 +7,10 @@
     - rake
     -
       :name: rails
-      :version: "4.1.8"
+      :version: "4.2.5.1"
     -
       :name: activerecord-sqlserver-adapter
-      :version: "4.1.0"
+      :version: "4.2.6"
     - tiny_tds
     - sqlite3
     - sqlite3-ruby
@@ -18,13 +18,13 @@
     - rb-readline
     -
       :name: coffee-rails
-      :version: "4.1.0"
+      :version: "4.1.1"
     -
       :name: jquery-rails
-      :version: "3.1.2"
+      :version: "4.1.0"
     -
       :name: sass-rails
-      :version: "4.0.5"
+      :version: "5.0.4"
 
 :msvc_runtime:
   :name: MsvcRuntime
@@ -46,7 +46,7 @@
   :title: Ruby 2.1.0
   :name: Ruby210
   :regex: '^.*$'
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-2.1.5-i386-mingw32.7z"
+  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-2.1.8-i386-mingw32.7z"
   :rename: Ruby2.1.0
 
 :git:
