@@ -22,7 +22,7 @@ REM
 REM Add RUBY_DIR\bin to the PATH, DevKit\bin and then Git\cmd
 REM RUBY_DIR\bin takes higher priority to avoid other tools conflict
 REM
-SET PATH=%RUBY_DIR%\bin;%RUBY_DIR%\lib\ruby\gems\1.9.1\bin;%ROOT_DIR%\DevKit\bin;%PATH%
+SET PATH=%RUBY_DIR%\bin;%RUBY_DIR%\lib\ruby\gems\2.1.0\bin;%ROOT_DIR%\DevKit\bin;%PATH%
 IF EXIST %ROOT_DIR%\Git\cmd SET PATH=%ROOT_DIR%\Git\cmd;%PATH%
 SET RUBY_DIR=
 SET ROOT_DIR=
