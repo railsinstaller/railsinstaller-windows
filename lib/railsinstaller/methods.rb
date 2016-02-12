@@ -218,7 +218,7 @@ module RailsInstaller
   #
   def self.link_devkit_with_ruby
     devkit_path = File.join(Stage, DevKit.target)
-    ruby_path = File.join(Stage, Ruby210.rename)
+    ruby_path = File.join(Stage, Ruby220.rename)
     FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
     Dir.chdir(devkit_path) do
       File.open("config.yml", "w") do |file|
