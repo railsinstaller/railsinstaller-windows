@@ -46,7 +46,7 @@
   :title: Ruby 2.2.0
   :name: Ruby220
   :regex: '^.*$'
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/ruby-2.2.4-i386-mingw32.7z"
+  :url: "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.2.6-i386-mingw32.7z"
   :rename: Ruby2.2.0
 
 :git:
