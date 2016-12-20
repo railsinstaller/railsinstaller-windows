@@ -5,8 +5,8 @@ module RailsInstaller
 
   # Original download() code taken from Rubinius and then butchered ;)
   # https://github.com/evanphx/rubinius/blob/master/configure#L307-350
-  def self.download(package, count = 3)
-   filename = File.basename(package.url)
+  def self.download(url, filename = nil, count = 3)
+   filename ||= File.basename(url)
 
    return if File.exists?(File.join(RailsInstaller::Archives, filename))
 
@@ -20,9 +20,9 @@ module RailsInstaller
         http = Net::HTTP
       end
 
-      uri = URI.parse(package.url)
+      uri = URI.parse(url)
 
-      print "Downloading from #{package.url} to #{RailsInstaller::Archives}\n" if $Flags[:verbose]
+      print "Downloading from #{url} to #{RailsInstaller::Archives}/#{filename}\n" if $Flags[:verbose]
       http.get_response(uri) do |response|
 
         case response
@@ -38,8 +38,8 @@ module RailsInstaller
           when Net::HTTPRedirection
             raise "Too many redirections for the original url, halting." if count <= 0
             print "Redirected to #{response["Location"]}\n" if $Flags[:verbose]
-            package.url = response["location"]
-            return download(package, count - 1)
+            url = response["location"]
+            return download(url, filename, count - 1)
 
           when Net::HTTPOK
             temp_file = Tempfile.new("download-#{filename}")

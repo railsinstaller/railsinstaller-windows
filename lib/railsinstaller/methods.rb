@@ -305,7 +305,7 @@ module RailsInstaller
 
   # MSVC Runtime 2008 is Required for Postgresql Server
   def self.stage_msvc_runtime
-    download(MsvcRuntime)
+    download(MsvcRuntime.url)
     pkg_path = File.join(RailsInstaller::Stage, "pkg")
 
     FileUtils.mkdir_p(pkg_path) unless File.exist?(pkg_path)

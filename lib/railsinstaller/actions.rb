@@ -9,7 +9,7 @@ module RailsInstaller
 
     components.each do |package|
       section  package.title
-      download package
+      download package.url
       extract  package
     end
 
