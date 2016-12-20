@@ -130,6 +130,7 @@ Name: {group}\{cm:UninstallProgram,{#InstallerName}}; Filename: {uninstallexe}
 
 [Run]
 Filename: "{app}\{#RubyPath}\bin\ruby.exe"; Parameters: "dk.rb install --force"; WorkingDir: "{app}\DevKit"; Flags: runhidden
+Filename: "{app}\{#RubyPath}\bin\gem.bat"; Parameters: "pristine --all --only-executables"; WorkingDir: "{app}\{#RubyPath}\bin"; Flags: runhidden
 Filename: {sys}\cmd.exe; Parameters: /E:ON /K {app}\{#RubyPath}\setup_environment.bat {app}; WorkingDir: {sd}\Sites; Description: "Configure git and ssh when installation has completed."; Check: InstallGit; Flags: postinstall nowait skipifsilent
 
 ; TODO: Instead of running the full vcredist, simply extract and bundle the dll
