@@ -47,3 +47,16 @@ IF EXIST %RailsInstallerPath% (
 
 REM NOTE that we start out in the Sites directory as the current working dir
 IF EXIST %HOMEDRIVE%\Sites CD %HOMEDRIVE%\Sites
+REM
+REM Set the RAILS_WORKSPACE only if the user hasn't already done it
+REM
+IF [%RAILS_WORKSPACE%] == [] (
+  SET RAILS_WORKSPACE=%HOMEDRIVE%\Sites
+)
+
+REM
+REM Create the RAILS_WORKSPACE directory and cd it.
+REM
+IF NOT EXIST %RAILS_WORKSPACE% (md %RAILS_WORKSPACE%.)
+cd %RAILS_WORKSPACE%
+
