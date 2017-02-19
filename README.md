@@ -55,6 +55,17 @@ built and packaged via rake tasks.
 
   * Methods called by the actions.rb file are implemented by lib/railsinstaller/methods.rb.
 
+1. Set `SSL_CERT_FILE` environment variable.
+
+    ```bash
+    SET SSL_CERT_FILE=C:\path\to\cacert.pem
+    ruby -e 'p ENV["SSL_CERT_FILE"]'
+    C:\path\to\cacert.pem  # This result is OK
+
+    ruby -e 'p ENV["SSL_CERT_FILE"]'
+    nil                    # This result is NG
+    ```
+
 1. Next build all components onto the stage (into the stage/ directory)
 
     ```bash
