@@ -77,6 +77,7 @@ WizardSmallImageFile={#ResourcesPath}\images\RailsInstallerWizardImageSmall.bmp
 PrivilegesRequired=lowest
 ChangesAssociations=yes
 ChangesEnvironment=yes
+UsePreviousAppDir=no
 
 #if Defined(SignPackage) == 1
 SignTool=risigntool sign /a /d $q{#InstallerNameWithVersion}$q /du $q{#InstallerHomepage}$q /t $qhttp://timestamp.comodoca.com/authenticode$q $f

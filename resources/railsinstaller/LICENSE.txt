@@ -1,4 +1,4 @@
-Copyright (c) 2010-2014 RailsInstaller Team.
+Copyright (c) 2010-2017 RailsInstaller Team.
 
 Except:
 
