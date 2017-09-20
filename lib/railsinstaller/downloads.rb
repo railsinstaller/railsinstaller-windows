@@ -1,6 +1,6 @@
 module RailsInstaller
 
-  require "net/http"
+  require "net/https"
   require "tempfile"
 
   # Original download() code taken from Rubinius and then butchered ;)

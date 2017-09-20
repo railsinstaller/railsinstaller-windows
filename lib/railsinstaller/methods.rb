@@ -193,7 +193,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.mv(
           File.join(Stage, file),
-          File.join(Stage, Ruby220.rename, "bin", file)
+          File.join(Stage, Ruby233.rename, "bin", file)
         )
       end
     end
@@ -207,7 +207,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.cp(
           File.join(Stage, PostgresServer.target, "bin", file),
-          File.join(Stage, Ruby220.rename, "bin", file)
+          File.join(Stage, Ruby233.rename, "bin", file)
         )
       end
     end
@@ -218,7 +218,7 @@ module RailsInstaller
   #
   def self.link_devkit_with_ruby
     devkit_path = File.join(Stage, DevKit.target)
-    ruby_path = File.join(Stage, Ruby220.rename)
+    ruby_path = File.join(Stage, Ruby233.rename)
     FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
     Dir.chdir(devkit_path) do
       File.open("config.yml", "w") do |file|
@@ -239,14 +239,29 @@ module RailsInstaller
 
   def self.stage_gems
     section Gems
-    build_gems(File.join(Stage, Ruby220.rename), Gems.list)
-    build_gem(File.join(Stage, Ruby220.rename), "pg", {
+    build_gems(File.join(Stage, Ruby233.rename), Gems.list)
+    build_gem(File.join(Stage, Ruby233.rename), "pg", {
       :args => [
           "--",
           "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
           "--with-pg-lib=#{File.join(Stage, "pgsql", "lib")}"
       ].join(" ")
     })
+  end
+
+  def self.fix_batch_files
+    ruby_path = File.join(Stage, Ruby233.rename)
+    bin_path = File.join(ruby_path, "bin/")
+	  filenames = Dir.glob("#{bin_path}*.bat")
+	  filenames.each do |filename|
+		  text = File.read(filename)
+		  fixed = text.gsub(/#{bin_path}/, '')
+		  other_bin_path = bin_path.gsub(/\//, '\\\\\\\\')
+		  fixed = fixed.gsub(/#{other_bin_path}/, '')
+		  File.open(filename, "w") { |file|
+			  file.write fixed
+		  }
+	  end
   end
 
   def self.stage_todo_application
@@ -256,7 +271,7 @@ module RailsInstaller
 
     git_binary = File.join(Stage, Git.target, "bin", "git")
 
-    line = %Q(#{git_binary} clone https://github.com/engineyard/todo todo)
+    line = %Q(#{git_binary} clone -b railsinstaller https://github.com/engineyard/todo todo)
 
     applications_path = File.join(RailsInstaller::Stage, "Sites")
     FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
@@ -267,9 +282,9 @@ module RailsInstaller
       FileUtils.rm_rf(File.join(todo_path, ".git"))
     end
 
-    gem_install File.join(Stage, Ruby220.rename), "bundler"
+    gem_install File.join(Stage, Ruby233.rename), "bundler", :version => "1.15.3"
 
-    ruby_binary("bundle", "bundle", "", File.join(Stage, Ruby220.rename))
+    ruby_binary("bundle", "install", "", File.join(Stage, Ruby233.rename), File.join(applications_path, "todo"))
   end
 
   def self.stage_rails_sample_application
@@ -278,7 +293,7 @@ module RailsInstaller
     section Rails
     sample = File.join(Stage, "Sites", "sample")
     FileUtils.rm_rf(sample) if File.exist?(sample)
-    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby220.rename))
+    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby233.rename))
   end
 
   # Renders setup scripts to be used post-installation
@@ -298,7 +313,7 @@ module RailsInstaller
     %w( publickey.bat ).each do |file|
       FileUtils.cp(
         File.join(RailsInstaller::Scripts, file),
-        File.join(Stage, Ruby220.rename, "bin", file)
+        File.join(Stage, Ruby233.rename, "bin", file)
       )
     end
   end
@@ -353,14 +368,12 @@ module RailsInstaller
     sh line
   end
 
-  def self.ruby_binary(name, line, action, ruby_path, options = {})
+  def self.ruby_binary(name, line, action, ruby_path, directory_path, options = {})
     printf " => rails #{line} #{action}\n" if $Flags[:verbose]
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
     line = %Q(#{File.join(ruby_path, "bin", "ruby")} -S #{name} #{line} #{action})
     line += options[:args] if options[:args]
-    applications_path = File.join(RailsInstaller::Stage, "Sites")
-    FileUtils.mkdir_p applications_path unless File.exist?(applications_path)
-    Dir.chdir(applications_path) { sh line }
+    Dir.chdir(directory_path) { sh line }
   end
 
   def self.iscc(*params)

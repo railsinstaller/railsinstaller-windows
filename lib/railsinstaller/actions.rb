@@ -3,7 +3,7 @@ module RailsInstaller
   def self.build!
 
     components = [
-      BSDTar, SevenZip, DevKit, Git, Ruby220,
+      BSDTar, SevenZip, DevKit, Git, Ruby233,
       PostgresServer, Sqlite3, Sqlite3Dll
     ]
 
@@ -21,9 +21,11 @@ module RailsInstaller
 
     stage_postgresql
 
+    stage_todo_application
+
     stage_gems
 
-    stage_todo_application
+    fix_batch_files
 
     stage_setup_scripts
 
@@ -38,7 +40,7 @@ module RailsInstaller
   #
   def self.package!
 
-    unless %x{iscc --version}.scan("Inno Setup 5")
+    unless %x{iscc}.scan("Inno Setup 5")
       printf "ERROR: Inno Setup is required in order to package RailsInstaller.\n"
       printf "  http://www.jrsoftware.org/isdl.php#qsp\n"
       printf "Please see README.md for full RailsInstaller instructions.\n"
@@ -52,7 +54,7 @@ module RailsInstaller
     iscc "\"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
           "/dInstallerVersion=#{railsinstaller_version}",
           "/dStagePath=\"#{RailsInstaller::Stage}\"",
-          "/dRubyPath=\"#{RailsInstaller::Ruby220.rename}\"",
+          "/dRubyPath=\"#{RailsInstaller::Ruby233.rename}\"",
           "/dResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
           "/o\"#{RailsInstaller::PackageDir}\"",
           "/frailsinstaller-#{railsinstaller_version}"

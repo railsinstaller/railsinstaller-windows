@@ -1,4 +1,4 @@
-Copyright (c) 2010-2014 RailsInstaller Team.
+Copyright (c) 2010-2017 RailsInstaller Team.
 All rights reserved. See CONTRIBUTORS.txt for complete list.
 
 Permission is hereby granted, free of charge, to any person
