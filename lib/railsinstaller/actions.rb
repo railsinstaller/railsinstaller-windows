@@ -3,7 +3,7 @@ module RailsInstaller
   def self.build!
 
     components = [
-      BSDTar, SevenZip, DevKit, Git, Ruby233,
+      BSDTar, SevenZip, DevKit, Git, Ruby273,
       PostgresServer, Sqlite3, Sqlite3Dll
     ]
 

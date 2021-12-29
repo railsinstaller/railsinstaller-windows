@@ -34,7 +34,7 @@
   :title: Microsoft Visual C Runtime
   :category: component
   :regex: '^.*$'
-  :url: "http://download.microsoft.com/download/d/d/9/dd9a82d0-52ef-40db-8dab-795376989c03/vcredist_x86.exe"
+  :url: "https://aka.ms/vs/16/release/vc_redist.x86.exe"
 
 :dev_kit:
   :name: DevKit
@@ -44,13 +44,13 @@
   :target: 'DevKit'
   :url: "http://s3.amazonaws.com/railsinstaller/Resources/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
 
-:ruby233:
+:ruby273:
   :category: component
-  :title: Ruby 2.3.3
-  :name: Ruby233
+  :title: Ruby 2.7.3
+  :name: Ruby273
   :regex: '^.*$'
-  :url: "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.3.3-i386-mingw32.7z"
-  :rename: Ruby2.3.3
+  :url: "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-2.7.3-1/rubyinstaller-2.7.3-1-x64.7z"
+  :rename: Ruby2.7.3
 
 :git:
   :category: component

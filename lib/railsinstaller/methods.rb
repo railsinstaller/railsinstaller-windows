@@ -193,7 +193,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.mv(
           File.join(Stage, file),
-          File.join(Stage, Ruby233.rename, "bin", file)
+          File.join(Stage, Ruby273.rename, "bin", file)
         )
       end
     end
@@ -207,7 +207,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.cp(
           File.join(Stage, PostgresServer.target, "bin", file),
-          File.join(Stage, Ruby233.rename, "bin", file)
+          File.join(Stage, Ruby273.rename, "bin", file)
         )
       end
     end
@@ -218,13 +218,13 @@ module RailsInstaller
   #
   def self.link_devkit_with_ruby
     devkit_path = File.join(Stage, DevKit.target)
-    ruby_path = File.join(Stage, Ruby233.rename)
+    ruby_path = File.join(Stage, Ruby273.rename)
     FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
     Dir.chdir(devkit_path) do
       File.open("config.yml", "w") do |file|
         file.write(%Q(---\n- #{ruby_path}))
       end
-      sh %Q{#{File.join(ruby_path, "bin", "ruby")} dk.rb install}
+      sh %Q{#{File.join(ruby_path, "bin", "ruby")} ridk enable}
     end
   end
 
@@ -239,8 +239,8 @@ module RailsInstaller
 
   def self.stage_gems
     section Gems
-    build_gems(File.join(Stage, Ruby233.rename), Gems.list)
-    build_gem(File.join(Stage, Ruby233.rename), "pg", {
+    build_gems(File.join(Stage, Ruby273.rename), Gems.list)
+    build_gem(File.join(Stage, Ruby273.rename), "pg", {
       :args => [
           "--",
           "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
@@ -250,7 +250,7 @@ module RailsInstaller
   end
 
   def self.fix_batch_files
-    ruby_path = File.join(Stage, Ruby233.rename)
+    ruby_path = File.join(Stage, Ruby273.rename)
     bin_path = File.join(ruby_path, "bin/")
 	  filenames = Dir.glob("#{bin_path}*.bat")
 	  filenames.each do |filename|
@@ -282,9 +282,9 @@ module RailsInstaller
       FileUtils.rm_rf(File.join(todo_path, ".git"))
     end
 
-    gem_install File.join(Stage, Ruby233.rename), "bundler", :version => "1.15.3"
+    gem_install File.join(Stage, Ruby273.rename), "bundler", :version => "1.15.3"
 
-    ruby_binary("bundle", "install", "", File.join(Stage, Ruby233.rename), File.join(applications_path, "todo"))
+    ruby_binary("bundle", "install", "", File.join(Stage, Ruby273.rename), File.join(applications_path, "todo"))
   end
 
   def self.stage_rails_sample_application
@@ -293,7 +293,7 @@ module RailsInstaller
     section Rails
     sample = File.join(Stage, "Sites", "sample")
     FileUtils.rm_rf(sample) if File.exist?(sample)
-    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby233.rename))
+    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby273.rename))
   end
 
   # Renders setup scripts to be used post-installation
@@ -313,7 +313,7 @@ module RailsInstaller
     %w( publickey.bat ).each do |file|
       FileUtils.cp(
         File.join(RailsInstaller::Scripts, file),
-        File.join(Stage, Ruby233.rename, "bin", file)
+        File.join(Stage, Ruby273.rename, "bin", file)
       )
     end
   end
