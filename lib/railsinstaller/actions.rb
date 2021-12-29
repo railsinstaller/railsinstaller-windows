@@ -21,8 +21,6 @@ module RailsInstaller
 
     stage_postgresql
 
-    stage_todo_application
-
     stage_gems
 
     fix_batch_files
