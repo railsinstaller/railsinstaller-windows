@@ -42,7 +42,7 @@
   :category: component
   :regex: '^.*$'
   :target: 'DevKit'
-  :url: "http://s3.amazonaws.com/railsinstaller/Resources/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe"
+  :url: "https://github.com/msys2/msys2-installer/releases/download/2021-11-30/msys2-base-x86_64-20211130.sfx.exe"
 
 :ruby273:
   :category: component
