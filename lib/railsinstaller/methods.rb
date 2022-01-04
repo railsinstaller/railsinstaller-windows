@@ -363,7 +363,7 @@ module RailsInstaller
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
     line = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gem} )
     line << %Q( -v"#{options[:version]}" ) if options[:version]
-    line << %Q( --env-shebang --no-rdoc --no-ri --source http://rubygems.org )
+    line << %Q( --env-shebang --no-document --source http://rubygems.org )
     line << options[:args] if options[:args]
     sh line
   end
