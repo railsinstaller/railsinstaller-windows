@@ -11,23 +11,10 @@
     -
       :name: rails
       :version: "5.1.3"
-    -
-      :name: activerecord-sqlserver-adapter
-      :version: "5.1.1"
-    - tiny_tds
     - sqlite3
     - sqlite3-ruby
     - rubyzip
     - rb-readline
-    -
-      :name: coffee-rails
-      :version: "4.2.2"
-    -
-      :name: jquery-rails
-      :version: "4.3.1"
-    -
-      :name: sass-rails
-      :version: "5.0.6"
 
 :msvc_runtime:
   :name: MsvcRuntime
