@@ -7,10 +7,11 @@
     - rake
     -
       :name: bundler
-      :version: "1.15.3"
+      :version: "2.3.4"
     -
       :name: rails
-      :version: "5.1.3"
+      :version: "7.0.0"
+
     - sqlite3
     - sqlite3-ruby
     - rubyzip
