@@ -112,6 +112,8 @@ module RailsInstaller
               line = %Q("#{sevenzip}" x -y -t7z -o#{target_path} "#{archive}")
             when /^.+sfx\.exe$/
               line = %Q("#{sevenzip}" x -y -t7z -sfx -o#{target_path} #{archive})
+            when /(^.+\.tar)\.xz$/
+              line = %Q("#{sevenzip}" x "#{archive}" -so | "#{sevenzip}" x -aoa -ttar -si -o"#{target_path}")
             when /(^.+\.zip$)/
               if File.exist?(sevenzip) # Use bsdtar once we already have it
               line = %Q("#{sevenzip}" x -y -o#{target_path} #{archive})
