@@ -112,6 +112,8 @@ module RailsInstaller
               line = %Q("#{sevenzip}" x -y -t7z -o#{target_path} "#{archive}")
             when /^.+sfx\.exe$/
               line = %Q("#{sevenzip}" x -y -t7z -sfx -o#{target_path} #{archive})
+            when /(^.+\.tar)\.xz$/
+              line = %Q("#{sevenzip}" x "#{archive}" -so | "#{sevenzip}" x -aoa -ttar -si -o"#{target_path}")
             when /(^.+\.zip$)/
               if File.exist?(sevenzip) # Use bsdtar once we already have it
               line = %Q("#{sevenzip}" x -y -o#{target_path} #{archive})
@@ -193,7 +195,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.mv(
           File.join(Stage, file),
-          File.join(Stage, Ruby233.rename, "bin", file)
+          File.join(Stage, Ruby273.rename, "bin", file)
         )
       end
     end
@@ -207,7 +209,7 @@ module RailsInstaller
       if File.exist?(File.join(Stage, file))
         FileUtils.cp(
           File.join(Stage, PostgresServer.target, "bin", file),
-          File.join(Stage, Ruby233.rename, "bin", file)
+          File.join(Stage, Ruby273.rename, "bin", file)
         )
       end
     end
@@ -218,13 +220,13 @@ module RailsInstaller
   #
   def self.link_devkit_with_ruby
     devkit_path = File.join(Stage, DevKit.target)
-    ruby_path = File.join(Stage, Ruby233.rename)
+    ruby_path = File.join(Stage, Ruby273.rename)
     FileUtils.mkdir_p(devkit_path) unless File.directory?(devkit_path)
     Dir.chdir(devkit_path) do
       File.open("config.yml", "w") do |file|
         file.write(%Q(---\n- #{ruby_path}))
       end
-      sh %Q{#{File.join(ruby_path, "bin", "ruby")} dk.rb install}
+      sh %Q{#{File.join(ruby_path, "bin", "ruby")} ridk enable}
     end
   end
 
@@ -239,8 +241,8 @@ module RailsInstaller
 
   def self.stage_gems
     section Gems
-    build_gems(File.join(Stage, Ruby233.rename), Gems.list)
-    build_gem(File.join(Stage, Ruby233.rename), "pg", {
+    build_gems(File.join(Stage, Ruby273.rename), Gems.list)
+    build_gem(File.join(Stage, Ruby273.rename), "pg", {
       :args => [
           "--",
           "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
@@ -250,7 +252,7 @@ module RailsInstaller
   end
 
   def self.fix_batch_files
-    ruby_path = File.join(Stage, Ruby233.rename)
+    ruby_path = File.join(Stage, Ruby273.rename)
     bin_path = File.join(ruby_path, "bin/")
 	  filenames = Dir.glob("#{bin_path}*.bat")
 	  filenames.each do |filename|
@@ -282,9 +284,9 @@ module RailsInstaller
       FileUtils.rm_rf(File.join(todo_path, ".git"))
     end
 
-    gem_install File.join(Stage, Ruby233.rename), "bundler", :version => "1.15.3"
+    gem_install File.join(Stage, Ruby273.rename), "bundler", :version => "1.15.3"
 
-    ruby_binary("bundle", "install", "", File.join(Stage, Ruby233.rename), File.join(applications_path, "todo"))
+    ruby_binary("bundle", "install", "", File.join(Stage, Ruby273.rename), File.join(applications_path, "todo"))
   end
 
   def self.stage_rails_sample_application
@@ -293,7 +295,7 @@ module RailsInstaller
     section Rails
     sample = File.join(Stage, "Sites", "sample")
     FileUtils.rm_rf(sample) if File.exist?(sample)
-    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby233.rename))
+    ruby_binary("rails", "new", "sample", File.join(Stage, Ruby273.rename))
   end
 
   # Renders setup scripts to be used post-installation
@@ -313,7 +315,7 @@ module RailsInstaller
     %w( publickey.bat ).each do |file|
       FileUtils.cp(
         File.join(RailsInstaller::Scripts, file),
-        File.join(Stage, Ruby233.rename, "bin", file)
+        File.join(Stage, Ruby273.rename, "bin", file)
       )
     end
   end
@@ -363,7 +365,7 @@ module RailsInstaller
     %w(GEM_HOME GEM_PATH).each { |variable| ENV.delete(variable)}
     line = %Q(#{File.join(ruby_path, "bin", "gem")} install #{gem} )
     line << %Q( -v"#{options[:version]}" ) if options[:version]
-    line << %Q( --env-shebang --no-rdoc --no-ri --source http://rubygems.org )
+    line << %Q( --env-shebang --no-document --source http://rubygems.org )
     line << options[:args] if options[:args]
     sh line
   end
@@ -388,7 +390,7 @@ module RailsInstaller
     if found
       executable = "iscc.exe"
     else
-      path = File.join(ENV["ProgramFiles"], "Inno Setup 5")
+      path = File.join(ENV["ProgramFiles"], "Inno Setup 6")
       if File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
         path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR)
         ENV["PATH"] = "#{path}#{File::PATH_SEPARATOR}#{ENV["PATH"]}" unless ENV["PATH"].include?(path)
