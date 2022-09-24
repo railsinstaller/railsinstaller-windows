@@ -388,7 +388,7 @@ module RailsInstaller
     if found
       executable = "iscc.exe"
     else
-      path = File.join(ENV["ProgramFiles"], "Inno Setup 5")
+      path = File.join(ENV["ProgramFiles"], "Inno Setup 6")
       if File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
         path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR)
         ENV["PATH"] = "#{path}#{File::PATH_SEPARATOR}#{ENV["PATH"]}" unless ENV["PATH"].include?(path)
