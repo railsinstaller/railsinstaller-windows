@@ -31,6 +31,14 @@
   :url: "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.3.3-i386-mingw32.7z"
   :rename: Ruby2.3.3
 
+:ruby312:
+  :category: component
+  :title: Ruby 3.1.2
+  :name: Ruby312
+  :regex: '^.*$'
+  :url: "https://github.com/robertmabbs/railsinstaller-rubydevkit/releases/download/rubyinstaller-devkit-3.1.2-1-x64/rubyinstaller-devkit-3.1.2-1-x64.7z"
+  :rename: Ruby3.1.2
+
 :git:
   :category: component
   :title: Git 1.9.4
