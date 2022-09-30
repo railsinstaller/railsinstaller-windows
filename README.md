@@ -1,6 +1,6 @@
 # RailsInstaller
 
-Rails development environment installer for Windows.
+Rails development environment installer for Windows. This is attempt to get the installer to work agian.
 
 ## Overview
 
@@ -19,7 +19,9 @@ built and packaged via rake tasks.
 1. Download and install latest
    [Inno Setup Quick Start Pack](http://www.jrsoftware.org/isdl.php#qsp),
    add iscc.exe in your PATH
-
+    ```
+    C:\Program Files (x86)\Inno Setup 6\ISCC.exe 
+    ```
 1. [Fork](https://help.github.com/articles/fork-a-repo)
    the [RailsInstaller project on github](https://github.com/railsinstaller/railsinstaller-windows.git)
    into your own GitHub account.
