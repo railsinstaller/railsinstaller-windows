@@ -239,14 +239,7 @@ module RailsInstaller
 
   def self.stage_gems
     section Gems
-    build_gems(File.join(Stage, Ruby233.rename), Gems.list)
-    build_gem(File.join(Stage, Ruby233.rename), "pg", {
-      :args => [
-          "--",
-          "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
-          "--with-pg-lib=#{File.join(Stage, "pgsql", "lib")}"
-      ].join(" ")
-    })
+    build_gems(File.join(Stage, Ruby312.rename), Gems.list)
   end
 
   def self.fix_batch_files
