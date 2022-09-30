@@ -236,17 +236,17 @@ module RailsInstaller
       config_file.write(config.gsub(/autocrlf = true/, "autocrlf = false"))
     end
   end
+  
+  def self.stage_gem_update  
+  ruby_path = File.join(Stage, Ruby312.rename)
+  
+  line = %Q(#{File.join(ruby_path, "bin", "gem")} update )
+  sh line
+  end
 
   def self.stage_gems
     section Gems
-    build_gems(File.join(Stage, Ruby233.rename), Gems.list)
-    build_gem(File.join(Stage, Ruby233.rename), "pg", {
-      :args => [
-          "--",
-          "--with-pg-include=#{File.join(Stage, "pgsql", "include")}",
-          "--with-pg-lib=#{File.join(Stage, "pgsql", "lib")}"
-      ].join(" ")
-    })
+    build_gems(File.join(Stage, Ruby312.rename), Gems.list)
   end
 
   def self.fix_batch_files
@@ -381,18 +381,18 @@ module RailsInstaller
 
     # look for Inno Setup compiler in the PATH
     found = ENV["PATH"].split(File::PATH_SEPARATOR).find do |path|
-      File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
+      File.exist?(File.join(path, "ISCC.exe")) && File.executable?(File.join(path, "ISCC.exe"))
     end
 
     # not found?
     if found
-      executable = "iscc.exe"
+      executable = "ISCC.exe"
     else
-      path = File.join(ENV["ProgramFiles"], "Inno Setup 5")
-      if File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
+      path = File.join(ENV["ProgramFiles"], "Inno Setup 6")
+      if File.exist?(File.join(path, "ISCC.exe")) && File.executable?(File.join(path, "ISCC.exe"))
         path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR)
         ENV["PATH"] = "#{path}#{File::PATH_SEPARATOR}#{ENV["PATH"]}" unless ENV["PATH"].include?(path)
-        executable = "iscc.exe"
+        executable = "ISCC.exe"
       end
     end
     cmd = [executable]

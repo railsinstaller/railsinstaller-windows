@@ -4,30 +4,9 @@
   :title: Ruby Gems
   :category: gems
   :list:
-    - rake
-    -
-      :name: bundler
-      :version: "1.15.3"
     -
       :name: rails
-      :version: "5.1.3"
-    -
-      :name: activerecord-sqlserver-adapter
-      :version: "5.1.1"
-    - tiny_tds
-    - sqlite3
-    - sqlite3-ruby
-    - rubyzip
-    - rb-readline
-    -
-      :name: coffee-rails
-      :version: "4.2.2"
-    -
-      :name: jquery-rails
-      :version: "4.3.1"
-    -
-      :name: sass-rails
-      :version: "5.0.6"
+      :version: "7.0.4"
 
 :msvc_runtime:
   :name: MsvcRuntime
@@ -51,6 +30,14 @@
   :regex: '^.*$'
   :url: "http://dl.bintray.com/oneclick/rubyinstaller/ruby-2.3.3-i386-mingw32.7z"
   :rename: Ruby2.3.3
+
+:ruby312:
+  :category: component
+  :title: Ruby 3.1.2
+  :name: Ruby312
+  :regex: '^.*$'
+  :url: "https://github.com/robertmabbs/railsinstaller-rubydevkit/releases/download/rubyinstaller-devkit-3.1.2-1-x64/rubyinstaller-devkit-3.1.2-1-x64.7z"
+  :rename: Ruby3.1.2
 
 :git:
   :category: component
