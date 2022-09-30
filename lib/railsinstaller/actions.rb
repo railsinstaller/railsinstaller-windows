@@ -11,6 +11,11 @@ module RailsInstaller
       download package.url
       extract  package
     end
+    
+    # this needs to be done as temp fix to bypass the tzdata error when installing rails
+    stage_gem_update
+    
+    # stage_sqlite
 
     # link_devkit_with_ruby
 
