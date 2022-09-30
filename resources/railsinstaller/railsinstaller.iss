@@ -91,14 +91,14 @@ Name: en; MessagesFile: compiler:Default.isl
 [Messages]
 en.InstallingLabel=Installing [name], this will take a few minutes...
 en.WelcomeLabel1=Welcome to [name]!
-en.WelcomeLabel2=This will install [name/ver] on your computer which includes Ruby 2.2.3, Rails 4.2.5, Git, Sqlite3, DevKit, and TinyTDS with FreeTDS.  Please close any console applications before continuing.
+en.WelcomeLabel2=This will install [name/ver] on your computer.  Please close any console applications before continuing.
 en.WizardLicense={#InstallerName} License Agreement
 en.LicenseLabel=
 en.LicenseLabel3=Please read the following License Agreements and accept the terms before continuing the installation.
 en.LicenseAccepted=I &accept all of the Licenses
 en.LicenseNotAccepted=I &decline any of the Licenses
 en.WizardSelectDir=Installation Destination and Optional Tasks
-en.SelectDirDesc=This is the location that Ruby, DevKit, Git, Rails and Sqlite will be installed to.
+en.SelectDirDesc=This is the location that Ruby, DevKit, Rails and Sqlite will be installed to.
 en.SelectDirLabel3=[name] will be installed into the following folder. Click Install to continue or click Browse to use a different one.
 en.SelectDirBrowseLabel=Please avoid any folder name that contains spaces (e.g. Program Files).
 en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
@@ -161,8 +161,6 @@ begin
 
       if IsModifyPath then
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
-		if InstallGit then
-			ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
 
     end else
       MsgBox('Looks like you''ve got on older, unsupported Windows version.' #13 +
@@ -176,8 +174,6 @@ begin
   {* store install choices so we can use during uninstall *}
   if IsModifyPath then
     SetPreviousData(PreviousDataKey, 'PathModified', 'yes');
-  if InstallGit then
-	SetPreviousData(PreviousDataKey, 'GitInstalled', 'yes');
 
   SetPreviousData(PreviousDataKey, 'RailsInstallerId', '{#InstallerVersion}');
 end;
@@ -191,8 +187,6 @@ begin
       if GetPreviousData('PathModified', 'no') = 'yes' then
 	    begin
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
-	    if GetPreviousData('GitInstalled', 'no') = 'yes' then
-		  ModifyPath([ExpandConstant('{app}') + '\Git\cmd']);
 		end
     end;
   end;
