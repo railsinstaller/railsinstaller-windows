@@ -236,6 +236,13 @@ module RailsInstaller
       config_file.write(config.gsub(/autocrlf = true/, "autocrlf = false"))
     end
   end
+  
+  def self.stage_gem_update  
+  ruby_path = File.join(Stage, Ruby312.rename)
+  
+  line = %Q(#{File.join(ruby_path, "bin", "gem")} update )
+  sh line
+  end
 
   def self.stage_gems
     section Gems
