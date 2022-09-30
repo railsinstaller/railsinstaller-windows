@@ -381,18 +381,18 @@ module RailsInstaller
 
     # look for Inno Setup compiler in the PATH
     found = ENV["PATH"].split(File::PATH_SEPARATOR).find do |path|
-      File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
+      File.exist?(File.join(path, "ISCC.exe")) && File.executable?(File.join(path, "ISCC.exe"))
     end
 
     # not found?
     if found
-      executable = "iscc.exe"
+      executable = "ISCC.exe"
     else
       path = File.join(ENV["ProgramFiles"], "Inno Setup 6")
-      if File.exist?(File.join(path, "iscc.exe")) && File.executable?(File.join(path, "iscc.exe"))
+      if File.exist?(File.join(path, "ISCC.exe")) && File.executable?(File.join(path, "ISCC.exe"))
         path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR)
         ENV["PATH"] = "#{path}#{File::PATH_SEPARATOR}#{ENV["PATH"]}" unless ENV["PATH"].include?(path)
-        executable = "iscc.exe"
+        executable = "ISCC.exe"
       end
     end
     cmd = [executable]
