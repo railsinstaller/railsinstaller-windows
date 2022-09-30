@@ -50,13 +50,21 @@ module RailsInstaller
 
     printf "\nPackaging... this *will* take a while...\n"
 
-    iscc "\"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
-          "/dInstallerVersion=#{railsinstaller_version}",
-          "/dStagePath=\"#{RailsInstaller::Stage}\"",
-          "/dRubyPath=\"#{RailsInstaller::Ruby233.rename}\"",
-          "/dResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
-          "/o\"#{RailsInstaller::PackageDir}\"",
-          "/frailsinstaller-#{railsinstaller_version}"
+    # iscc "\"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
+    #       "/dInstallerVersion=#{railsinstaller_version}",
+    #       "/dStagePath=\"#{RailsInstaller::Stage}\"",
+    #       "/dRubyPath=\"#{RailsInstaller::Ruby233.rename}\"",
+    #       "/dResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
+    #       "/o\"#{RailsInstaller::PackageDir}\"",
+    #       "/frailsinstaller-#{railsinstaller_version}"
+    
+      iscc " \"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
+        "/DInstallerVersion=\"#{railsinstaller_version}\"",
+        "/DStagePath=\"#{RailsInstaller::Stage}\"",
+        "/DRubyPath=\"#{RailsInstaller::Ruby312.rename}\"",
+        "/DResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
+        "/O\"#{RailsInstaller::PackageDir}\"",
+        "/Frailsinstaller-#{railsinstaller_version}"
 
   end
 
