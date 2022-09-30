@@ -12,23 +12,21 @@ module RailsInstaller
       extract  package
     end
 
-    stage_sqlite
+    # link_devkit_with_ruby
 
-    link_devkit_with_ruby
+    # stage_git
 
-    stage_git
+    # stage_postgresql
 
-    stage_postgresql
-
-    stage_todo_application
+    # stage_todo_application
 
     stage_gems
 
-    fix_batch_files
+    # fix_batch_files
 
-    stage_setup_scripts
+    # stage_setup_scripts
 
-    stage_msvc_runtime
+    # stage_msvc_runtime
   end
 
   #
