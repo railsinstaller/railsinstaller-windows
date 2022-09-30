@@ -1,10 +1,9 @@
 module RailsInstaller
 
   def self.build!
-
-    components = [
-      BSDTar, SevenZip, DevKit, Git, Ruby233,
-      PostgresServer, Sqlite3, Sqlite3Dll
+  
+  components = [
+    BSDTar, SevenZip, Ruby312
     ]
 
     components.each do |package|
