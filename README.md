@@ -1,6 +1,7 @@
 # RailsInstaller
 
-Rails development environment installer for Windows. This is attempt to get the installer to work agian.
+Rails development environment installer for Windows. This is attempt to get the installer to work agian. 4.0.0-alpha Pre-release now available
+check out How to install or [Releases](https://github.com/railsinstaller/railsinstaller-windows/releases) to downlaod.
 
 ## Overview
 
