@@ -3,7 +3,7 @@ module RailsInstaller
   def self.build!
   
   components = [
-    BSDTar, SevenZip, Ruby312
+    BSDTar, SevenZip
     ]
 
     components.each do |package|
@@ -13,7 +13,7 @@ module RailsInstaller
     end
     
     # this needs to be done as temp fix to bypass the tzdata error when installing rails
-    stage_gem_update
+    #stage_gem_update
     
     # stage_sqlite
 
