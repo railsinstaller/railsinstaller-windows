@@ -8,7 +8,41 @@ The goal of this project is to generate an installer that when run installs all
 of the most common components for a Rails development environment with no
 required prerequisites on a Windows system.
 
+## How to Install
+Currently RailsInstaller does not include everything to get rails to work on Windows. Slowly each part will get added back in, but for 
+now you will need to follow instructions below to get rails installed.
+
+1. Download and install 
+[Git](https://github.com/git-for-windows/git/releases/download/v2.38.0.windows.1/Git-2.38.0-64-bit.exe).
+
+2. Download and install 
+[Nodejs](https://nodejs.org/dist/v16.17.1/node-v16.17.1-x64.msi).
+
+3. Download and install
+[Yarn](https://classic.yarnpkg.com/latest.msi).
+
+4. Download and install 
+[RailsInstaller](https://github.com/railsinstaller/railsinstaller-windows/releases/download/v4.0.0-alpha/railsinstaller-4.0.0.exe).
+
+# RailsInstaller Components
+
+The next few sections detail the core components that make up RailsInstaller.
+
+### Ruby 3.1.2 on Windows
+
+RubyInstaller is a self contained package installer which installs Ruby and RubyGems on a windows system, head over to [http://rubyinstaller.org/](http://rubyinstaller.org/) for more information.
+
+### Development Kit (DevKit)
+
+A MSYS/MinGW based toolkit that enables RailsInstaller to build native C/C++ packages, both for Ruby and gems. DevKit is built and maintained by the wonderful folks over at the RubyInstaller project.
+
+### Packaging/Installer
+
+We are using [Inno Setup](http://www.jrsoftware.org/isinfo.php "Inno Setup"), a free installer for Windows programs.
+
 ## How to Contribute
+
+The information below is out of date and will be updated soon.
 
 RailsInstaller project code repository is located on GitHub and is bootstrapped,
 built and packaged via rake tasks.
@@ -65,8 +99,9 @@ built and packaged via rake tasks.
 
 1. Use Inno Setup to package the installer into an executable (.exe) for testing/distribution.
 
-    ```bat
-    SET PATH=C:\Program Files\Inno Setup 5;%PATH%
+    Add iscc.exe in your PATH
+    ```
+    C:\Program Files (x86)\Inno Setup 6\ISCC.exe 
     rake package
     ```
 
@@ -82,24 +117,3 @@ built and packaged via rake tasks.
     ```
 
 1. Now issue a [pull request](https://help.github.com/articles/using-pull-requests) on GitHub.
-
-# RailsInstaller Components
-
-The next few sections detail the core components that make up RailsInstaller.
-
-### Ruby 2.2.3 on Windows
-
-RubyInstaller is a self contained package installer which installs Ruby and RubyGems on a windows system, head over to [http://rubyinstaller.org/](http://rubyinstaller.org/) for more information.
-
-### Development Kit (DevKit)
-
-A MSYS/MinGW based toolkit that enables RailsInstaller to build native C/C++ packages, both for Ruby and gems. DevKit is built and maintained by the wonderful folks over at the RubyInstaller project.
-
-### Git
-
-The git version that is bundled into RailsInstaller is
-[msysgit](http://msysgit.github.io/).
-
-### Packaging/Installer
-
-We are using [Inno Setup](http://www.jrsoftware.org/isinfo.php "Inno Setup"), a free installer for Windows programs.
