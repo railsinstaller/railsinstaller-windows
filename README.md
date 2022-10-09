@@ -25,6 +25,9 @@ now you will need to follow instructions below to get rails installed.
 4. Download and install 
 [RailsInstaller](https://github.com/railsinstaller/railsinstaller-windows/releases/download/v4.0.0-alpha/railsinstaller-4.0.0.exe).
 
+# Need Help, Bugs or Questions
+Please come over to the Discord server [Click Here for invite](https://discord.gg/QeRYNGXHuu) 
+
 # RailsInstaller Components
 
 The next few sections detail the core components that make up RailsInstaller.
