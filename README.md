@@ -1,7 +1,7 @@
 # RailsInstaller
 
 Rails development environment installer for Windows. This is attempt to get the installer to work agian. 4.0.0-alpha Pre-release now available
-check out How to install or [Releases](https://github.com/railsinstaller/railsinstaller-windows/releases) to downlaod.
+check out Install Ruby On Rails on Windows or [Releases](https://github.com/railsinstaller/railsinstaller-windows/releases) to downlaod.
 
 ## Overview
 
@@ -9,7 +9,7 @@ The goal of this project is to generate an installer that when run installs all
 of the most common components for a Rails development environment with no
 required prerequisites on a Windows system.
 
-## How to Install
+## Install Ruby On Rails on Windows
 Currently RailsInstaller does not include everything to get rails to work on Windows. Slowly each part will get added back in, but for 
 now you will need to follow instructions below to get rails installed.
 
