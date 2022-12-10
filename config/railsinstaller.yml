@@ -33,3 +33,11 @@
   :binary: "7za.exe"
   :regex: '^7za\.exe$'
   :url: "http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
+  
+:git:
+  :category: component
+  :title: Git 2.38.1
+  :name: Git
+  :url: "https://github.com/robertmabbs/railsinstaller-git/releases/download/2.38.1/PortableGit.zip"
+  :target: "Git"
+  :regex: '^.*$'
