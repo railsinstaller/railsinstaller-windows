@@ -106,6 +106,7 @@ en.DiskSpaceMBLabel=Required free disk space: ~[mb] MB
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: {#StagePath}\{#RubyPath}\*; DestDir: {app}\{#RubyPath}; Flags: recursesubdirs createallsubdirs
+Source: {#StagePath}\Git\*; DestDir: {app}\Git; Flags: recursesubdirs createallsubdirs
 ;Source: {#StagePath}\Git\*; DestDir: {app}\Git; Check: InstallGit; Flags: recursesubdirs createallsubdirs
 ;Source: {#StagePath}\DevKit\*; DestDir: {app}\DevKit; Excludes: "config.yml"; Flags: recursesubdirs createallsubdirs
 ;Source: {#StagePath}\DevKit\config.yml; DestDir: {app}\DevKit; AfterInstall: UpdateDevKitConfig('{app}\{#RubyPath}', '{app}\DevKit\config.yml')
@@ -161,6 +162,7 @@ begin
 
       if IsModifyPath then
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
+        ModifyPath([ExpandConstant('{app}') + '\Git\bin']);
 
     end else
       MsgBox('Looks like you''ve got on older, unsupported Windows version.' #13 +
@@ -187,6 +189,7 @@ begin
       if GetPreviousData('PathModified', 'no') = 'yes' then
 	    begin
         ModifyPath([ExpandConstant('{app}') + '\{#RubyPath}\bin']);
+        ModifyPath([ExpandConstant('{app}') + '\Git\bin']);
 		end
     end;
   end;
