@@ -8,13 +8,13 @@
       :name: rails
       :version: "7.0.4"
 
-:ruby312:
+:ruby313:
   :category: component
-  :title: Ruby 3.1.2
-  :name: Ruby312
+  :title: Ruby 3.1.3
+  :name: Ruby313
   :regex: '^.*$'
-  :url: "https://github.com/robertmabbs/railsinstaller-rubydevkit/releases/download/rubyinstaller-devkit-3.1.2-1-x64/rubyinstaller-devkit-3.1.2-1-x64.7z"
-  :rename: Ruby3.1.2
+  :url: "https://github.com/robertmabbs/railsinstaller-rubydevkit/releases/download/rubyinstaller-devkit-3.1.3-1-x64/rubyinstaller-devkit-3.1.3-1-x64.7z"
+  :rename: Ruby3.1.3
   
 :bsdtar:
   :name: BSDTar
@@ -33,3 +33,11 @@
   :binary: "7za.exe"
   :regex: '^7za\.exe$'
   :url: "http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip"
+  
+:git:
+  :category: component
+  :title: Git 2.38.1
+  :name: Git
+  :url: "https://github.com/robertmabbs/railsinstaller-git/releases/download/2.38.1/PortableGit.zip"
+  :target: "Git"
+  :regex: '^.*$'
