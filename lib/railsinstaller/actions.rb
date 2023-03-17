@@ -19,7 +19,7 @@ module RailsInstaller
 
     # link_devkit_with_ruby
 
-    # stage_git
+   # stage_git
 
     # stage_postgresql
 
@@ -64,7 +64,7 @@ module RailsInstaller
       iscc " \"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
         "/DInstallerVersion=\"#{railsinstaller_version}\"",
         "/DStagePath=\"#{RailsInstaller::Stage}\"",
-        "/DRubyPath=\"#{RailsInstaller::Ruby312.rename}\"",
+        "/DRubyPath=\"#{RailsInstaller::Ruby313.rename}\"",
         "/DResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
         "/O\"#{RailsInstaller::PackageDir}\"",
         "/Frailsinstaller-#{railsinstaller_version}"

@@ -8,13 +8,13 @@
       :name: rails
       :version: "7.0.4"
 
-:ruby312:
+:ruby313:
   :category: component
-  :title: Ruby 3.1.2
-  :name: Ruby312
+  :title: Ruby 3.1.3
+  :name: Ruby313
   :regex: '^.*$'
-  :url: "https://github.com/robertmabbs/railsinstaller-rubydevkit/releases/download/rubyinstaller-devkit-3.1.2-1-x64/rubyinstaller-devkit-3.1.2-1-x64.7z"
-  :rename: Ruby3.1.2
+  :url: "https://github.com/robertmabbs/railsinstaller-rubydevkit/releases/download/rubyinstaller-devkit-3.1.3-1-x64/rubyinstaller-devkit-3.1.3-1-x64.7z"
+  :rename: Ruby3.1.3
   
 :bsdtar:
   :name: BSDTar
