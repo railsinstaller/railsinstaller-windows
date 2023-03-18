@@ -3,7 +3,7 @@ module RailsInstaller
   def self.build!
   
   components = [
-    BSDTar, SevenZip, Git
+    BSDTar, SevenZip, Git, Ruby313
     ]
 
     components.each do |package|
