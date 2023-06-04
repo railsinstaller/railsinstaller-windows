@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Rails Installer test
+      - name: Install Rails Installer
         run: |
           $url = 'https://github.com/railsinstaller/railsinstaller-windows/releases/download/v4.0.1/railsinstaller-4.0.1.exe'
           $output = "$env:TEMP\railsinstaller-4.0.1.exe"
