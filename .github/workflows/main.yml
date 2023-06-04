@@ -2,10 +2,10 @@ name: Install Rails Installer
 on:
   push:
     branches:
-      - main
+      - github-action
   pull_request:
     branches:
-      - main
+      - github-action
 
 jobs:
   install:
