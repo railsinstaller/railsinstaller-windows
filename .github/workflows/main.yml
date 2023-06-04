@@ -21,3 +21,11 @@ jobs:
           $output = "$env:TEMP\railsinstaller-4.0.1.exe"
           Invoke-WebRequest -Uri $url -OutFile $output
           Start-Process -FilePath $output -ArgumentList '/silent' -Wait
+      
+      - name: Check Ruby version
+        run: |
+          ruby -v
+          
+      - name: Check Rails version
+        run: |
+          rails -v
