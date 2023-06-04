@@ -16,19 +16,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Rails Installer
-        run: |
-          $url = 'https://github.com/railsinstaller/railsinstaller-windows/releases/download/v4.0.1/railsinstaller-4.0.1.exe'
-          $output = "$env:TEMP\railsinstaller-4.0.1.exe"
-          Invoke-WebRequest -Uri $url -OutFile $output
-          Start-Process -FilePath $output -ArgumentList '/silent' -Wait
-          
-          
+        run: |          
           $url = 'https://github.com/railsinstaller/railsinstaller-windows/releases/download/v4.0.1/railsinstaller-4.0.1.exe'
           $output = "$env:TEMP\railsinstaller-4.0.1.exe"
           Invoke-WebRequest -Uri $url -OutFile $output
 
           # Run the Rails Installer executable with silent mode
-          Start-Process -FilePath $output -ArgumentList '/silent' -Wait
+          Start-Process -FilePath $output -ArgumentList '/passive' -Wait
 
           # Verify the installation
           $installDir = "C:\RailsInstaller"
