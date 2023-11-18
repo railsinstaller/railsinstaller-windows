@@ -3,7 +3,7 @@ module RailsInstaller
   def self.build!
   
   components = [
-    BSDTar, SevenZip, Git, Ruby313
+    BSDTar, SevenZip, Git, Ruby322
     ]
 
     components.each do |package|
@@ -64,7 +64,7 @@ module RailsInstaller
       iscc " \"#{File.join(RailsInstaller::Root, "resources", "railsinstaller", "railsinstaller.iss")}\"",
         "/DInstallerVersion=\"#{railsinstaller_version}\"",
         "/DStagePath=\"#{RailsInstaller::Stage}\"",
-        "/DRubyPath=\"#{RailsInstaller::Ruby313.rename}\"",
+        "/DRubyPath=\"#{RailsInstaller::Ruby322.rename}\"",
         "/DResourcesPath=\"#{File.join(RailsInstaller::Root, "resources")}\"",
         "/O\"#{RailsInstaller::PackageDir}\"",
         "/Frailsinstaller-#{railsinstaller_version}"

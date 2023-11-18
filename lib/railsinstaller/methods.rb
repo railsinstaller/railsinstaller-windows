@@ -238,7 +238,7 @@ module RailsInstaller
   end
   
   def self.stage_gem_update  
-  ruby_path = File.join(Stage, Ruby313.rename)
+  ruby_path = File.join(Stage, Ruby322.rename)
   
   line = %Q(#{File.join(ruby_path, "bin", "gem")} update )
   sh line
@@ -246,7 +246,7 @@ module RailsInstaller
 
   def self.stage_gems
     section Gems
-    build_gems(File.join(Stage, Ruby313.rename), Gems.list)
+    build_gems(File.join(Stage, Ruby322.rename), Gems.list)
   end
 
   def self.fix_batch_files
